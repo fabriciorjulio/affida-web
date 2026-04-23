@@ -1,0 +1,831 @@
+import Link from "next/link";
+import {
+  LayoutDashboard,
+  Users,
+  GitBranch,
+  Wallet,
+  Sparkles,
+  BarChart3,
+  Megaphone,
+  Handshake,
+  UserCircle2,
+  FileText,
+  Repeat2,
+  ArrowRight,
+  CheckCircle2,
+  AlertTriangle,
+  Target,
+  Zap,
+  Lock,
+  Rocket,
+  TrendingUp,
+  ShieldCheck,
+  Globe,
+  Clock,
+  X,
+  Check,
+} from "lucide-react";
+import { Navbar } from "@/components/marketing/navbar";
+import { Footer } from "@/components/marketing/footer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+const modulos = [
+  {
+    icon: Globe,
+    area: "Aquisição",
+    title: "Landing + Cotação digital",
+    rotas: ["/", "/cotar", "/cotar/[produto]"],
+    description:
+      "Site institucional premium + cotador multi-produto em 4 passos. Cliente sai com 3 opções comparadas em 3 minutos.",
+    status: "MVP pronto",
+  },
+  {
+    icon: LayoutDashboard,
+    area: "Operação",
+    title: "CRM Affida (interno)",
+    rotas: ["/crm", "/crm/pipeline", "/crm/leads"],
+    description:
+      "Dashboard com KPIs, pipeline kanban 6 estágios, leads 360, agenda do closer, performance do time e timeline de atividades.",
+    status: "MVP pronto",
+  },
+  {
+    icon: Wallet,
+    area: "Operação",
+    title: "Carteira de clientes",
+    rotas: ["/crm/carteira", "/crm/carteira/[id]"],
+    description:
+      "Gestão da carteira com visão 360 por cliente: apólices, vigências, gatilhos de reoferta, conciliação de fatura e sugestões de upsell.",
+    status: "MVP pronto",
+  },
+  {
+    icon: Repeat2,
+    area: "Receita",
+    title: "Motor de Reoferta",
+    rotas: ["/crm/reoferta"],
+    description:
+      "Fila priorizada de oportunidades com triggers (renovação próxima, reajuste alto, novo produto elegível, gap setorial). Receita potencial estimada por cliente.",
+    status: "MVP pronto",
+    highlight: true,
+  },
+  {
+    icon: Megaphone,
+    area: "Aquisição",
+    title: "Campanhas & atribuição",
+    rotas: ["/crm/campanhas"],
+    description:
+      "Painel de mídia paga com custo por lead, CAC, leads x fechamentos e ROI consolidado por canal.",
+    status: "MVP pronto",
+  },
+  {
+    icon: Handshake,
+    area: "Aquisição",
+    title: "Programa de parceiros",
+    rotas: ["/parceiros", "/crm/parceiros"],
+    description:
+      "Landing pública para captação + painel admin para onboarding, pagamento de comissão e performance por parceiro.",
+    status: "MVP pronto",
+  },
+  {
+    icon: UserCircle2,
+    area: "Retenção",
+    title: "Portal do cliente PME",
+    rotas: ["/portal", "/portal/apolices", "/portal/proposta"],
+    description:
+      "Experiência premium logada: visão consolidada de vidas e prêmio, apólices ativas, proposta 2026 interativa, WhatsApp direto com closer.",
+    status: "MVP pronto",
+    highlight: true,
+  },
+  {
+    icon: BarChart3,
+    area: "Retenção",
+    title: "Benchmark setorial",
+    rotas: ["/portal/benchmark"],
+    description:
+      "Inteligência competitiva anônima: ticket médio por CNAE, reajuste do setor, operadoras dominantes, tendências 2026.",
+    status: "MVP pronto",
+    highlight: true,
+  },
+];
+
+const fluxos = [
+  {
+    icon: Target,
+    step: "01",
+    title: "Captação",
+    desc: "Tráfego pago + SEO + parceiros + indicações → cotação online ou formulário curto.",
+  },
+  {
+    icon: FileText,
+    step: "02",
+    title: "Qualificação",
+    desc: "Lead entra no CRM, é enriquecido (CNPJ, porte, CNAE) e roteado para closer sênior.",
+  },
+  {
+    icon: Sparkles,
+    step: "03",
+    title: "Consultoria",
+    desc: "Closer prepara proposta consultiva 2-3 opções com rationale Affida, enviada como link premium.",
+  },
+  {
+    icon: ShieldCheck,
+    step: "04",
+    title: "Fechamento",
+    desc: "Assinatura digital + onboarding + cliente vira ativo no portal, com consultor dedicado.",
+  },
+  {
+    icon: Repeat2,
+    step: "05",
+    title: "Expansão",
+    desc: "Motor de reoferta dispara cross-sell (vida ao cliente saúde), antecipa renovação e defende carteira.",
+  },
+];
+
+const diferenciais = [
+  {
+    icon: UserCircle2,
+    title: "Portal do cliente é o ativo",
+    desc: "Corretor PME tradicional entrega PDF no e-mail. Nós entregamos um portal logado, com benchmark setorial e proposta interativa. Vira razão pra não trocar de corretora.",
+  },
+  {
+    icon: Repeat2,
+    title: "Motor de reoferta proativo",
+    desc: "Ninguém no segmento PME tem. A carteira fica monitorada 24/7 por 7 tipos de trigger. Closer acorda com a fila de oportunidades já pronta, com receita estimada.",
+  },
+  {
+    icon: Sparkles,
+    title: "Identidade de marca consultiva",
+    desc: "Design premium (navy + champagne + forest, tipografia display) tira a Affida da categoria commodity. Para decisor C-level PME, isso muda a percepção de valor.",
+  },
+  {
+    icon: BarChart3,
+    title: "Inteligência setorial embutida",
+    desc: "Comparativo por CNAE + porte + vidas. Cliente vê onde está vs. pares. Vira argumento pra upsell e defesa contra concorrente na renovação.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Backoffice MDS por trás",
+    desc: "Associação ao grupo MDS dá SUSEP, tecnologia de backoffice e acesso a todas as operadoras relevantes do Brasil. Nasce com capacidade de empresa grande.",
+  },
+  {
+    icon: Handshake,
+    title: "Programa de parceiros pronto",
+    desc: "Contadores, consultores de RH, influenciadores — todos com painel próprio e comissão recorrente. Multiplicador de aquisição de baixo custo.",
+  },
+];
+
+const benchmark = [
+  {
+    recurso: "Cotação online multi-produto",
+    affida: true,
+    corretorTradicional: false,
+    bidu: "parcial",
+    minutoSeguros: "parcial",
+    nota: "Foco PME, Vida + Saúde, com rationale consultivo",
+  },
+  {
+    recurso: "Portal logado pro cliente",
+    affida: true,
+    corretorTradicional: false,
+    bidu: false,
+    minutoSeguros: false,
+    nota: "Diferencial real no segmento PME",
+  },
+  {
+    recurso: "Motor de reoferta com triggers",
+    affida: true,
+    corretorTradicional: false,
+    bidu: false,
+    minutoSeguros: false,
+    nota: "Ninguém no mercado PME tem",
+  },
+  {
+    recurso: "Benchmark setorial CNAE",
+    affida: true,
+    corretorTradicional: false,
+    bidu: false,
+    minutoSeguros: false,
+    nota: "Inteligência competitiva proprietária",
+  },
+  {
+    recurso: "Consultor humano dedicado",
+    affida: true,
+    corretorTradicional: true,
+    bidu: false,
+    minutoSeguros: false,
+    nota: "Humano + digital, não 'ou um ou outro'",
+  },
+  {
+    recurso: "Acesso a todas operadoras",
+    affida: true,
+    corretorTradicional: "parcial",
+    bidu: true,
+    minutoSeguros: true,
+    nota: "Via MDS Group",
+  },
+  {
+    recurso: "Programa de parceiros estruturado",
+    affida: true,
+    corretorTradicional: false,
+    bidu: "parcial",
+    minutoSeguros: false,
+    nota: "Comissão recorrente + painel próprio",
+  },
+  {
+    recurso: "Foco em PME (não B2C auto)",
+    affida: true,
+    corretorTradicional: true,
+    bidu: false,
+    minutoSeguros: false,
+    nota: "Nosso playground, concorrência pequena",
+  },
+  {
+    recurso: "Credibilidade SUSEP enterprise",
+    affida: true,
+    corretorTradicional: "parcial",
+    bidu: true,
+    minutoSeguros: true,
+    nota: "Associação MDS resolve dia 1",
+  },
+];
+
+const melhores = [
+  {
+    point: "Retenção por design",
+    desc: "A combinação portal + benchmark + reoferta cria lock-in consultivo. Trocar de corretora vira perder acesso à inteligência.",
+  },
+  {
+    point: "Margem de upsell superior",
+    desc: "Motor de reoferta converte carteira existente em receita recorrente adicional. LTV cresce sem CAC adicional.",
+  },
+  {
+    point: "Entrada premium no mercado PME",
+    desc: "PME brasileira é mal atendida: ou corretor descolado, ou plataforma B2C mal adaptada. Affida preenche o vácuo.",
+  },
+  {
+    point: "Stack tecnológico proprietário",
+    desc: "CRM, motor, portal e parceiros são todos nossos — não é Pipedrive maquiado. Escala sem ficar refém de ferramenta.",
+  },
+  {
+    point: "Chassi multi-produto",
+    desc: "Vida hoje é a ponta, mas a arquitetura já contempla Saúde, Odonto, P&C, Garantia e Financeiros. Cross-sell é arquitetura, não gambiarra.",
+  },
+];
+
+const gaps = [
+  {
+    severity: "alto",
+    gap: "Integração real com operadoras",
+    desc: "Cotação hoje é calculada em modelo proprietário. Precisa plugar APIs (Bradesco, Amil, Icatu, SulAmérica) ou usar o canal MDS para cotação real com preço oficial.",
+    mitigacao: "Negociar pipe de cotação via MDS nos primeiros 90 dias. Começar com 2 operadoras parceiras.",
+  },
+  {
+    severity: "alto",
+    gap: "Dependência estratégica do MDS",
+    desc: "Associação ao MDS dá poder de fogo, mas também cria dependência regulatória e política. Se a relação azedar, o MVP vira shell.",
+    mitigacao: "Acordo formal de longo prazo + SUSEP própria gradualmente.",
+  },
+  {
+    severity: "medio",
+    gap: "CAC PME no Brasil é caro",
+    desc: "Vida empresarial tem ciclo de venda 30-90 dias. Se o tráfego pago for o único canal, CAC pode passar R$ 4-6k por cliente.",
+    mitigacao: "Peso alto em programa de parceiros (contadores = baixo CAC) + conteúdo de autoridade (SEO jurídico-trabalhista).",
+  },
+  {
+    severity: "medio",
+    gap: "Motor de reoferta precisa de sinal real",
+    desc: "Hoje os triggers são mockados. Na produção precisam alimentação contínua: sinistralidade da operadora, IPCA, cadastro do cliente, folha (via contador).",
+    mitigacao: "Integração com Omie/ContaAzul para folha + scraper das operadoras + contrato com provedor de sinistralidade.",
+  },
+  {
+    severity: "medio",
+    gap: "Marca começa do zero",
+    desc: "Affida não tem reconhecimento. Decisor PME no interior ainda compra 'do corretor do primo'. Barreira cultural, não só de marketing.",
+    mitigacao: "Ancoragem em 'em associação ao MDS' nos primeiros 18 meses + case studies premium + conteúdo institucional.",
+  },
+  {
+    severity: "baixo",
+    gap: "Portal sem auth real ainda",
+    desc: "MVP usa cliente demo fixo (Adiantajus). Antes de expor pra cliente precisa autenticação, multi-tenant, LGPD compliance.",
+    mitigacao: "NextAuth + Supabase/Clerk no próximo sprint. Arquitetura já é multi-tenant no data layer.",
+  },
+  {
+    severity: "baixo",
+    gap: "Benchmark sem dados reais",
+    desc: "Números do CNAE 6435-2 são inferidos. Para virar ativo defensável, precisa base real (MDS + ANS pública + parceiros).",
+    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS + base MDS anonimizada + enriquecimento com bureau (Serasa PME).",
+  },
+  {
+    severity: "baixo",
+    gap: "Conformidade LGPD + SUSEP no portal",
+    desc: "Portal armazena dados sensíveis de vidas (data de nascimento, salário). Precisa DPO, retenção, direito ao esquecimento, auditoria.",
+    mitigacao: "Framework LGPD no roadmap de 30 dias + revisão com jurídico MDS.",
+  },
+];
+
+const roadmap = [
+  {
+    fase: "30 dias",
+    color: "forest",
+    items: [
+      "Autenticação real (NextAuth) + multi-tenant",
+      "Pipe de cotação MDS em 2 operadoras",
+      "Primeiros 3 parceiros contadores ativos",
+      "Tracking completo (GA4 + Hotjar + CRM)",
+    ],
+  },
+  {
+    fase: "60-90 dias",
+    color: "champagne",
+    items: [
+      "Integração Omie/ContaAzul (folha automática)",
+      "Cotação Saúde empresarial",
+      "Primeiras 10 apólices na carteira",
+      "Campanha paga Google + LinkedIn",
+    ],
+  },
+  {
+    fase: "6 meses",
+    color: "navy",
+    items: [
+      "Benchmark com dados reais (ANS + MDS)",
+      "Motor de reoferta com sinal real de sinistralidade",
+      "Odonto + Vida sócios como produtos ativos",
+      "50+ clientes na carteira",
+    ],
+  },
+];
+
+function Check2({ val }: { val: boolean | "parcial" | string }) {
+  if (val === true)
+    return (
+      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-forest text-ivory">
+        <Check size={14} />
+      </span>
+    );
+  if (val === "parcial")
+    return (
+      <span className="inline-flex h-6 items-center rounded-full bg-champagne-100 px-2 text-[10px] font-medium text-champagne-800">
+        parcial
+      </span>
+    );
+  return (
+    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-navy-50 text-navy-700/40">
+      <X size={14} />
+    </span>
+  );
+}
+
+export default function PitchPage() {
+  return (
+    <main className="bg-ivory">
+      <Navbar tone="dark" />
+
+      <section className="grid-pattern-navy relative overflow-hidden">
+        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-30" />
+        <div className="container-wide relative z-10 py-24">
+          <div className="mx-auto max-w-4xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge tone="gold">Documento interno · Sócios</Badge>
+              <Badge tone="neutral">v1.0 · abril 2026</Badge>
+            </div>
+            <p className="eyebrow mt-6 text-champagne-500">Affida Partners · Visão de produto</p>
+            <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
+              O que estamos construindo,{" "}
+              <em className="italic text-champagne-300">por que vai funcionar</em> e onde ainda temos
+              buracos.
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-ivory/75">
+              Este é um resumo executivo honesto da Affida Partners: o sistema que já está no ar, os
+              diferenciais que justificam a aposta, onde somos mais fortes que o mercado e quais
+              são os gaps estratégicos que precisamos endereçar antes de escalar.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Button href="/" variant="outline" size="lg">
+                Ver landing pública
+              </Button>
+              <Button href="/crm" variant="gold" size="lg">
+                Entrar no CRM <ArrowRight size={14} />
+              </Button>
+              <Button href="/portal" variant="outline" size="lg">
+                Ver portal do cliente
+              </Button>
+            </div>
+
+            <div className="mt-16 grid gap-5 md:grid-cols-4">
+              <div className="rounded-2xl border border-champagne-500/20 bg-white/5 p-5 backdrop-blur-sm">
+                <p className="text-[10px] uppercase tracking-widest text-champagne-500">Módulos no ar</p>
+                <p className="mt-2 font-display text-3xl font-light text-ivory">8</p>
+                <p className="mt-1 text-xs text-ivory/60">entre marketing, CRM e portal</p>
+              </div>
+              <div className="rounded-2xl border border-champagne-500/20 bg-white/5 p-5 backdrop-blur-sm">
+                <p className="text-[10px] uppercase tracking-widest text-champagne-500">Rotas públicas</p>
+                <p className="mt-2 font-display text-3xl font-light text-ivory">45</p>
+                <p className="mt-1 text-xs text-ivory/60">geradas estaticamente</p>
+              </div>
+              <div className="rounded-2xl border border-champagne-500/20 bg-white/5 p-5 backdrop-blur-sm">
+                <p className="text-[10px] uppercase tracking-widest text-champagne-500">Personas cobertas</p>
+                <p className="mt-2 font-display text-3xl font-light text-ivory">4</p>
+                <p className="mt-1 text-xs text-ivory/60">visitante, closer, cliente, parceiro</p>
+              </div>
+              <div className="rounded-2xl border border-champagne-500/20 bg-white/5 p-5 backdrop-blur-sm">
+                <p className="text-[10px] uppercase tracking-widest text-champagne-500">Stack</p>
+                <p className="mt-2 font-display text-xl font-light text-ivory">Next 14 · TS · Tailwind</p>
+                <p className="mt-1 text-xs text-ivory/60">static export + CI/CD GitHub</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-sand/40">
+        <div className="container-wide py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="eyebrow">01 · O sistema</p>
+              <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+                Oito módulos <em className="italic text-forest">conectados</em> num só produto.
+              </h2>
+              <p className="mt-5 text-base text-navy-700/80">
+                Não é um site com CRM do lado. É um sistema único — mesmo banco, mesma identidade,
+                mesmo fluxo. Aquisição, operação, receita e retenção em um só plano.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {modulos.map((m) => (
+              <div
+                key={m.title}
+                className={`flex flex-col gap-4 rounded-2xl border p-6 transition-all hover:-translate-y-0.5 hover:shadow-premium ${
+                  m.highlight
+                    ? "border-forest/30 bg-forest-50/40"
+                    : "border-champagne-200/70 bg-white"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-900 text-champagne-300">
+                    <m.icon size={18} strokeWidth={1.5} />
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest text-champagne-600">
+                    {m.area}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-light text-navy-900">{m.title}</h3>
+                  <p className="mt-2 text-xs text-navy-700/75">{m.description}</p>
+                </div>
+                <div className="mt-auto space-y-2 border-t border-champagne-200/60 pt-4">
+                  <div className="flex flex-wrap gap-1.5">
+                    {m.rotas.map((r) => (
+                      <code
+                        key={r}
+                        className="rounded-md bg-navy-900/5 px-1.5 py-0.5 font-mono text-[10px] text-navy-700"
+                      >
+                        {r}
+                      </code>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-widest text-forest">
+                    <CheckCircle2 size={11} /> {m.status}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-ivory">
+        <div className="container-wide py-24">
+          <p className="eyebrow">02 · Jornada ponta a ponta</p>
+          <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+            Do primeiro clique até o{" "}
+            <em className="italic text-forest">upsell da renovação</em>.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base text-navy-700/80">
+            Cinco etapas com dono claro, métrica clara, sistema dedicado. Nada fica no Excel.
+          </p>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-5">
+            {fluxos.map((f) => (
+              <div
+                key={f.step}
+                className="relative rounded-2xl border border-champagne-200/70 bg-white p-5"
+              >
+                <span className="text-[10px] font-medium uppercase tracking-widest text-champagne-600">
+                  {f.step}
+                </span>
+                <span className="mt-3 flex h-10 w-10 items-center justify-center rounded-xl bg-navy-900 text-champagne-300">
+                  <f.icon size={16} strokeWidth={1.5} />
+                </span>
+                <h3 className="mt-4 font-display text-base font-light text-navy-900">{f.title}</h3>
+                <p className="mt-2 text-xs text-navy-700/75">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy-900 text-ivory">
+        <div className="container-wide py-24">
+          <p className="eyebrow text-champagne-500">03 · Diferenciais vs mercado</p>
+          <h2 className="heading-display mt-4 text-display-lg text-ivory">
+            Seis coisas que{" "}
+            <em className="italic text-champagne-300">ninguém no segmento PME entrega junto</em>.
+          </h2>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {diferenciais.map((d) => (
+              <div
+                key={d.title}
+                className="rounded-2xl border border-champagne-500/20 bg-white/5 p-6 backdrop-blur-sm"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-champagne-500/20 text-champagne-300">
+                  <d.icon size={18} strokeWidth={1.5} />
+                </span>
+                <h3 className="mt-4 font-display text-xl font-light text-ivory">{d.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ivory/75">{d.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-sand/40">
+        <div className="container-wide py-24">
+          <p className="eyebrow">04 · Comparativo direto</p>
+          <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+            Affida vs{" "}
+            <em className="italic text-forest">quem disputa o cliente</em>.
+          </h2>
+          <p className="mt-5 max-w-3xl text-base text-navy-700/80">
+            Olhamos três arquétipos: corretor PME tradicional (nosso concorrente real em 80% dos
+            casos), Bidu Corretora (plataforma digital PME/PF) e MinutoSeguros (plataforma digital
+            B2C). Não incluímos MDS/AON/Marsh porque atacam enterprise, não PME.
+          </p>
+
+          <div className="mt-10 overflow-x-auto rounded-3xl border border-champagne-200/70 bg-white">
+            <table className="min-w-full">
+              <thead className="bg-navy-900 text-ivory">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-widest">
+                    Recurso
+                  </th>
+                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-champagne-300">
+                    Affida
+                  </th>
+                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
+                    Corretor tradicional
+                  </th>
+                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
+                    Bidu
+                  </th>
+                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
+                    MinutoSeguros
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {benchmark.map((row, i) => (
+                  <tr
+                    key={row.recurso}
+                    className={i % 2 === 0 ? "bg-white" : "bg-sand/20"}
+                  >
+                    <td className="px-6 py-4">
+                      <p className="text-sm font-medium text-navy-900">{row.recurso}</p>
+                      <p className="mt-0.5 text-xs text-navy-700/60">{row.nota}</p>
+                    </td>
+                    <td className="px-4 py-4 text-center">
+                      <Check2 val={row.affida} />
+                    </td>
+                    <td className="px-4 py-4 text-center">
+                      <Check2 val={row.corretorTradicional} />
+                    </td>
+                    <td className="px-4 py-4 text-center">
+                      <Check2 val={row.bidu} />
+                    </td>
+                    <td className="px-4 py-4 text-center">
+                      <Check2 val={row.minutoSeguros} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mt-6 text-xs text-navy-700/60">
+            Avaliação baseada em análise pública dos sites (abril 2026). Bidu e MinutoSeguros têm
+            força em auto/residencial B2C; em PME vida/saúde, a experiência atual é limitada.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-ivory">
+        <div className="container-wide py-24">
+          <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
+            <div>
+              <p className="eyebrow">05 · Onde somos melhores</p>
+              <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+                Cinco pontos de <em className="italic text-forest">força estrutural</em>.
+              </h2>
+              <p className="mt-5 text-base text-navy-700/80">
+                Não é só feature, é arquitetura. São decisões que um concorrente levaria 18 meses
+                pra replicar — tempo suficiente pra consolidarmos carteira.
+              </p>
+              <div className="mt-8 rounded-2xl border border-forest/30 bg-forest-50/40 p-5">
+                <div className="flex items-center gap-2 text-forest">
+                  <Zap size={16} />
+                  <p className="eyebrow">Vantagem composta</p>
+                </div>
+                <p className="mt-3 text-sm text-navy-700/85">
+                  Cada cliente que entra alimenta benchmark, motor de reoferta e base de casos. O
+                  produto fica mais forte com escala — característica de plataforma, não de
+                  corretora.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {melhores.map((m, i) => (
+                <div
+                  key={m.point}
+                  className="flex gap-5 rounded-2xl border border-champagne-200/70 bg-white p-6"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-900 font-display text-sm text-champagne-300">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-light text-navy-900">{m.point}</h3>
+                    <p className="mt-2 text-sm text-navy-700/80">{m.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-champagne-50/50">
+        <div className="container-wide py-24">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2">
+                <AlertTriangle size={18} className="text-champagne-700" />
+                <p className="eyebrow text-champagne-800">06 · Gaps estratégicos</p>
+              </div>
+              <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+                O que{" "}
+                <em className="italic text-champagne-700">ainda não está resolvido</em>.
+              </h2>
+              <p className="mt-5 text-base text-navy-700/80">
+                Vale ser franco: um pitch bonito sem ver os riscos engana sócio. Listamos oito
+                gaps, classificados por severidade, cada um com a mitigação planejada.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Badge tone="warning">3 altos</Badge>
+              <Badge tone="gold">3 médios</Badge>
+              <Badge tone="neutral">2 baixos</Badge>
+            </div>
+          </div>
+
+          <div className="mt-12 space-y-4">
+            {gaps.map((g) => {
+              const severityStyle =
+                g.severity === "alto"
+                  ? "border-l-rose-400 bg-white"
+                  : g.severity === "medio"
+                  ? "border-l-champagne-500 bg-white"
+                  : "border-l-navy-300 bg-white";
+              const badgeTone =
+                g.severity === "alto"
+                  ? "warning"
+                  : g.severity === "medio"
+                  ? "gold"
+                  : "neutral";
+              return (
+                <div
+                  key={g.gap}
+                  className={`rounded-2xl border border-champagne-200/60 border-l-4 p-6 ${severityStyle}`}
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="max-w-2xl">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-display text-lg font-light text-navy-900">{g.gap}</h3>
+                        <Badge tone={badgeTone as "warning" | "gold" | "neutral"}>
+                          {g.severity === "alto"
+                            ? "risco alto"
+                            : g.severity === "medio"
+                            ? "risco médio"
+                            : "risco baixo"}
+                        </Badge>
+                      </div>
+                      <p className="mt-2 text-sm text-navy-700/80">{g.desc}</p>
+                    </div>
+                    <div className="max-w-md rounded-xl border border-forest/20 bg-forest-50/40 p-4">
+                      <p className="text-[10px] font-medium uppercase tracking-widest text-forest">
+                        Mitigação
+                      </p>
+                      <p className="mt-1.5 text-xs text-navy-700/85">{g.mitigacao}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-ivory">
+        <div className="container-wide py-24">
+          <p className="eyebrow">07 · Roadmap</p>
+          <h2 className="heading-display mt-4 text-display-lg text-navy-900">
+            O que vem <em className="italic text-forest">nas próximas 3 janelas</em>.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base text-navy-700/80">
+            Prazo realista, sem romance. Cada fase fecha um gap da seção anterior.
+          </p>
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            {roadmap.map((r, i) => (
+              <div
+                key={r.fase}
+                className={`rounded-3xl border p-7 ${
+                  i === 0
+                    ? "border-forest/40 bg-forest-50/40"
+                    : i === 1
+                    ? "border-champagne-300/60 bg-champagne-50"
+                    : "border-navy-900 bg-navy-900 text-ivory"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Clock size={14} className={i === 2 ? "text-champagne-300" : "text-navy-700"} />
+                  <p
+                    className={`eyebrow ${
+                      i === 2 ? "text-champagne-500" : "text-navy-800"
+                    }`}
+                  >
+                    {r.fase}
+                  </p>
+                </div>
+                <ul className="mt-6 space-y-3">
+                  {r.items.map((it) => (
+                    <li
+                      key={it}
+                      className={`flex gap-3 text-sm ${
+                        i === 2 ? "text-ivory/85" : "text-navy-800"
+                      }`}
+                    >
+                      <CheckCircle2
+                        size={14}
+                        className={`mt-0.5 shrink-0 ${
+                          i === 0
+                            ? "text-forest"
+                            : i === 1
+                            ? "text-champagne-700"
+                            : "text-champagne-300"
+                        }`}
+                      />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-navy text-ivory">
+        <div className="container-wide py-24 text-center">
+          <Rocket size={28} className="mx-auto text-champagne-300" />
+          <p className="eyebrow mt-4 text-champagne-500">Próximo passo</p>
+          <h2 className="heading-display mt-4 text-display-lg text-ivory text-balance">
+            O MVP está navegável,{" "}
+            <em className="italic text-champagne-300">pronto pra validação com sócio e operador</em>.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-ivory/75">
+            O que precisamos agora: decisão sobre rota de integração com operadoras, validação do
+            escopo com MDS, e três parceiros-piloto (1 contador, 1 RH, 1 influenciador PME) pra
+            testar o funil ponta a ponta.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <Button href="/" variant="gold" size="lg">
+              Ver sistema funcionando <ArrowRight size={14} />
+            </Button>
+            <Button href="/crm" variant="outline" size="lg">
+              Entrar no CRM
+            </Button>
+            <Button href="/portal" variant="outline" size="lg">
+              Portal do cliente
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}

@@ -383,36 +383,36 @@ export default function PitchPage() {
 
       <section className="grid-pattern-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-30" />
-        <div className="container-wide relative z-10 py-24">
+        <div className="container-wide relative z-10 py-16 sm:py-20 lg:py-24">
           <div className="mx-auto max-w-4xl">
             <div className="flex flex-wrap items-center gap-3">
               <Badge tone="gold">Documento interno · Sócios</Badge>
               <Badge tone="neutral">v1.0 · abril 2026</Badge>
             </div>
             <p className="eyebrow mt-6 text-champagne-500">Affida Partners · Visão de produto</p>
-            <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
+            <h1 className="heading-display mt-5 text-display-md text-ivory text-balance sm:text-display-lg lg:text-display-xl">
               O que estamos construindo,{" "}
               <em className="italic text-champagne-300">por que vai funcionar</em> e onde ainda temos
               buracos.
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-              Este é um resumo executivo honesto da Affida Partners: o sistema que já está no ar, os
-              diferenciais que justificam a aposta, onde somos mais fortes que o mercado e quais
-              são os gaps estratégicos que precisamos endereçar antes de escalar.
+            <p className="mt-5 text-base leading-relaxed text-ivory/75 sm:mt-6 sm:text-lg">
+              Resumo executivo honesto da Affida Partners: o sistema que já está no ar, os
+              diferenciais que justificam a aposta, onde somos mais fortes que o mercado e os
+              gaps estratégicos que precisamos endereçar antes de escalar.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button href="/" variant="outline" size="lg">
-                Ver landing pública
-              </Button>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:mt-10">
               <Button href="/crm" variant="gold" size="lg">
                 Entrar no CRM <ArrowRight size={14} />
               </Button>
               <Button href="/portal" variant="outline" size="lg">
-                Ver portal do cliente
+                Portal do cliente
+              </Button>
+              <Button href="/" variant="outline" size="lg">
+                Landing pública
               </Button>
             </div>
 
-            <div className="mt-16 grid gap-5 md:grid-cols-4">
+            <div className="mt-12 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-5 lg:grid-cols-4">
               <div className="rounded-2xl border border-champagne-500/20 bg-white/5 p-5 backdrop-blur-sm">
                 <p className="text-[10px] uppercase tracking-widest text-champagne-500">Módulos no ar</p>
                 <p className="mt-2 font-display text-3xl font-light text-ivory">8</p>
@@ -439,7 +439,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-sand/40">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="eyebrow">01 · O sistema</p>
@@ -497,7 +497,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-ivory">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <p className="eyebrow">02 · Jornada ponta a ponta</p>
           <h2 className="heading-display mt-4 text-display-lg text-navy-900">
             Do primeiro clique até o{" "}
@@ -528,7 +528,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-navy-900 text-ivory">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <p className="eyebrow text-champagne-500">03 · Diferenciais vs mercado</p>
           <h2 className="heading-display mt-4 text-display-lg text-ivory">
             Seis coisas que{" "}
@@ -553,7 +553,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-sand/40">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <p className="eyebrow">04 · Comparativo direto</p>
           <h2 className="heading-display mt-4 text-display-lg text-navy-900">
             Affida vs{" "}
@@ -562,67 +562,161 @@ export default function PitchPage() {
           <p className="mt-5 max-w-3xl text-base text-navy-700/80">
             Olhamos três arquétipos: corretor PME tradicional (nosso concorrente real em 80% dos
             casos), Bidu Corretora (plataforma digital PME/PF) e MinutoSeguros (plataforma digital
-            B2C). Não incluímos MDS/AON/Marsh porque atacam enterprise, não PME.
+            B2C). Não incluímos MDS/AON/Marsh porque atacam enterprise.
           </p>
 
-          <div className="mt-10 overflow-x-auto rounded-3xl border border-champagne-200/70 bg-white">
-            <table className="min-w-full">
-              <thead className="bg-navy-900 text-ivory">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium uppercase tracking-widest">
-                    Recurso
-                  </th>
-                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-champagne-300">
-                    Affida
-                  </th>
-                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
-                    Corretor tradicional
-                  </th>
-                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
-                    Bidu
-                  </th>
-                  <th className="px-4 py-4 text-center text-xs font-medium uppercase tracking-widest text-ivory/70">
-                    MinutoSeguros
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {benchmark.map((row, i) => (
-                  <tr
-                    key={row.recurso}
-                    className={i % 2 === 0 ? "bg-white" : "bg-sand/20"}
+          <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {[
+              { name: "Affida", full: 9, partial: 0, miss: 0, highlight: true },
+              { name: "Corretor tradicional", full: 2, partial: 2, miss: 5 },
+              { name: "Bidu Corretora", full: 3, partial: 2, miss: 4 },
+              { name: "MinutoSeguros", full: 2, partial: 2, miss: 5 },
+            ].map((s) => (
+              <div
+                key={s.name}
+                className={`rounded-2xl border p-4 sm:p-5 ${
+                  s.highlight
+                    ? "border-forest/40 bg-forest text-ivory shadow-premium"
+                    : "border-champagne-200/70 bg-white"
+                }`}
+              >
+                <p
+                  className={`text-[10px] uppercase tracking-widest ${
+                    s.highlight ? "text-champagne-300" : "text-champagne-700"
+                  }`}
+                >
+                  {s.name}
+                </p>
+                <div className="mt-3 flex items-baseline gap-1">
+                  <span
+                    className={`font-display text-4xl font-light ${
+                      s.highlight ? "text-ivory" : "text-navy-900"
+                    }`}
                   >
-                    <td className="px-6 py-4">
-                      <p className="text-sm font-medium text-navy-900">{row.recurso}</p>
-                      <p className="mt-0.5 text-xs text-navy-700/60">{row.nota}</p>
-                    </td>
-                    <td className="px-4 py-4 text-center">
-                      <Check2 val={row.affida} />
-                    </td>
-                    <td className="px-4 py-4 text-center">
-                      <Check2 val={row.corretorTradicional} />
-                    </td>
-                    <td className="px-4 py-4 text-center">
-                      <Check2 val={row.bidu} />
-                    </td>
-                    <td className="px-4 py-4 text-center">
-                      <Check2 val={row.minutoSeguros} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    {s.full}
+                  </span>
+                  <span
+                    className={`text-sm ${
+                      s.highlight ? "text-ivory/70" : "text-navy-700/60"
+                    }`}
+                  >
+                    /9
+                  </span>
+                </div>
+                <div
+                  className={`mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] ${
+                    s.highlight ? "text-ivory/80" : "text-navy-700/70"
+                  }`}
+                >
+                  <span className="inline-flex items-center gap-1">
+                    <span
+                      className={`inline-block h-1.5 w-1.5 rounded-full ${
+                        s.highlight ? "bg-champagne-300" : "bg-forest"
+                      }`}
+                    />
+                    {s.full} tem
+                  </span>
+                  {s.partial > 0 && (
+                    <span className="inline-flex items-center gap-1">
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-champagne-500" />
+                      {s.partial} parcial
+                    </span>
+                  )}
+                  {s.miss > 0 && (
+                    <span className="inline-flex items-center gap-1">
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
+                      {s.miss} falta
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
 
-          <p className="mt-6 text-xs text-navy-700/60">
-            Avaliação baseada em análise pública dos sites (abril 2026). Bidu e MinutoSeguros têm
-            força em auto/residencial B2C; em PME vida/saúde, a experiência atual é limitada.
-          </p>
+          <div className="mt-8 space-y-3 sm:space-y-4">
+            {benchmark.map((row, i) => {
+              const competidores = [
+                { name: "Affida", val: row.affida, highlight: true },
+                { name: "Corretor", val: row.corretorTradicional },
+                { name: "Bidu", val: row.bidu },
+                { name: "Minuto", val: row.minutoSeguros },
+              ];
+              return (
+                <article
+                  key={row.recurso}
+                  className="rounded-2xl border border-champagne-200/70 bg-white p-5 sm:p-6"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest text-ivory sm:h-10 sm:w-10">
+                      <Check size={16} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-700">
+                        {String(i + 1).padStart(2, "0")}
+                      </p>
+                      <h3 className="mt-1 font-display text-base font-light text-navy-900 sm:text-lg">
+                        {row.recurso}
+                      </h3>
+                      <p className="mt-1.5 text-xs text-navy-700/70 sm:text-[13px]">{row.nota}</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 grid grid-cols-2 gap-2 border-t border-champagne-200/60 pt-4 sm:grid-cols-4">
+                    {competidores.map((c) => {
+                      const isWin = c.val === true;
+                      const isPartial = c.val === "parcial";
+                      return (
+                        <div
+                          key={c.name}
+                          className={`flex items-center gap-2 rounded-xl px-2.5 py-2 text-xs sm:px-3 ${
+                            c.highlight
+                              ? "bg-forest-50/60 ring-1 ring-forest/30"
+                              : "bg-sand/30"
+                          }`}
+                        >
+                          <span
+                            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
+                              isWin
+                                ? "bg-forest text-ivory"
+                                : isPartial
+                                ? "bg-champagne-300 text-champagne-900"
+                                : "bg-navy-100 text-navy-700/40"
+                            }`}
+                          >
+                            {isWin ? (
+                              <Check size={11} />
+                            ) : isPartial ? (
+                              "½"
+                            ) : (
+                              <X size={11} />
+                            )}
+                          </span>
+                          <span
+                            className={`truncate font-medium ${
+                              c.highlight ? "text-forest" : "text-navy-800"
+                            }`}
+                          >
+                            {c.name}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-champagne-200/70 bg-white/70 p-4 text-xs text-navy-700/70 sm:p-5">
+            <strong className="text-navy-900">Fonte:</strong> análise pública dos sites em abril/2026.
+            Bidu e MinutoSeguros são fortes em auto/residencial B2C; no PME vida/saúde, a experiência
+            atual é limitada. &quot;Parcial&quot; indica presença tímida ou apenas para alguns produtos.
+          </div>
         </div>
       </section>
 
       <section className="bg-ivory">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
             <div>
               <p className="eyebrow">05 · Onde somos melhores</p>
@@ -667,7 +761,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-champagne-50/50">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2">
@@ -707,28 +801,26 @@ export default function PitchPage() {
               return (
                 <div
                   key={g.gap}
-                  className={`rounded-2xl border border-champagne-200/60 border-l-4 p-6 ${severityStyle}`}
+                  className={`rounded-2xl border border-champagne-200/60 border-l-4 p-5 sm:p-6 ${severityStyle}`}
                 >
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div className="max-w-2xl">
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-display text-lg font-light text-navy-900">{g.gap}</h3>
-                        <Badge tone={badgeTone as "warning" | "gold" | "neutral"}>
-                          {g.severity === "alto"
-                            ? "risco alto"
-                            : g.severity === "medio"
-                            ? "risco médio"
-                            : "risco baixo"}
-                        </Badge>
-                      </div>
-                      <p className="mt-2 text-sm text-navy-700/80">{g.desc}</p>
-                    </div>
-                    <div className="max-w-md rounded-xl border border-forest/20 bg-forest-50/40 p-4">
-                      <p className="text-[10px] font-medium uppercase tracking-widest text-forest">
-                        Mitigação
-                      </p>
-                      <p className="mt-1.5 text-xs text-navy-700/85">{g.mitigacao}</p>
-                    </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone={badgeTone as "warning" | "gold" | "neutral"}>
+                      {g.severity === "alto"
+                        ? "risco alto"
+                        : g.severity === "medio"
+                        ? "risco médio"
+                        : "risco baixo"}
+                    </Badge>
+                    <h3 className="font-display text-base font-light text-navy-900 sm:text-lg">
+                      {g.gap}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm text-navy-700/80">{g.desc}</p>
+                  <div className="mt-4 rounded-xl border border-forest/20 bg-forest-50/40 p-3 sm:p-4">
+                    <p className="text-[10px] font-medium uppercase tracking-widest text-forest">
+                      Mitigação
+                    </p>
+                    <p className="mt-1.5 text-xs text-navy-700/85 sm:text-[13px]">{g.mitigacao}</p>
                   </div>
                 </div>
               );
@@ -738,7 +830,7 @@ export default function PitchPage() {
       </section>
 
       <section className="bg-ivory">
-        <div className="container-wide py-24">
+        <div className="container-wide py-16 sm:py-20 lg:py-24">
           <p className="eyebrow">07 · Roadmap</p>
           <h2 className="heading-display mt-4 text-display-lg text-navy-900">
             O que vem <em className="italic text-forest">nas próximas 3 janelas</em>.

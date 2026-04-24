@@ -15,6 +15,7 @@ import {
 import { leads, productById, activities, pipelineStages } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -149,15 +150,26 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
               </a>
             </div>
             <div className="mt-6 grid grid-cols-3 gap-2">
-              <button className="inline-flex items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700">
+              <ActionButton
+                action="demo"
+                message={`Discador abrindo ${lead!.contact.telefone}...`}
+                className="inline-flex items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700"
+              >
                 <Phone size={12} /> Call
-              </button>
-              <button className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-600 py-2 text-xs text-ivory hover:bg-emerald-700">
+              </ActionButton>
+              <ActionButton
+                action="whatsapp"
+                whatsappMessage={`Olá ${lead!.contact.nome.split(" ")[0]}, falo da Affida — sobre o plano ${product?.name ?? ""}.`}
+                className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-600 py-2 text-xs text-ivory hover:bg-emerald-700"
+              >
                 <MessageCircle size={12} /> WhatsApp
-              </button>
-              <button className="inline-flex items-center justify-center gap-1 rounded-full border border-navy-100 bg-white py-2 text-xs text-navy-700 hover:bg-navy-50">
+              </ActionButton>
+              <a
+                href={`mailto:${lead!.contact.email}?subject=${encodeURIComponent(`Affida · Proposta ${product?.name ?? ""}`)}`}
+                className="inline-flex items-center justify-center gap-1 rounded-full border border-navy-100 bg-white py-2 text-xs text-navy-700 hover:bg-navy-50"
+              >
                 <Mail size={12} /> E-mail
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -199,12 +211,21 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
             </ol>
 
             <div className="mt-6 space-y-3">
-              <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-2.5 text-xs font-medium text-navy-900">
+              <ActionButton
+                action="toast"
+                href="/portal/proposta"
+                message={`Proposta para ${lead!.nomeFantasia} preparada — abrindo preview.`}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-2.5 text-xs font-medium text-navy-900"
+              >
                 <FileSignature size={14} /> Enviar proposta
-              </button>
-              <button className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-navy-100 px-4 py-2.5 text-xs text-navy-700 hover:bg-navy-50">
+              </ActionButton>
+              <ActionButton
+                action="schedule"
+                message={`Convite de reunião com ${lead!.contact.nome} enviado.`}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-navy-100 px-4 py-2.5 text-xs text-navy-700 hover:bg-navy-50"
+              >
                 <Calendar size={14} /> Agendar reunião
-              </button>
+              </ActionButton>
             </div>
           </div>
 
@@ -252,9 +273,13 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                 placeholder="Anote o que foi combinado..."
               />
               <div className="mt-2 flex justify-end">
-                <button className="rounded-full bg-navy-900 px-4 py-1.5 text-xs text-ivory hover:bg-navy-700">
+                <ActionButton
+                  action="toast"
+                  message="Nota registrada na timeline do lead."
+                  className="rounded-full bg-navy-900 px-4 py-1.5 text-xs text-ivory hover:bg-navy-700"
+                >
                   Registrar
-                </button>
+                </ActionButton>
               </div>
             </div>
           </div>

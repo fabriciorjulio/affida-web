@@ -27,6 +27,7 @@ import {
 import { CrmHeader } from "@/components/crm/sidebar";
 import { KpiCard } from "@/components/crm/kpi-card";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 function stageCount(stageId: string) {
@@ -242,12 +243,22 @@ export default function CrmDashboardPage() {
                         </p>
                       </div>
                       <div className="flex gap-1">
-                        <button className="flex h-8 w-8 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50">
+                        <ActionButton
+                          action="demo"
+                          message={`Ligando para ${l.nomeFantasia}...`}
+                          aria-label="Ligar"
+                          className="flex h-8 w-8 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50"
+                        >
                           <Phone size={13} />
-                        </button>
-                        <button className="flex h-8 w-8 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50">
+                        </ActionButton>
+                        <ActionButton
+                          action="whatsapp"
+                          whatsappMessage={`Olá, falando da Affida sobre a próxima call com ${l.nomeFantasia}.`}
+                          aria-label="WhatsApp"
+                          className="flex h-8 w-8 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50"
+                        >
                           <MessageCircle size={13} />
-                        </button>
+                        </ActionButton>
                       </div>
                     </li>
                   );

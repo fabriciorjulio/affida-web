@@ -59,7 +59,12 @@ export default function ParceirosPublicPage() {
               programa de parcerias Affida te paga comissão recorrente por cada cliente indicado.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button variant="gold" size="lg">
+              <Button
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+quero+ser+parceiro+do+programa+Affida+Partners."
+                variant="gold"
+                size="lg"
+                target="_blank"
+              >
                 Quero ser parceiro <ArrowRight size={14} />
               </Button>
               <Button href="#programa" variant="outline" size="lg">
@@ -107,7 +112,13 @@ export default function ParceirosPublicPage() {
                 Todo profissional que se relaciona com empresários e pode se beneficiar de oferecer
                 seguros empresariais como extensão natural do seu serviço.
               </p>
-              <Button variant="primary" size="lg" className="mt-8">
+              <Button
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+gostaria+de+solicitar+convite+para+o+programa+de+parcerias."
+                variant="primary"
+                size="lg"
+                className="mt-8"
+                target="_blank"
+              >
                 Solicitar convite <ArrowRight size={14} />
               </Button>
             </div>
@@ -178,10 +189,20 @@ export default function ParceirosPublicPage() {
               convite para o programa.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button variant="primary" size="lg">
+              <Button
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+gostaria+de+agendar+uma+conversa+de+20+minutos+sobre+o+programa+de+parcerias."
+                variant="primary"
+                size="lg"
+                target="_blank"
+              >
                 Agendar conversa <ArrowRight size={14} />
               </Button>
-              <Button href="https://wa.me/5511900000000" variant="dark-outline" size="lg">
+              <Button
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%21+Quero+saber+mais+sobre+o+programa+de+parcerias."
+                variant="dark-outline"
+                size="lg"
+                target="_blank"
+              >
                 WhatsApp parcerias
               </Button>
             </div>

@@ -19,6 +19,7 @@ import {
 } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl, percent } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -101,9 +102,13 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
               <FileText size={16} className="text-champagne-600" />
               <p className="eyebrow">Apólices vigentes</p>
             </div>
-            <button className="text-xs font-medium text-navy-900 hover:opacity-80">
+            <ActionButton
+              action="demo"
+              message={`Nova apólice para ${client!.nomeFantasia} — abrindo fluxo de emissão.`}
+              className="text-xs font-medium text-navy-900 hover:opacity-80"
+            >
               + nova apólice
-            </button>
+            </ActionButton>
           </div>
           <div className="mt-4 overflow-hidden rounded-xl border border-champagne-200/60">
             <table className="w-full text-left text-sm">

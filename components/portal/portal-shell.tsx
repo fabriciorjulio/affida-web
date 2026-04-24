@@ -2,13 +2,26 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, Home, FileText, Receipt, BarChart3, MessageCircle, LogOut } from "lucide-react";
+import {
+  Bell,
+  Home,
+  FileText,
+  Receipt,
+  BarChart3,
+  MessageCircle,
+  LogOut,
+  AlertCircle,
+  Wallet,
+} from "lucide-react";
 import { AffidaLogo } from "@/components/ui/logo";
+import { ActionButton } from "@/components/ui/action-button";
 
 const nav = [
   { href: "/portal", label: "Visão geral", icon: Home },
   { href: "/portal/apolices", label: "Minhas apólices", icon: FileText },
   { href: "/portal/proposta", label: "Proposta 2026", icon: Receipt },
+  { href: "/portal/sinistros", label: "Sinistros", icon: AlertCircle },
+  { href: "/portal/faturas", label: "Faturas", icon: Wallet },
   { href: "/portal/benchmark", label: "Benchmark setorial", icon: BarChart3 },
 ];
 
@@ -30,13 +43,23 @@ export function PortalShell({
             <span className="hidden text-xs text-champagne-700 md:inline">Portal do cliente</span>
           </Link>
           <div className="flex items-center gap-4">
-            <button className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50">
+            <ActionButton
+              action="whatsapp"
+              whatsappMessage="Olá Lucas, estou no portal Affida."
+              aria-label="Falar com consultor"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50"
+            >
               <MessageCircle size={15} />
-            </button>
-            <button className="relative flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50">
+            </ActionButton>
+            <ActionButton
+              action="demo"
+              message="Você tem 2 novas notificações: fatura de abril em análise e renovação em 7 dias."
+              aria-label="Notificações"
+              className="relative flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50"
+            >
               <Bell size={15} />
               <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-rose-500" />
-            </button>
+            </ActionButton>
             <div className="hidden items-center gap-3 border-l border-navy-100 pl-4 md:flex">
               <div className="text-right">
                 <p className="text-xs font-medium text-navy-900">{clientName}</p>

@@ -2,13 +2,14 @@ import { Plus, Target, Pause, Play } from "lucide-react";
 import { campaigns, productById } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 const channelColor: Record<string, string> = {
   google: "bg-sky-50 text-sky-700",
   meta: "bg-navy-50 text-navy-700",
   linkedin: "bg-blue-50 text-blue-700",
-  whatsapp: "bg-emerald-50 text-forest-700",
+  whatsapp: "bg-emerald-50 text-emerald-700",
   email: "bg-champagne-100 text-champagne-800",
   parceiros: "bg-rose-50 text-rose-700",
 };
@@ -49,9 +50,13 @@ export default function CampanhasPage() {
         </section>
 
         <div className="flex justify-end">
-          <button className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700">
+          <ActionButton
+            action="demo"
+            message="Criador de campanha — integração com Google Ads, Meta e LinkedIn em breve."
+            className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+          >
             <Plus size={14} /> Nova campanha
-          </button>
+          </ActionButton>
         </div>
 
         <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +137,15 @@ export default function CampanhasPage() {
                 </div>
 
                 <div className="flex gap-2">
-                  <button className="flex flex-1 items-center justify-center gap-1 rounded-full border border-navy-100 py-2 text-xs text-navy-700 hover:bg-navy-50">
+                  <ActionButton
+                    action="toast"
+                    message={
+                      c.status === "ativa"
+                        ? `Campanha "${c.name}" pausada.`
+                        : `Campanha "${c.name}" reativada.`
+                    }
+                    className="flex flex-1 items-center justify-center gap-1 rounded-full border border-navy-100 py-2 text-xs text-navy-700 hover:bg-navy-50"
+                  >
                     {c.status === "ativa" ? (
                       <>
                         <Pause size={12} /> Pausar
@@ -142,10 +155,14 @@ export default function CampanhasPage() {
                         <Play size={12} /> Ativar
                       </>
                     )}
-                  </button>
-                  <button className="flex flex-1 items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700">
+                  </ActionButton>
+                  <ActionButton
+                    action="demo"
+                    message={`Rodando otimização de lance em "${c.name}" — resultado em alguns minutos.`}
+                    className="flex flex-1 items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700"
+                  >
                     <Target size={12} /> Otimizar
-                  </button>
+                  </ActionButton>
                 </div>
               </div>
             );

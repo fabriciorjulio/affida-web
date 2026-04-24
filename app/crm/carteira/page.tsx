@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ChevronRight, Download, Filter } from "lucide-react";
-import { clients, policies, productById, operatorById } from "@/lib/mock-data";
+import { clients, policies, operatorById } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 function policiesForClient(clientId: string) {
@@ -53,13 +54,21 @@ export default function CarteiraPage() {
               placeholder="Buscar cliente..."
               className="h-10 w-64 rounded-full border border-navy-100 bg-white px-4 text-sm placeholder:text-navy-400 focus:border-navy-400 focus:outline-none"
             />
-            <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+            <ActionButton
+              action="demo"
+              message="Filtros avançados por porte, operadora, NPS e status em breve."
+              className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+            >
               <Filter size={14} /> Filtros
-            </button>
+            </ActionButton>
           </div>
-          <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+          <ActionButton
+            action="download"
+            message="Exportando carteira completa — CSV gerado em instantes."
+            className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+          >
             <Download size={14} /> Exportar
-          </button>
+          </ActionButton>
         </div>
 
         <div className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white">

@@ -16,6 +16,8 @@ import type { Product } from "@/lib/types";
 import { Input, Select, FieldGroup } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { openWhatsapp } from "@/components/ui/action-button";
+import { toast } from "@/components/ui/toaster";
 import { brl, cnpjMask } from "@/lib/utils";
 import { operatorById } from "@/lib/mock-data";
 import { QuoteShell } from "./quote-shell";
@@ -322,10 +324,27 @@ export function QuoteWizard({ product }: { product: Product }) {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Button variant="dark-outline" size="md">
+              <Button
+                variant="dark-outline"
+                size="md"
+                onClick={() =>
+                  toast(
+                    `Proposta ${product.name} gerada em PDF — enviada ao seu e-mail e WhatsApp.`,
+                    "success"
+                  )
+                }
+              >
                 <Download size={14} /> Baixar PDF
               </Button>
-              <Button variant="primary" size="md">
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() =>
+                  openWhatsapp(
+                    `Olá Affida, quero falar com um consultor sobre a cotação de ${product.name} para ${form.razaoSocial || "minha empresa"} (${form.vidas} vidas, capital ${multiplier}×).`
+                  )
+                }
+              >
                 <MessageCircle size={14} /> Falar com consultor
               </Button>
             </div>
@@ -390,7 +409,16 @@ export function QuoteWizard({ product }: { product: Product }) {
                     </li>
                   </ul>
 
-                  <Button variant={isCheapest ? "primary" : "dark-outline"} size="md" className="mt-auto">
+                  <Button
+                    variant={isCheapest ? "primary" : "dark-outline"}
+                    size="md"
+                    className="mt-auto"
+                    onClick={() =>
+                      openWhatsapp(
+                        `Olá Affida, quero contratar o plano ${p.plano} (${op?.name}) — ${brl(p.valorMensal)}/mês — para ${form.razaoSocial || "minha empresa"}.`
+                      )
+                    }
+                  >
                     Contratar {op?.name.split(" ")[0]}
                     <ArrowRight size={14} />
                   </Button>
@@ -411,11 +439,24 @@ export function QuoteWizard({ product }: { product: Product }) {
               </p>
             </div>
             <div className="flex flex-col justify-center gap-3">
-              <Button variant="gold" size="lg">
+              <Button
+                variant="gold"
+                size="lg"
+                onClick={() =>
+                  openWhatsapp(
+                    `Olá Affida, quero agendar uma análise consultiva de 30 min sobre a cotação ${product.name} (${form.vidas} vidas, capital ${multiplier}×).`
+                  )
+                }
+              >
                 <Sparkles size={14} />
                 Agendar conversa consultiva
               </Button>
-              <Button href={`https://wa.me/5511900000000?text=Cota%C3%A7%C3%A3o+${product.id}`} variant="outline" size="lg">
+              <Button
+                href={`https://wa.me/5511900000000?text=${encodeURIComponent(`Olá Affida, vim da cotação ${product.name} e quero falar no WhatsApp.`)}`}
+                variant="outline"
+                size="lg"
+                target="_blank"
+              >
                 <MessageCircle size={14} />
                 WhatsApp consultivo
               </Button>

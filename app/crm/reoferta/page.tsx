@@ -3,6 +3,7 @@ import { Zap, TrendingUp, Filter, ChevronRight } from "lucide-react";
 import { reofferTriggers, clientById, policies, operatorById } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 const typeLabels: Record<string, string> = {
@@ -54,9 +55,13 @@ export default function ReofertaPage() {
               <Zap size={16} className="text-champagne-600" />
               <p className="eyebrow">Fila de gatilhos</p>
             </div>
-            <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+            <ActionButton
+              action="demo"
+              message="Filtros por tipo de gatilho, severidade e consultor em breve."
+              className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+            >
               <Filter size={14} /> Filtrar
-            </button>
+            </ActionButton>
           </div>
 
           <div className="divide-y divide-champagne-200/60">
@@ -107,15 +112,28 @@ export default function ReofertaPage() {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <button className="inline-flex w-full items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700">
+                    <ActionButton
+                      action="toast"
+                      href={`/crm/carteira/${client?.id ?? ""}`}
+                      message={`Gatilho atribuído a ${t.owner ?? "consultor"} — abrindo ficha de ${client?.nomeFantasia}.`}
+                      className="inline-flex w-full items-center justify-center gap-1 rounded-full bg-navy-900 py-2 text-xs text-ivory hover:bg-navy-700"
+                    >
                       Atuar <ChevronRight size={12} />
-                    </button>
-                    <button className="inline-flex w-full items-center justify-center gap-1 rounded-full border border-navy-100 py-2 text-xs text-navy-700 hover:bg-navy-50">
+                    </ActionButton>
+                    <ActionButton
+                      action="toast"
+                      message={`Gatilho adiado por 7 dias — reaparece dia ${new Date(Date.now() + 7 * 864e5).toLocaleDateString("pt-BR")}.`}
+                      className="inline-flex w-full items-center justify-center gap-1 rounded-full border border-navy-100 py-2 text-xs text-navy-700 hover:bg-navy-50"
+                    >
                       Adiar 7d
-                    </button>
-                    <button className="inline-flex w-full items-center justify-center gap-1 text-[11px] text-navy-700/60 hover:text-navy-900">
+                    </ActionButton>
+                    <ActionButton
+                      action="toast"
+                      message="Gatilho descartado. Motor continuará monitorando a conta."
+                      className="inline-flex w-full items-center justify-center gap-1 text-[11px] text-navy-700/60 hover:text-navy-900"
+                    >
                       Descartar
-                    </button>
+                    </ActionButton>
                   </div>
                 </div>
               );

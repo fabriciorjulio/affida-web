@@ -2,7 +2,8 @@ import { Download, ExternalLink } from "lucide-react";
 import { clients, policies, productById, operatorById } from "@/lib/mock-data";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { Badge } from "@/components/ui/badge";
-import { brl, percent } from "@/lib/utils";
+import { ActionButton } from "@/components/ui/action-button";
+import { brl } from "@/lib/utils";
 
 const DEMO_CLIENT_ID = "cli-001";
 
@@ -96,15 +97,27 @@ export default function ApolicesPage() {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-champagne-200/60 pt-5">
-                <button className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700">
+                <ActionButton
+                  action="download"
+                  message={`Apólice ${p.id} — gerando PDF.`}
+                  className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+                >
                   <Download size={13} /> Apólice PDF
-                </button>
-                <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+                </ActionButton>
+                <ActionButton
+                  action="demo"
+                  message={`Abrindo rede referenciada ${op?.name} — 3.200+ prestadores.`}
+                  className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+                >
                   <ExternalLink size={13} /> Rede referenciada
-                </button>
-                <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+                </ActionButton>
+                <ActionButton
+                  action="toast"
+                  href="/portal/sinistros"
+                  className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+                >
                   <ExternalLink size={13} /> Histórico de sinistros
-                </button>
+                </ActionButton>
               </div>
             </div>
           );

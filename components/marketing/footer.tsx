@@ -51,9 +51,13 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">
             <AffidaLogo tone="light" variant="stacked" />
+            <p className="font-light tracking-wider text-[13px] uppercase text-champagne-300/80">
+              Construindo o futuro, juntos.
+            </p>
             <p className="max-w-sm text-sm leading-relaxed text-ivory/70">
-              Consultoria premium de seguros e benefícios para empresas em crescimento.
-              Em associação com MDS Group, parte do Grupo Ardonagh.
+              Corretora boutique de seguros e benefícios, criada para oferecer serviço
+              personalizado, próximo e de alto nível. Em associação com MDS Group, parte do
+              Grupo Ardonagh.
             </p>
             <div className="flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-champagne-400/80">
               <span>MDS Group</span>

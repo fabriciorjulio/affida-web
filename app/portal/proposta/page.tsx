@@ -2,6 +2,7 @@ import { CheckCircle2, Shield, Users, Sparkles, ArrowRight, Download, Star } fro
 import { sampleQuote, operatorById, clients } from "@/lib/mock-data";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 const DEMO_CLIENT_ID = "cli-001";
@@ -26,9 +27,13 @@ export default function ProposalPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Badge tone="gold">Opção 1 destacada</Badge>
           <Badge tone="neutral">Preparada por Lucas Azevedo · Closer Affida</Badge>
-          <button className="ml-auto inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+          <ActionButton
+            action="download"
+            message="Proposta 2026 — preparando PDF completo."
+            className="ml-auto inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+          >
             <Download size={13} /> Baixar PDF
-          </button>
+          </ActionButton>
         </div>
       </section>
 
@@ -122,7 +127,9 @@ export default function ProposalPage() {
                 </div>
               )}
 
-              <button
+              <ActionButton
+                action="whatsapp"
+                whatsappMessage={`Olá Lucas, escolho a opção ${op?.name} - ${pkg.plano} da proposta 2026.`}
                 className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all ${
                   isCheapest
                     ? "bg-navy-900 text-ivory hover:bg-navy-700"
@@ -130,7 +137,7 @@ export default function ProposalPage() {
                 }`}
               >
                 Escolher esta opção <ArrowRight size={14} />
-              </button>
+              </ActionButton>
             </div>
           );
         })}

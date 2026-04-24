@@ -15,6 +15,7 @@ import {
   Bell,
 } from "lucide-react";
 import { AffidaLogo } from "@/components/ui/logo";
+import { toast } from "@/components/ui/toaster";
 
 const nav = [
   { label: "Dashboard", href: "/crm", icon: LayoutDashboard },
@@ -99,7 +100,17 @@ export function CrmHeader({ title, subtitle }: { title: string; subtitle?: strin
             className="h-10 w-80 rounded-full border border-navy-100 bg-white pl-9 pr-4 text-sm placeholder:text-navy-400 focus:border-navy-400 focus:outline-none focus:ring-4 focus:ring-navy-900/5"
           />
         </div>
-        <button className="relative flex h-10 w-10 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-700 hover:bg-navy-50">
+        <button
+          type="button"
+          aria-label="Notificações"
+          onClick={() =>
+            toast(
+              "3 novas notificações: 1 gatilho de re-oferta, 2 leads em SLA estourado.",
+              "info"
+            )
+          }
+          className="relative flex h-10 w-10 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-700 hover:bg-navy-50"
+        >
           <Bell size={16} />
           <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500" />
         </button>

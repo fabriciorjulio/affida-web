@@ -12,22 +12,22 @@ export function Hero() {
         <div className="lg:col-span-7">
           <div className="animate-fade-up">
             <p className="eyebrow mb-6 text-champagne-500">
-              Consultoria de seguros e benefícios
+              Corretora boutique de seguros e benefícios
             </p>
             <h1 className="heading-display text-display-xl text-balance text-ivory">
-              O seguro que sua empresa{" "}
-              <em className="font-display font-normal italic text-champagne-300">
-                merece.
-              </em>
-              <br />
-              Cuidado como você faz.
+              Construindo o futuro,{" "}
+              <em className="italic text-champagne-300">juntos</em>.
             </h1>
+            <p className="mt-6 max-w-xl text-sm font-light uppercase tracking-[0.28em] text-champagne-500/90">
+              Confiança · Parceria · Excelência · Inovação
+            </p>
           </div>
 
-          <p className="animate-fade-up animate-delay-200 mt-8 max-w-xl text-lg leading-relaxed text-ivory/80">
-            Consultoria premium para PMEs em crescimento. Analisamos sua empresa como um ativo
-            único, comparamos com seu setor e escolhemos condições que fazem sentido para você —
-            não para a seguradora.
+          <p className="animate-fade-up animate-delay-200 mt-8 max-w-xl text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
+            Nascemos para resgatar a essência do relacionamento no mercado de seguros e
+            benefícios. Serviço personalizado, próximo e de alto nível — unindo tecnologia e
+            sensibilidade para entregar soluções sob medida para empresas que valorizam
+            relações de confiança.
           </p>
 
           <div className="animate-fade-up animate-delay-300 mt-10 flex flex-wrap items-center gap-4">

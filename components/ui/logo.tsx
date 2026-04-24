@@ -1,24 +1,44 @@
 import { cn } from "@/lib/utils";
 
 type LogoVariant = "full" | "mark" | "stacked";
-type LogoTone = "light" | "dark";
+type LogoTone = "light" | "dark" | "mono-dark" | "mono-light";
 
+/**
+ * Logo Affida Partners — conforme Manual de Marca (dez/2025).
+ *
+ * O símbolo representa duas mãos entrelaçadas formando um elo horizontal
+ * (lemniscata aberta), simbolizando confiança e parceria. A tipografia é
+ * baseada na família Corbert (Demi Bold Extended para AFFIDA, Regular Extended
+ * para PARTNERS) — como esta família não é web-safe, usamos Montserrat 500
+ * com tracking ampliado como substituição que preserva a leitura geométrica
+ * "extended sans" do manual.
+ */
 const tones: Record<LogoTone, { mark: string; wordmark: string; tag: string }> = {
   light: {
-    mark: "#D4C29A",
-    wordmark: "#FAF7F0",
-    tag: "rgba(232, 223, 200, 0.75)",
+    mark: "#E1D9C6",
+    wordmark: "#FFFFFF",
+    tag: "#C2BBA9",
   },
   dark: {
-    mark: "#0A1E3F",
-    wordmark: "#0A1E3F",
-    tag: "#2F568F",
+    mark: "#173F65",
+    wordmark: "#0B1E33",
+    tag: "#2C567E",
+  },
+  "mono-dark": {
+    mark: "#222222",
+    wordmark: "#222222",
+    tag: "#222222",
+  },
+  "mono-light": {
+    mark: "#FFFFFF",
+    wordmark: "#FFFFFF",
+    tag: "#FFFFFF",
   },
 };
 
 export function AffidaLogo({
   variant = "full",
-  tone = "light",
+  tone = "dark",
   className,
 }: {
   variant?: LogoVariant;
@@ -29,13 +49,42 @@ export function AffidaLogo({
 
   if (variant === "mark") {
     return (
-      <svg viewBox="0 0 80 40" fill="none" className={cn("h-10 w-auto", className)}>
+      <svg
+        viewBox="0 0 120 56"
+        fill="none"
+        className={cn("h-8 w-auto", className)}
+        aria-label="Affida Partners — símbolo"
+      >
+        {/* Mão esquerda entrelaçando na direita (traço superior) */}
         <path
-          d="M10 20 C 10 12, 24 8, 32 14 C 40 20, 48 20, 56 14 C 64 8, 76 12, 76 20 C 76 28, 64 32, 56 26 C 48 20, 40 20, 32 26 C 24 32, 10 28, 10 20 Z"
+          d="M8 28 C 12 14, 34 12, 48 22 C 58 29, 68 29, 78 22 C 92 12, 108 14, 112 22"
           stroke={c.mark}
-          strokeWidth="2.2"
+          strokeWidth="3"
           strokeLinecap="round"
-          strokeLinejoin="round"
+          fill="none"
+        />
+        {/* Mão direita entrelaçando na esquerda (traço inferior) */}
+        <path
+          d="M8 28 C 12 42, 28 44, 42 34 C 52 27, 62 27, 72 34 C 86 44, 108 42, 112 28"
+          stroke={c.mark}
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Fechamento sutil das pontas */}
+        <path
+          d="M112 22 C 114 24, 114 26, 112 28"
+          stroke={c.mark}
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M8 28 C 6 26, 6 24, 8 22"
+          stroke={c.mark}
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
         />
       </svg>
     );
@@ -43,20 +92,20 @@ export function AffidaLogo({
 
   if (variant === "stacked") {
     return (
-      <div className={cn("inline-flex flex-col items-center gap-3", className)}>
-        <AffidaLogo variant="mark" tone={tone} className="h-12" />
+      <div className={cn("inline-flex flex-col items-center gap-4", className)}>
+        <AffidaLogo variant="mark" tone={tone} className="h-8" />
         <div className="flex flex-col items-center leading-none">
           <span
-            className="font-display text-2xl font-light tracking-wider"
+            className="font-display text-[26px] font-normal tracking-brand-tight uppercase"
             style={{ color: c.wordmark }}
           >
-            AFFIDA
+            Affida
           </span>
           <span
-            className="mt-1 text-[9px] font-medium uppercase tracking-[0.5em]"
+            className="mt-2 text-[10px] font-light tracking-brand uppercase"
             style={{ color: c.tag }}
           >
-            P A R T N E R S
+            Partners
           </span>
         </div>
       </div>
@@ -65,19 +114,19 @@ export function AffidaLogo({
 
   return (
     <div className={cn("inline-flex items-center gap-3", className)}>
-      <AffidaLogo variant="mark" tone={tone} className="h-9" />
+      <AffidaLogo variant="mark" tone={tone} className="h-7" />
       <div className="flex flex-col leading-none">
         <span
-          className="font-display text-xl font-light tracking-wider"
+          className="font-display text-[18px] font-normal tracking-brand-tight uppercase"
           style={{ color: c.wordmark }}
         >
-          AFFIDA
+          Affida
         </span>
         <span
-          className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.4em]"
+          className="mt-1 text-[8px] font-light tracking-brand uppercase"
           style={{ color: c.tag }}
         >
-          PARTNERS
+          Partners
         </span>
       </div>
     </div>

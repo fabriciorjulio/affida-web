@@ -1,31 +1,34 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({
+/**
+ * Tipografia oficial Affida Partners — Manual de Marca, dez/2025.
+ * Títulos em Montserrat Light/Regular, subtítulos em Ultra Light, corpo em Light.
+ * Uma única família com múltiplos pesos cobre toda a hierarquia pedida pelo manual.
+ */
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const display = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["300", "400", "500", "600"],
+  variable: "--font-montserrat",
+  weight: ["200", "300", "400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Affida Partners — Consultoria de seguros e benefícios",
+  title: "Affida Partners — Corretora boutique de seguros e benefícios",
   description:
-    "Consultoria premium de seguros e benefícios para empresas. Atendimento sofisticado e consultivo, em associação com MDS Group.",
+    "Construindo o futuro, juntos. Corretora boutique premium de seguros e benefícios, em associação com MDS Group. Consultoria próxima, personalizada e de alto nível para empresas que valorizam relações de confiança.",
   icons: { icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg` },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${display.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+    <html lang="pt-BR" className={montserrat.variable}>
+      <body className="min-h-screen antialiased">
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -1,7 +1,8 @@
-import { Plus, Handshake, TrendingUp } from "lucide-react";
+import { Plus, Handshake } from "lucide-react";
 import { partners } from "@/lib/mock-data";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl, percent } from "@/lib/utils";
 
 const tipoLabel: Record<string, string> = {
@@ -46,9 +47,13 @@ export default function CrmParceirosPage() {
         </section>
 
         <div className="flex justify-end">
-          <button className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700">
+          <ActionButton
+            action="whatsapp"
+            whatsappMessage="Olá Lucas, quero convidar um novo parceiro para o programa Affida."
+            className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+          >
             <Plus size={14} /> Convidar parceiro
-          </button>
+          </ActionButton>
         </div>
 
         <section className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white">

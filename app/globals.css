@@ -4,8 +4,10 @@
 
 @layer base {
   :root {
-    --font-inter: "Inter", system-ui, sans-serif;
-    --font-display: "Cormorant Garamond", Georgia, serif;
+    /* Manual de Marca Affida Partners — Montserrat como sistema tipográfico único. */
+    --font-montserrat: "Montserrat", system-ui, sans-serif;
+    --font-inter: "Montserrat", system-ui, sans-serif; /* fallback legado */
+    --font-display: "Montserrat", system-ui, sans-serif; /* fallback legado */
   }
 
   html {
@@ -15,12 +17,13 @@
   }
 
   body {
-    @apply bg-ivory text-navy-900;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    @apply bg-ivory text-navy-900 font-light;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: 0.005em;
   }
 
   ::selection {
-    @apply bg-champagne-300 text-navy-900;
+    @apply bg-champagne-200 text-navy-900;
   }
 }
 
@@ -34,11 +37,11 @@
   }
 
   .eyebrow {
-    @apply text-xs font-medium uppercase tracking-widest text-champagne-600;
+    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-champagne-600;
   }
 
   .heading-display {
-    @apply font-display font-light tracking-tight;
+    @apply font-display font-extralight tracking-tight text-balance;
   }
 
   .hairline {
@@ -46,23 +49,23 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-medium tracking-wide text-ivory transition-all hover:bg-navy-700 hover:shadow-premium focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2 focus:ring-offset-ivory;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 px-6 py-3 text-[13px] font-normal tracking-[0.08em] uppercase text-ivory transition-all hover:bg-navy-700 hover:shadow-premium focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2 focus:ring-offset-ivory;
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-medium tracking-wide text-navy-900 transition-all hover:shadow-gold focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-[13px] font-normal tracking-[0.08em] uppercase text-navy-900 transition-all hover:shadow-gold focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-champagne-400/40 bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-ivory transition-all hover:border-champagne-300 hover:bg-champagne-500/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-champagne-300/50 bg-transparent px-6 py-3 text-[13px] font-normal tracking-[0.08em] uppercase text-ivory transition-all hover:border-champagne-200 hover:bg-champagne-500/10;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 text-sm font-medium tracking-wide text-navy-700 transition-colors hover:text-navy-900;
+    @apply inline-flex items-center gap-2 text-sm font-normal tracking-wide text-navy-700 transition-colors hover:text-navy-900;
   }
 
   .card-premium {
-    @apply rounded-2xl border border-champagne-200/60 bg-white/80 p-6 shadow-[0_2px_20px_-8px_rgba(10,30,63,0.08)] backdrop-blur-sm;
+    @apply rounded-2xl border border-champagne-200/60 bg-white/80 p-6 shadow-[0_2px_20px_-8px_rgba(23,63,101,0.08)] backdrop-blur-sm;
   }
 
   .card-dark {
@@ -70,14 +73,21 @@
   }
 
   .grid-pattern-navy {
-    background-color: #0A1E3F;
+    background-color: #0B1E33;
     background-image:
-      radial-gradient(ellipse at top, rgba(200, 184, 138, 0.08), transparent 50%),
-      radial-gradient(ellipse at bottom, rgba(200, 184, 138, 0.04), transparent 50%);
+      radial-gradient(ellipse at top, rgba(225, 217, 198, 0.09), transparent 55%),
+      radial-gradient(ellipse at bottom, rgba(146, 132, 117, 0.08), transparent 60%);
   }
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Tratamento editorial para itálicos em Montserrat — o manual não tem serifa,
+     então destacamos com italic + peso e um "swash" de underline discreto. */
+  .heading-display em {
+    @apply not-italic font-light text-champagne-600;
+    font-style: italic;
   }
 }
 
@@ -90,4 +100,8 @@
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Letter-spacing institucional da palavra-marca — replicado do manual. */
+  .tracking-brand { letter-spacing: 0.36em; }
+  .tracking-brand-tight { letter-spacing: 0.22em; }
 }

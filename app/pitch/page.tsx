@@ -275,51 +275,39 @@ const melhores = [
 const gaps = [
   {
     severity: "alto",
-    gap: "Integração real com operadoras",
-    desc: "Cotação hoje é calculada em modelo proprietário. Precisa plugar APIs (Bradesco, Amil, Icatu, SulAmérica) ou usar o canal MDS para cotação real com preço oficial.",
-    mitigacao: "Negociar pipe de cotação via MDS nos primeiros 90 dias. Começar com 2 operadoras parceiras.",
+    gap: "Cotação com preço oficial da operadora",
+    desc: "Hoje o cliente recebe uma estimativa Affida. O próximo salto é preço oficial em tempo real — o que muda a conversa de 'estimativa' para 'proposta pronta pra assinar'.",
+    mitigacao: "Pipe de cotação MDS em 2 operadoras (Bradesco + Amil) nos primeiros 90 dias. Rollout gradual por produto.",
   },
   {
     severity: "alto",
     gap: "Dependência estratégica do MDS",
-    desc: "Associação ao MDS dá poder de fogo, mas também cria dependência regulatória e política. Se a relação azedar, o MVP vira shell.",
-    mitigacao: "Acordo formal de longo prazo + SUSEP própria gradualmente.",
+    desc: "A associação ao MDS dá SUSEP, tecnologia de backoffice e acesso a operadoras. Em contrapartida, vira pilar do go-to-market — se a relação azedar ou MDS redirecionar foco, o produto perde oxigênio.",
+    mitigacao: "Acordo de longo prazo com cláusulas de continuidade + SUSEP própria gradualmente em 24-36 meses.",
   },
   {
     severity: "medio",
-    gap: "CAC PME no Brasil é caro",
-    desc: "Vida empresarial tem ciclo de venda 30-90 dias. Se o tráfego pago for o único canal, CAC pode passar R$ 4-6k por cliente.",
-    mitigacao: "Peso alto em programa de parceiros (contadores = baixo CAC) + conteúdo de autoridade (SEO jurídico-trabalhista).",
+    gap: "Custo de aquisição PME é estruturalmente alto",
+    desc: "Vida empresarial tem ciclo 30-90 dias, decisor resistente e ticket médio moderado. Tráfego pago puro leva CAC a R$ 4-6k por cliente — o que comprime payback e limita escala agressiva.",
+    mitigacao: "Peso alto em programa de parceiros (contadores = CAC baixíssimo), conteúdo de autoridade SEO e indicações clientes com incentivo recorrente.",
   },
   {
     severity: "medio",
-    gap: "Motor de reoferta precisa de sinal real",
-    desc: "Hoje os triggers são mockados. Na produção precisam alimentação contínua: sinistralidade da operadora, IPCA, cadastro do cliente, folha (via contador).",
-    mitigacao: "Integração com Omie/ContaAzul para folha + scraper das operadoras + contrato com provedor de sinistralidade.",
+    gap: "Motor de reoferta depende de sinal externo",
+    desc: "O motor é o diferencial mais forte, mas sua inteligência depende de dados que ainda não entram sozinhos: sinistralidade, reajuste real da operadora, movimentação de folha do cliente.",
+    mitigacao: "Integração Omie/ContaAzul para folha + contrato com provedor de sinistralidade + canal MDS para reajustes antecipados.",
   },
   {
     severity: "medio",
-    gap: "Marca começa do zero",
-    desc: "Affida não tem reconhecimento. Decisor PME no interior ainda compra 'do corretor do primo'. Barreira cultural, não só de marketing.",
-    mitigacao: "Ancoragem em 'em associação ao MDS' nos primeiros 18 meses + case studies premium + conteúdo institucional.",
+    gap: "Marca desconhecida num mercado relacional",
+    desc: "PME compra seguro de quem conhece. Em cidade menor, o corretor do primo ganha da plataforma bonita. Barreira cultural, não só de branding — e se estende à defesa contra concorrência na renovação.",
+    mitigacao: "Ancoragem em 'em associação ao MDS' nos primeiros 18 meses, case studies premium, relacionamento direto com associações setoriais e sindicatos patronais.",
   },
   {
     severity: "baixo",
-    gap: "Portal sem auth real ainda",
-    desc: "MVP usa cliente demo fixo (Adiantajus). Antes de expor pra cliente precisa autenticação, multi-tenant, LGPD compliance.",
-    mitigacao: "NextAuth + Supabase/Clerk no próximo sprint. Arquitetura já é multi-tenant no data layer.",
-  },
-  {
-    severity: "baixo",
-    gap: "Benchmark sem dados reais",
-    desc: "Números do CNAE 6435-2 são inferidos. Para virar ativo defensável, precisa base real (MDS + ANS pública + parceiros).",
-    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS + base MDS anonimizada + enriquecimento com bureau (Serasa PME).",
-  },
-  {
-    severity: "baixo",
-    gap: "Conformidade LGPD + SUSEP no portal",
-    desc: "Portal armazena dados sensíveis de vidas (data de nascimento, salário). Precisa DPO, retenção, direito ao esquecimento, auditoria.",
-    mitigacao: "Framework LGPD no roadmap de 30 dias + revisão com jurídico MDS.",
+    gap: "Benchmark setorial precisa de dados reais",
+    desc: "Hoje os números do CNAE 6435-2 são inferidos. Pra virar o ativo proprietário que defende carteira na renovação, precisa base consolidada ANS + MDS anonimizada + bureau PME.",
+    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS pública + base MDS anonimizada + enriquecimento Serasa PME + retroalimentação da própria carteira.",
   },
 ];
 
@@ -328,10 +316,10 @@ const roadmap = [
     fase: "30 dias",
     color: "forest",
     items: [
-      "Autenticação real (NextAuth) + multi-tenant",
-      "Pipe de cotação MDS em 2 operadoras",
-      "Primeiros 3 parceiros contadores ativos",
-      "Tracking completo (GA4 + Hotjar + CRM)",
+      "Pipe de cotação MDS em 2 operadoras (Bradesco + Amil)",
+      "Primeiros 3 parceiros contadores ativos + material comercial",
+      "Playbook do closer + scripts consultivos por segmento",
+      "Tracking completo (GA4 + Hotjar + atribuição CRM)",
     ],
   },
   {
@@ -773,14 +761,16 @@ export default function PitchPage() {
                 <em className="italic text-champagne-700">ainda não está resolvido</em>.
               </h2>
               <p className="mt-5 text-base text-navy-700/80">
-                Vale ser franco: um pitch bonito sem ver os riscos engana sócio. Listamos oito
-                gaps, classificados por severidade, cada um com a mitigação planejada.
+                Só gaps de produto, posicionamento e go-to-market. Questões de engenharia
+                interna (auth, infra, compliance técnico) ficam no nosso roadmap de dev e não
+                entram no pitch — o que interessa aqui é onde o produto precisa evoluir e onde
+                o mercado ainda pode resistir.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Badge tone="warning">3 altos</Badge>
+              <Badge tone="warning">2 altos</Badge>
               <Badge tone="gold">3 médios</Badge>
-              <Badge tone="neutral">2 baixos</Badge>
+              <Badge tone="neutral">1 baixo</Badge>
             </div>
           </div>
 

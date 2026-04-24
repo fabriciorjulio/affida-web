@@ -11,6 +11,7 @@ import {
 import { clients, policies, reofferTriggers, productById, operatorById } from "@/lib/mock-data";
 import { PortalShell } from "@/components/portal/portal-shell";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
 const DEMO_CLIENT_ID = "cli-001";
@@ -135,12 +136,19 @@ export default function PortalHome() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <button className="inline-flex items-center gap-1 text-xs font-medium text-navy-900 hover:opacity-80">
+                  <Link
+                    href="/portal/apolices"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-navy-900 hover:opacity-80"
+                  >
                     <FileText size={13} /> Detalhes da rede
-                  </button>
-                  <button className="inline-flex items-center gap-1 text-xs text-navy-700 hover:text-navy-900">
+                  </Link>
+                  <ActionButton
+                    action="download"
+                    message={`Apólice ${p.id} — gerando PDF.`}
+                    className="inline-flex items-center gap-1 text-xs text-navy-700 hover:text-navy-900"
+                  >
                     <Download size={13} /> Apólice PDF
-                  </button>
+                  </ActionButton>
                 </div>
               </div>
             );

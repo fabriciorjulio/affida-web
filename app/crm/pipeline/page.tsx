@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Filter, Plus, Phone, MessageCircle, Mail, ChevronRight } from "lucide-react";
+import { Filter, Plus, Phone, MessageCircle, Mail } from "lucide-react";
 import { leads, pipelineStages, productById } from "@/lib/mock-data";
 import { brl } from "@/lib/utils";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
+import { ActionButton } from "@/components/ui/action-button";
 
 const stageAccent: Record<string, string> = {
   novo: "border-t-navy-400",
@@ -34,12 +35,20 @@ export default function PipelinePage() {
             <Badge tone="gold">{leads.filter((l) => !["fechado", "perdido"].includes(l.stage)).length} leads ativos</Badge>
           </div>
           <div className="flex gap-3">
-            <button className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50">
+            <ActionButton
+              action="demo"
+              message="Filtros avançados por estágio, score e consultor em breve."
+              className="inline-flex items-center gap-2 rounded-full border border-navy-100 bg-white px-4 py-2 text-xs text-navy-700 hover:bg-navy-50"
+            >
               <Filter size={14} /> Filtros
-            </button>
-            <button className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700">
+            </ActionButton>
+            <ActionButton
+              action="toast"
+              href="/crm/leads/novo"
+              className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+            >
               <Plus size={14} /> Novo lead
-            </button>
+            </ActionButton>
           </div>
         </div>
 

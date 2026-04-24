@@ -10,7 +10,7 @@ export default function LeadsPage() {
     <>
       <CrmHeader title="Leads" subtitle="Carteira de prospects" />
 
-      <div className="flex-1 space-y-6 bg-sand/20 px-8 py-8">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-champagne-200/60 bg-white p-4">
           <div className="flex flex-1 items-center gap-3">
             <div className="relative flex-1 max-w-md">
@@ -37,7 +37,7 @@ export default function LeadsPage() {
           <span className="text-xs text-navy-700/70">{leads.length} leads encontrados</span>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white">
+        <div className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white"><div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-sand/40 text-[10px] uppercase tracking-widest text-navy-700/60">
               <tr>
@@ -108,6 +108,7 @@ export default function LeadsPage() {
               })}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     </>

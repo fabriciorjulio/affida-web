@@ -23,8 +23,8 @@ export default function CrmParceirosPage() {
     <>
       <CrmHeader title="Parceiros" subtitle="Canal de indicação" />
 
-      <div className="flex-1 space-y-6 bg-sand/20 px-8 py-8">
-        <section className="grid gap-4 md:grid-cols-4">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           <div className="rounded-2xl border border-champagne-200/60 bg-white p-5">
             <p className="text-[10px] uppercase tracking-widest text-navy-700/60">Parceiros ativos</p>
             <p className="mt-2 font-display text-3xl font-light text-navy-900">
@@ -56,7 +56,7 @@ export default function CrmParceirosPage() {
           </ActionButton>
         </div>
 
-        <section className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white">
+        <section className="overflow-hidden rounded-2xl border border-champagne-200/60 bg-white"><div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="bg-sand/40 text-[10px] uppercase tracking-widest text-navy-700/60">
               <tr>
@@ -102,6 +102,7 @@ export default function CrmParceirosPage() {
               ))}
             </tbody>
           </table>
+        </div>
         </section>
       </div>
     </>

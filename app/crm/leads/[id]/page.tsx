@@ -33,7 +33,7 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
     <>
       <CrmHeader title={lead!.nomeFantasia} subtitle={`Lead · ${lead!.cnpj}`} />
 
-      <div className="flex-1 space-y-6 bg-sand/20 px-8 py-8">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Link href="/crm/leads" className="inline-flex items-center gap-2 text-xs text-navy-700 hover:text-navy-900">
           <ArrowLeft size={14} /> Voltar para leads
         </Link>

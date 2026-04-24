@@ -51,7 +51,7 @@ export default function CrmDashboardPage() {
     <>
       <CrmHeader title="Bom dia, Bernardo" subtitle="Hoje · Quinta, 23 abril 2026" />
 
-      <div className="flex-1 space-y-8 bg-sand/20 px-8 py-8">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:space-y-8 sm:px-6 sm:py-8 lg:px-8">
         {/* KPIs */}
         <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <KpiCard
@@ -100,7 +100,7 @@ export default function CrmDashboardPage() {
               </Link>
             </div>
 
-            <div className="mt-6 grid gap-3 md:grid-cols-6">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
               {pipelineStages.map((s) => {
                 const count = stageCount(s.id);
                 const value = stageValue(s.id);
@@ -350,7 +350,7 @@ export default function CrmDashboardPage() {
             </Link>
           </div>
 
-          <div className="mt-6 grid gap-3 md:grid-cols-4">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
             {team.map((t) => {
               const ownLeads = leads.filter((l) => l.owner === t.name);
               const ownClients = clients.filter((c) => c.owner === t.name);
@@ -403,6 +403,7 @@ export default function CrmDashboardPage() {
             </Link>
           </div>
           <div className="mt-6 overflow-hidden rounded-xl border border-champagne-200/60">
+            <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead className="bg-sand/40 text-[10px] uppercase tracking-widest text-navy-700/60">
                 <tr>
@@ -448,6 +449,7 @@ export default function CrmDashboardPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </section>
       </div>

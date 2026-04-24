@@ -40,7 +40,7 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
     <>
       <CrmHeader title={client!.nomeFantasia} subtitle={`Cliente desde ${new Date(client!.sinceAt).getFullYear()}`} />
 
-      <div className="flex-1 space-y-6 bg-sand/20 px-8 py-8">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <Link href="/crm/carteira" className="inline-flex items-center gap-2 text-xs text-navy-700 hover:text-navy-900">
           <ArrowLeft size={14} /> Voltar
         </Link>
@@ -111,6 +111,7 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
             </ActionButton>
           </div>
           <div className="mt-4 overflow-hidden rounded-xl border border-champagne-200/60">
+            <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead className="bg-sand/30 text-[10px] uppercase tracking-widest text-navy-700/60">
                 <tr>
@@ -162,6 +163,7 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
                 })}
               </tbody>
             </table>
+            </div>
           </div>
         </section>
 

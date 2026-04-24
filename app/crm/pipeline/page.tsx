@@ -28,7 +28,7 @@ export default function PipelinePage() {
     <>
       <CrmHeader title="Pipeline comercial" subtitle="Funil de vendas Affida" />
 
-      <div className="flex-1 space-y-6 bg-sand/20 px-8 py-8">
+      <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex gap-3">
             <Badge tone="neutral">Total em aberto: {brl(totalValue)}</Badge>
@@ -52,11 +52,11 @@ export default function PipelinePage() {
           </div>
         </div>
 
-        <div className="grid gap-4 overflow-x-auto lg:grid-cols-6">
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-2 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-6 lg:overflow-visible lg:px-0">
           {byStage.map((col) => (
             <div
               key={col.id}
-              className={`min-w-[240px] rounded-2xl border border-champagne-200/60 bg-white/80 ${stageAccent[col.id]} border-t-2`}
+              className={`w-[260px] shrink-0 rounded-2xl border border-champagne-200/60 bg-white/80 ${stageAccent[col.id]} border-t-2 lg:w-auto`}
             >
               <div className="flex items-center justify-between border-b border-champagne-200/60 px-4 py-3">
                 <p className="text-[11px] font-medium uppercase tracking-widest text-navy-700/80">

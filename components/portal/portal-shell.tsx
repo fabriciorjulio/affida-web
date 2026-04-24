@@ -35,14 +35,16 @@ export function PortalShell({
   const pathname = usePathname();
   return (
     <div className="min-h-screen bg-sand/30">
-      <header className="border-b border-champagne-200/60 bg-white/80 backdrop-blur-sm">
-        <div className="container-wide flex h-16 items-center justify-between">
-          <Link href="/portal" className="flex items-center gap-3 text-navy-900">
-            <AffidaLogo variant="mark" tone="dark" className="h-7 w-7" />
-            <span className="font-display text-lg font-light tracking-wide">Affida Partners</span>
+      <header className="sticky top-0 z-30 border-b border-champagne-200/60 bg-white/90 backdrop-blur-sm">
+        <div className="container-wide flex h-16 items-center justify-between gap-3">
+          <Link href="/portal" className="flex min-w-0 items-center gap-3 text-navy-900">
+            <AffidaLogo variant="mark" tone="dark" className="h-7 w-7 shrink-0" />
+            <span className="truncate font-display text-base font-light tracking-wide sm:text-lg">
+              Affida Partners
+            </span>
             <span className="hidden text-xs text-champagne-700 md:inline">Portal do cliente</span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             <ActionButton
               action="whatsapp"
               whatsappMessage="Olá Lucas, estou no portal Affida."
@@ -73,7 +75,29 @@ export function PortalShell({
         </div>
       </header>
 
-      <div className="container-wide grid gap-8 py-10 lg:grid-cols-[240px_1fr]">
+      {/* Mobile portal nav */}
+      <nav className="no-scrollbar flex gap-2 overflow-x-auto border-b border-champagne-200/50 bg-white/70 px-4 py-3 backdrop-blur-sm sm:px-6 lg:hidden">
+        {nav.map((item) => {
+          const active = pathname === item.href;
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-xs font-medium transition-all ${
+                active
+                  ? "bg-navy-900 text-ivory"
+                  : "border border-navy-100 bg-white text-navy-700 hover:bg-sand/50"
+              }`}
+            >
+              <Icon size={13} strokeWidth={1.5} />
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
+
+      <div className="container-wide grid gap-8 py-8 lg:grid-cols-[240px_1fr] lg:py-10">
         <aside className="hidden lg:block">
           <nav className="sticky top-6 space-y-1">
             {nav.map((item) => {

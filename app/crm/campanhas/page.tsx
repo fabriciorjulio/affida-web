@@ -5,13 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
 
+// Cores dos canais — paleta estrita Manual de Marca Affida (Navy, Champagne UP/Greige, Forest Brown).
 const channelColor: Record<string, string> = {
-  google: "bg-sky-50 text-sky-700",
-  meta: "bg-navy-50 text-navy-700",
-  linkedin: "bg-blue-50 text-blue-700",
-  whatsapp: "bg-emerald-50 text-emerald-700",
+  google: "bg-navy-50 text-navy-800",
+  meta: "bg-navy-100 text-navy-900",
+  linkedin: "bg-navy-200 text-navy-900",
+  whatsapp: "bg-forest-50 text-forest-700",
   email: "bg-champagne-100 text-champagne-800",
-  parceiros: "bg-rose-50 text-rose-700",
+  parceiros: "bg-champagne-200 text-champagne-900",
 };
 
 export default function CampanhasPage() {

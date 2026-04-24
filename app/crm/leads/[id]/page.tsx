@@ -160,7 +160,7 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
               <ActionButton
                 action="whatsapp"
                 whatsappMessage={`Olá ${lead!.contact.nome.split(" ")[0]}, falo da Affida — sobre o plano ${product?.name ?? ""}.`}
-                className="inline-flex items-center justify-center gap-1 rounded-full bg-emerald-600 py-2 text-xs text-ivory hover:bg-emerald-700"
+                className="inline-flex items-center justify-center gap-1 rounded-full bg-forest-600 py-2 text-xs text-ivory hover:bg-forest-700"
               >
                 <MessageCircle size={12} /> WhatsApp
               </ActionButton>

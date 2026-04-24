@@ -6,13 +6,14 @@ import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
 import { ActionButton } from "@/components/ui/action-button";
 
+// Acentos das colunas do pipeline — paleta estrita Manual de Marca Affida.
 const stageAccent: Record<string, string> = {
-  novo: "border-t-navy-400",
-  qualificado: "border-t-sky-500",
+  novo: "border-t-navy-300",
+  qualificado: "border-t-navy-500",
   proposta: "border-t-champagne-500",
-  negociacao: "border-t-amber-500",
-  fechado: "border-t-forest",
-  perdido: "border-t-rose-400",
+  negociacao: "border-t-champagne-700",
+  fechado: "border-t-forest-600",
+  perdido: "border-t-navy-900",
 };
 
 export default function PipelinePage() {
@@ -85,7 +86,7 @@ export default function PipelinePage() {
                         <span
                           className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${
                             l.score >= 85
-                              ? "bg-emerald-50 text-forest-700"
+                              ? "bg-forest-50 text-forest-700"
                               : l.score >= 70
                                 ? "bg-champagne-100 text-champagne-800"
                                 : "bg-navy-50 text-navy-700"

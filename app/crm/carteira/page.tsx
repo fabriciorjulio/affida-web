@@ -42,7 +42,7 @@ export default function CarteiraPage() {
           </div>
           <div className="rounded-2xl border border-champagne-200/60 bg-white p-5">
             <p className="text-[10px] uppercase tracking-widest text-navy-700/60">Risco de churn</p>
-            <p className="mt-2 font-display text-3xl font-light text-rose-600">{churnRisk}</p>
+            <p className="mt-2 font-display text-3xl font-light text-navy-900">{churnRisk}</p>
             <p className="mt-1 text-xs text-navy-700/70">requer atenção imediata</p>
           </div>
         </div>

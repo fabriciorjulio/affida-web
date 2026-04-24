@@ -60,7 +60,7 @@ export function PortalShell({
               className="relative flex h-9 w-9 items-center justify-center rounded-full border border-navy-100 text-navy-700 hover:bg-navy-50"
             >
               <Bell size={15} />
-              <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-rose-500" />
+              <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-champagne-500" />
             </ActionButton>
             <div className="hidden items-center gap-3 border-l border-navy-100 pl-4 md:flex">
               <div className="text-right">
@@ -141,7 +141,7 @@ export function PortalShell({
               </div>
               <a
                 href="https://wa.me/5511900000000"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-xs text-ivory hover:bg-emerald-700"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-forest-600 px-4 py-2 text-xs text-ivory hover:bg-forest-700"
               >
                 <MessageCircle size={12} /> Falar no WhatsApp
               </a>

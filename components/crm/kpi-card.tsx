@@ -12,14 +12,15 @@ export function KpiCard({
   value: string;
   delta?: string;
   hint?: string;
-  accent?: "gold" | "forest" | "navy" | "rose";
+  accent?: "gold" | "forest" | "navy" | "alert";
   className?: string;
 }) {
+  // Accents estritos ao Manual de Marca Affida — sem cores externas (rose/emerald/etc).
   const accents = {
     gold: "text-champagne-600",
     forest: "text-forest",
     navy: "text-navy-700",
-    rose: "text-rose-600",
+    alert: "text-navy-900",
   };
   return (
     <div

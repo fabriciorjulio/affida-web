@@ -146,7 +146,7 @@ export function CrmHeader({ title, subtitle }: { title: string; subtitle?: strin
             className="relative flex h-10 w-10 items-center justify-center rounded-full border border-navy-100 bg-white text-navy-700 hover:bg-navy-50"
           >
             <Bell size={16} />
-            <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-rose-500" />
+            <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-champagne-500 ring-2 ring-white" />
           </button>
         </div>
       </header>

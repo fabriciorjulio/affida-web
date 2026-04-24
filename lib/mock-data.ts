@@ -1349,13 +1349,15 @@ export const kpis = {
   totalCampaignLeads: campaigns.reduce((acc, c) => acc + c.leads, 0),
 };
 
+// Stages do pipeline — paleta estrita Manual de Marca Affida (dez/2025):
+// Navy (Dress Blues + Midnight) · Champagne (UP + Greige) · Forest (Brown) · Ivory + Ink.
 export const pipelineStages = [
   { id: "novo", label: "Novo", color: "bg-navy-100 text-navy-800" },
-  { id: "qualificado", label: "Qualificado", color: "bg-sky-100 text-sky-800" },
+  { id: "qualificado", label: "Qualificado", color: "bg-champagne-50 text-navy-700" },
   { id: "proposta", label: "Proposta enviada", color: "bg-champagne-100 text-champagne-800" },
-  { id: "negociacao", label: "Negociação", color: "bg-amber-100 text-amber-800" },
-  { id: "fechado", label: "Fechado", color: "bg-emerald-100 text-forest-700" },
-  { id: "perdido", label: "Perdido", color: "bg-rose-50 text-rose-700" },
+  { id: "negociacao", label: "Negociação", color: "bg-champagne-200 text-champagne-900" },
+  { id: "fechado", label: "Fechado", color: "bg-forest-50 text-forest-700" },
+  { id: "perdido", label: "Perdido", color: "bg-navy-200 text-navy-900" },
 ] as const;
 
 export const team = [

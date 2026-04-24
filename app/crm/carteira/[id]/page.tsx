@@ -90,7 +90,7 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
             </div>
             <div className="rounded-xl border border-champagne-200/60 bg-sand/20 p-4">
               <p className="text-[10px] uppercase tracking-widest text-navy-700/60">Gatilhos abertos</p>
-              <p className="mt-1 font-display text-2xl font-light text-rose-600">{triggers.length}</p>
+              <p className="mt-1 font-display text-2xl font-light text-navy-900">{triggers.length}</p>
             </div>
           </div>
         </section>
@@ -169,14 +169,14 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
 
         {/* Gatilhos re-oferta */}
         {triggers.length > 0 && (
-          <section className="rounded-2xl border border-rose-200/50 bg-rose-50/30 p-6">
+          <section className="rounded-2xl border border-champagne-300/60 bg-champagne-50/40 p-6">
             <div className="flex items-center gap-2">
-              <Zap size={16} className="text-rose-600" />
-              <p className="eyebrow text-rose-700">Motor de re-oferta</p>
+              <Zap size={16} className="text-champagne-700" />
+              <p className="eyebrow text-champagne-700">Motor de re-oferta</p>
             </div>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {triggers.map((t) => (
-                <div key={t.id} className="rounded-xl border border-rose-200/50 bg-white p-4">
+                <div key={t.id} className="rounded-xl border border-champagne-300/60 bg-white p-4">
                   <div className="flex items-center justify-between gap-2">
                     <Badge tone={t.severity === "high" ? "danger" : t.severity === "medium" ? "warning" : "info"}>
                       {t.type.replace(/_/g, " ")}

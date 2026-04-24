@@ -73,7 +73,7 @@ export default function CrmDashboardPage() {
             value={`${openTriggers.length}`}
             delta={`${openTriggers.filter((t) => t.severity === "high").length} críticos`}
             hint="motor proprietário"
-            accent="rose"
+            accent="alert"
           />
           <KpiCard
             label="Vidas ativas"
@@ -172,10 +172,10 @@ export default function CrmDashboardPage() {
                 const client = clientById(t.clientId);
                 const tone =
                   t.severity === "high"
-                    ? "bg-rose-500/15 text-rose-200"
+                    ? "bg-ivory/20 text-ivory ring-1 ring-champagne-300/40"
                     : t.severity === "medium"
-                      ? "bg-amber-400/15 text-amber-200"
-                      : "bg-sky-400/15 text-sky-200";
+                      ? "bg-champagne-500/25 text-champagne-100"
+                      : "bg-navy-500/25 text-champagne-200";
                 return (
                   <li key={t.id} className="rounded-xl border border-champagne-500/10 bg-navy-800/50 p-4">
                     <div className="flex items-center justify-between gap-2">

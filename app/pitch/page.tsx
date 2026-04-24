@@ -612,7 +612,7 @@ export default function PitchPage() {
                   )}
                   {s.miss > 0 && (
                     <span className="inline-flex items-center gap-1">
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-rose-400" />
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-navy-900" />
                       {s.miss} falta
                     </span>
                   )}
@@ -778,7 +778,7 @@ export default function PitchPage() {
             {gaps.map((g) => {
               const severityStyle =
                 g.severity === "alto"
-                  ? "border-l-rose-400 bg-white"
+                  ? "border-l-navy-900 bg-white"
                   : g.severity === "medio"
                   ? "border-l-champagne-500 bg-white"
                   : "border-l-navy-300 bg-white";

@@ -35,9 +35,9 @@ export function Toaster() {
         const Icon = t.tone === "success" ? CheckCircle2 : Info;
         const accent =
           t.tone === "success"
-            ? "text-emerald-300"
+            ? "text-forest-200"
             : t.tone === "info"
-            ? "text-sky-300"
+            ? "text-champagne-200"
             : "text-champagne-300";
         return (
           <div

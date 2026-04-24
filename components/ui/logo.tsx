@@ -13,16 +13,20 @@ type LogoTone = "light" | "dark" | "mono-dark" | "mono-light";
  * com tracking ampliado como substituição que preserva a leitura geométrica
  * "extended sans" do manual.
  */
+// Versão dark = aplicação POSITIVA principal do logo (Manual p.14).
+// Wordmark em Dress Blues #0B1E33 (primária institucional) e símbolo em
+// Midnight Blue #173F65 (primária de acento). Essa é a identidade visual
+// principal da marca — preferida em qualquer aplicação sobre fundo claro.
 const tones: Record<LogoTone, { mark: string; wordmark: string; tag: string }> = {
   light: {
-    mark: "#E1D9C6",
-    wordmark: "#FFFFFF",
-    tag: "#C2BBA9",
+    mark: "#E1D9C6",    // UP (Pantone 2157) — símbolo em fundo escuro
+    wordmark: "#FFFFFF", // Comoyoko
+    tag: "#C2BBA9",      // Greige claro
   },
   dark: {
-    mark: "#173F65",
-    wordmark: "#0B1E33",
-    tag: "#2C567E",
+    mark: "#173F65",     // Midnight Blue (Pantone 18-4005 TCX) — símbolo
+    wordmark: "#0B1E33", // Dress Blues (Pantone 19-4028 TCX) — wordmark principal
+    tag: "#173F65",      // Midnight Blue — assinatura PARTNERS
   },
   "mono-dark": {
     mark: "#222222",
@@ -93,16 +97,18 @@ export function AffidaLogo({
   if (variant === "stacked") {
     return (
       <div className={cn("inline-flex flex-col items-center gap-4", className)}>
-        <AffidaLogo variant="mark" tone={tone} className="h-8" />
+        <AffidaLogo variant="mark" tone={tone} className="h-10" />
         <div className="flex flex-col items-center leading-none">
           <span
-            className="font-display text-[26px] font-normal tracking-brand-tight uppercase"
+            // Corbert Demi Bold Extended → Montserrat medium com tracking-brand-tight
+            className="font-display text-[30px] font-medium tracking-brand-tight uppercase"
             style={{ color: c.wordmark }}
           >
             Affida
           </span>
           <span
-            className="mt-2 text-[10px] font-light tracking-brand uppercase"
+            // Corbert Regular Extended → Montserrat light com tracking-brand ampliado
+            className="mt-2 text-[11px] font-light tracking-brand uppercase"
             style={{ color: c.tag }}
           >
             Partners
@@ -114,16 +120,16 @@ export function AffidaLogo({
 
   return (
     <div className={cn("inline-flex items-center gap-3", className)}>
-      <AffidaLogo variant="mark" tone={tone} className="h-7" />
+      <AffidaLogo variant="mark" tone={tone} className="h-8" />
       <div className="flex flex-col leading-none">
         <span
-          className="font-display text-[18px] font-normal tracking-brand-tight uppercase"
+          className="font-display text-[19px] font-medium tracking-brand-tight uppercase"
           style={{ color: c.wordmark }}
         >
           Affida
         </span>
         <span
-          className="mt-1 text-[8px] font-light tracking-brand uppercase"
+          className="mt-1 text-[9px] font-light tracking-brand uppercase"
           style={{ color: c.tag }}
         >
           Partners

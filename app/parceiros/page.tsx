@@ -3,6 +3,7 @@ import { Handshake, Coins, TrendingUp, ShieldCheck, ArrowRight, CheckCircle2 } f
 import { AffidaLogo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/marketing/navbar";
+import { BrandSignature } from "@/components/marketing/brand-signature";
 import { Footer } from "@/components/marketing/footer";
 
 const beneficios = [
@@ -74,6 +75,9 @@ export default function ParceirosPublicPage() {
           </div>
         </div>
       </section>
+
+      {/* Assinatura institucional — versão positiva do logo, p.14 do manual */}
+      <BrandSignature />
 
       <section className="bg-sand/50" id="programa">
         <div className="container-wide py-24">

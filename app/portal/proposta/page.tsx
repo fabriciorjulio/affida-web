@@ -159,7 +159,7 @@ export default function ProposalPage() {
                 </div>
                 <div className="mt-1 h-2 overflow-hidden rounded-full bg-navy-50">
                   <div
-                    className="h-full bg-gradient-gold"
+                    className="h-full bg-champagne-500"
                     style={{ width: `${(f.count / sampleQuote.vidas) * 100}%` }}
                   />
                 </div>
@@ -180,7 +180,7 @@ export default function ProposalPage() {
           </p>
           <a
             href="https://wa.me/5511900000000"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-2.5 text-xs font-medium text-navy-900 hover:shadow-gold"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-5 py-2.5 text-xs font-medium text-navy-900 hover:shadow-gold"
           >
             Falar com Lucas <ArrowRight size={14} />
           </a>

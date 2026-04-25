@@ -12,7 +12,7 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-navy text-ivory hover:bg-navy-700 hover:shadow-premium focus:ring-offset-ivory",
   gold:
-    "bg-gradient-gold text-navy-900 hover:shadow-gold focus:ring-offset-navy",
+    "bg-champagne-500 text-navy-900 hover:shadow-gold focus:ring-offset-navy",
   outline:
     "border border-champagne-400/40 bg-transparent text-ivory hover:border-champagne-300 hover:bg-champagne-500/10 focus:ring-offset-navy",
   "dark-outline":

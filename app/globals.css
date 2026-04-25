@@ -53,7 +53,7 @@
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-[13px] font-normal tracking-[0.08em] uppercase text-navy-900 transition-all hover:shadow-gold focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-champagne-500 px-6 py-3 text-[13px] font-normal tracking-[0.08em] uppercase text-navy-900 transition-all hover:shadow-gold focus:outline-none focus:ring-2 focus:ring-champagne-400 focus:ring-offset-2;
   }
 
   .btn-outline {

@@ -100,7 +100,7 @@ export default function CampanhasPage() {
                   </div>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-navy-50">
                     <div
-                      className="h-full bg-gradient-gold"
+                      className="h-full bg-champagne-500"
                       style={{ width: `${Math.min(100, pctSpent)}%` }}
                     />
                   </div>

@@ -312,7 +312,7 @@ export default function CrmDashboardPage() {
                     </div>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-navy-50">
                       <div
-                        className="h-full bg-gradient-gold"
+                        className="h-full bg-champagne-500"
                         style={{ width: `${Math.min(100, (c.spent / c.budget) * 100)}%` }}
                       />
                     </div>

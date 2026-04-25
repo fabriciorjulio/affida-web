@@ -879,7 +879,7 @@ export default function PitchPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-navy text-ivory">
+      <section className="bg-navy-900 text-ivory">
         <div className="container-wide py-24 text-center">
           <Rocket size={28} className="mx-auto text-champagne-300" />
           <p className="eyebrow mt-4 text-champagne-500">Próximo passo</p>

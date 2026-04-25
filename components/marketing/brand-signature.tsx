@@ -32,7 +32,11 @@ export function BrandSignature() {
         <p className="eyebrow text-champagne-500">Identidade institucional</p>
 
         {/* Aplicação PRIMÁRIA: Dress Blues + AFFIDA Greige + PARTNERS UP (p.14, p.26) */}
-        <AffidaLogo variant="stacked" tone="gold" className="gap-5 [&_svg]:h-16 sm:[&_svg]:h-20" />
+        <AffidaLogo
+          variant="stacked"
+          tone="gold"
+          className="gap-5 [&>span[role=img]]:h-12 sm:[&>span[role=img]]:h-16"
+        />
 
         <div className="hairline mx-auto bg-champagne-500/50" />
 

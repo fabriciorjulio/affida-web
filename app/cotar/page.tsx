@@ -94,7 +94,7 @@ export default function CotarIndexPage() {
             </div>
             <Link
               href="https://wa.me/5511900000000"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-medium text-navy-900 hover:shadow-gold"
+              className="inline-flex items-center gap-2 rounded-full bg-champagne-500 px-6 py-3 text-sm font-medium text-navy-900 hover:shadow-gold"
             >
               Falar com consultor <ArrowRight size={14} />
             </Link>

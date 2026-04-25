@@ -50,7 +50,7 @@ export function Hero() {
         </div>
 
         <aside className="animate-fade-up animate-delay-500 lg:col-span-5 lg:pl-8">
-          <div className="relative rounded-3xl border border-champagne-500/15 bg-gradient-to-br from-navy-800/80 to-navy-900/80 p-8 backdrop-blur-sm lg:p-10">
+          <div className="relative rounded-3xl border border-champagne-500/15 bg-navy-800/80 p-8 backdrop-blur-sm lg:p-10">
             <div className="absolute -top-3 left-8 inline-flex items-center gap-2 rounded-full border border-champagne-400/40 bg-navy-900 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-champagne-400">
               Nova proposta — Adiantajus Investimentos
             </div>

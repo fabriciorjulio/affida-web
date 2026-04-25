@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const markUrl = `${basePath}/affida-mark.png`;
+
 type LogoVariant = "full" | "mark" | "stacked";
 type LogoTone = "light" | "dark" | "gold" | "mono-dark" | "mono-light";
 
@@ -61,45 +64,27 @@ export function AffidaLogo({
   const c = tones[tone];
 
   if (variant === "mark") {
+    // Símbolo oficial Affida (Manual p.6) — duas mãos entrelaçadas
+    // formando lemniscata aberta com brush stroke. Imagem extraída
+    // do próprio Manual de Marca; colorizada via CSS mask-image
+    // para preservar a forma exata em qualquer paleta.
     return (
-      <svg
-        viewBox="0 0 120 56"
-        fill="none"
-        className={cn("h-8 w-auto", className)}
+      <span
+        role="img"
         aria-label="Affida Partners — símbolo"
-      >
-        {/* Mão esquerda entrelaçando na direita (traço superior) */}
-        <path
-          d="M8 28 C 12 14, 34 12, 48 22 C 58 29, 68 29, 78 22 C 92 12, 108 14, 112 22"
-          stroke={c.mark}
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-        {/* Mão direita entrelaçando na esquerda (traço inferior) */}
-        <path
-          d="M8 28 C 12 42, 28 44, 42 34 C 52 27, 62 27, 72 34 C 86 44, 108 42, 112 28"
-          stroke={c.mark}
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-        {/* Fechamento sutil das pontas */}
-        <path
-          d="M112 22 C 114 24, 114 26, 112 28"
-          stroke={c.mark}
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M8 28 C 6 26, 6 24, 8 22"
-          stroke={c.mark}
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
+        className={cn("inline-block aspect-[798/184] h-8 w-auto shrink-0", className)}
+        style={{
+          backgroundColor: c.mark,
+          WebkitMaskImage: `url(${markUrl})`,
+          maskImage: `url(${markUrl})`,
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+          WebkitMaskSize: "contain",
+          maskSize: "contain",
+          WebkitMaskPosition: "center",
+          maskPosition: "center",
+        }}
+      />
     );
   }
 

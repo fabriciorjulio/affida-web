@@ -55,7 +55,7 @@ export default function BenchmarkPage() {
             11% acima da mediana · p75
           </p>
         </div>
-        <div className="rounded-3xl border border-champagne-200/60 bg-gradient-gold p-6">
+        <div className="rounded-3xl border border-champagne-200/60 bg-champagne-500 p-6">
           <p className="text-[10px] uppercase tracking-widest text-navy-800/80">Oportunidade</p>
           <p className="mt-3 font-display text-2xl font-light text-navy-900">-R$ 55 / vida</p>
           <p className="mt-1 text-xs text-navy-800">
@@ -91,7 +91,7 @@ export default function BenchmarkPage() {
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded-full bg-navy-50">
                   <div
-                    className={`h-full ${row.voce ? "bg-forest" : "bg-gradient-gold"}`}
+                    className={`h-full ${row.voce ? "bg-forest" : "bg-champagne-500"}`}
                     style={{ width: `${row.pct}%` }}
                   />
                 </div>
@@ -121,7 +121,7 @@ export default function BenchmarkPage() {
                   <span className="font-medium text-champagne-300">{op.share}%</span>
                 </div>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-ivory/10">
-                  <div className="h-full bg-gradient-gold" style={{ width: `${op.share}%` }} />
+                  <div className="h-full bg-champagne-500" style={{ width: `${op.share}%` }} />
                 </div>
               </div>
             ))}
@@ -207,7 +207,7 @@ export default function BenchmarkPage() {
             </p>
             <a
               href="https://wa.me/5511900000000"
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-4 py-2 text-xs font-medium text-navy-900 hover:shadow-gold"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-4 py-2 text-xs font-medium text-navy-900 hover:shadow-gold"
             >
               Solicitar relatório completo
             </a>

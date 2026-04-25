@@ -39,7 +39,7 @@ export function QuoteShell({
         </div>
         <div className="mt-3 h-1 overflow-hidden rounded-full bg-navy-50">
           <div
-            className="h-full bg-gradient-gold transition-all duration-500"
+            className="h-full bg-champagne-500 transition-all duration-500"
             style={{ width: `${pct}%` }}
           />
         </div>

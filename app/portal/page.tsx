@@ -47,7 +47,7 @@ export default function PortalHome() {
             <p className="mt-2 font-display text-3xl font-light text-navy-900">{totalVidas}</p>
             <p className="mt-1 text-xs text-navy-700/60">14 colaboradores + 4 dependentes</p>
           </div>
-          <div className="rounded-2xl border border-champagne-200/60 bg-gradient-gold p-5">
+          <div className="rounded-2xl border border-champagne-200/60 bg-champagne-500 p-5">
             <p className="text-[10px] uppercase tracking-widest text-navy-800/80">Próximo marco</p>
             <p className="mt-2 font-display text-2xl font-light text-navy-900">Renovação</p>
             <p className="mt-1 text-xs text-navy-800">31/03/2026 · 7 dias</p>

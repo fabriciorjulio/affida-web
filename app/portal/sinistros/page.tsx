@@ -146,7 +146,7 @@ export default function SinistrosPage() {
         <ActionButton
           action="whatsapp"
           whatsappMessage="Olá Lucas, preciso de apoio com um sinistro da Affida."
-          className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-2.5 text-xs font-medium text-navy-900 hover:shadow-gold"
+          className="mt-5 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-5 py-2.5 text-xs font-medium text-navy-900 hover:shadow-gold"
         >
           <MessageCircle size={12} /> Falar com meu consultor
         </ActionButton>

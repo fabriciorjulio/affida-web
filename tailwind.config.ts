@@ -95,10 +95,11 @@ const config: Config = {
         "display-lg": ["clamp(2rem, 4vw, 3.25rem)", { lineHeight: "1.12", letterSpacing: "-0.01em" }],
         "display-md": ["clamp(1.5rem, 3vw, 2.25rem)", { lineHeight: "1.2", letterSpacing: "-0.005em" }],
       },
+      // Manual p.18 (DON'T): "Evite gradientes e qualquer efeito de
+      // estilização não oficial". Sem gradientes — só pattern oficial.
+      // Pattern construído a partir do símbolo extraído do Manual de Marca.
       backgroundImage: {
-        "gradient-navy": "linear-gradient(180deg, #173F65 0%, #0B1E33 100%)",
-        "gradient-gold": "linear-gradient(135deg, #E1D9C6 0%, #928475 100%)",
-        "affida-pattern": `url('${basePath}/pattern-affida.svg')`,
+        "affida-pattern": `url('${basePath}/affida-pattern.png')`,
       },
       boxShadow: {
         premium: "0 20px 60px -20px rgba(23, 63, 101, 0.35)",

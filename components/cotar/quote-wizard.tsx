@@ -227,7 +227,7 @@ export function QuoteWizard({ product }: { product: Product }) {
                 }`}
               >
                 {opt.recommended && (
-                  <span className="absolute -top-2 right-4 rounded-full bg-gradient-gold px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-navy-900">
+                  <span className="absolute -top-2 right-4 rounded-full bg-champagne-500 px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-navy-900">
                     Recomendado
                   </span>
                 )}

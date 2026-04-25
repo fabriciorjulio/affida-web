@@ -46,7 +46,9 @@ const footerNav = [
 export function Footer() {
   return (
     <footer className="grid-pattern-navy relative overflow-hidden border-t border-champagne-500/10 bg-navy-900 text-ivory">
-      <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-30" />
+      {/* Pattern oficial Affida em opacidade reduzida — manual p.18 (DON'T):
+          "Não utilizar a logo sobre imagens ou texturas que prejudiquem a leitura". */}
+      <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.12]" />
       <div className="container-wide relative z-10 py-20">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">

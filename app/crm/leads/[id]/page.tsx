@@ -215,7 +215,7 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                 action="toast"
                 href="/portal/proposta"
                 message={`Proposta para ${lead!.nomeFantasia} preparada — abrindo preview.`}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-2.5 text-xs font-medium text-navy-900"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-champagne-500 px-4 py-2.5 text-xs font-medium text-navy-900"
               >
                 <FileSignature size={14} /> Enviar proposta
               </ActionButton>

@@ -30,10 +30,10 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
     >
       <div className="container-wide flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="Affida Partners — página inicial">
-          {/* Em fundo escuro, logo em versão negativa (UP + Comoyoko).
-              Em fundo claro, logo em versão POSITIVA principal:
-              Dress Blues #0B1E33 + Midnight Blue #173F65 (p.14 do manual). */}
-          <AffidaLogo tone={isDark ? "light" : "dark"} className="h-auto" />
+          {/* Em fundo Dress Blues, aplicação primária = "gold" (Greige + UP),
+              conforme p.14 e mockup do website p.26 do Manual de Marca.
+              Em fundo claro, versão positiva sóbria: Dress Blues + Midnight Blue. */}
+          <AffidaLogo tone={isDark ? "gold" : "dark"} className="h-auto" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 type LogoVariant = "full" | "mark" | "stacked";
-type LogoTone = "light" | "dark" | "mono-dark" | "mono-light";
+type LogoTone = "light" | "dark" | "gold" | "mono-dark" | "mono-light";
 
 /**
  * Logo Affida Partners — conforme Manual de Marca (dez/2025).
@@ -13,13 +13,22 @@ type LogoTone = "light" | "dark" | "mono-dark" | "mono-light";
  * com tracking ampliado como substituição que preserva a leitura geométrica
  * "extended sans" do manual.
  */
-// Versão dark = aplicação POSITIVA principal do logo (Manual p.14).
-// Wordmark em Dress Blues #0B1E33 (primária institucional) e símbolo em
-// Midnight Blue #173F65 (primária de acento). Essa é a identidade visual
-// principal da marca — preferida em qualquer aplicação sobre fundo claro.
+// Aplicações do logo conforme Manual de Marca (dez/2025), p.14:
+//   • "gold"  → primeira coluna positiva, fundo Dress Blues + AFFIDA em
+//              champagne dourado (Greige) + PARTNERS em UP. É a aplicação
+//              PRIMÁRIA institucional — é a versão usada no mockup do
+//              website (p.26), business card (p.28) e social media (p.29).
+//   • "dark"  → segunda coluna positiva, fundo claro + logo Dress Blues
+//              (versão sóbria sobre creme/UP).
+//   • "light" → versão negativa para fundos muito escuros (Neutral Black).
 const tones: Record<LogoTone, { mark: string; wordmark: string; tag: string }> = {
+  gold: {
+    mark: "#E1D9C6",     // UP (Pantone 2157) — símbolo em UP claro
+    wordmark: "#928475", // Greige (Pantone 16-1109 TCX) — AFFIDA em dourado/champagne
+    tag: "#E1D9C6",      // UP — assinatura PARTNERS em creme claro
+  },
   light: {
-    mark: "#E1D9C6",    // UP (Pantone 2157) — símbolo em fundo escuro
+    mark: "#E1D9C6",     // UP — símbolo em fundo escuro
     wordmark: "#FFFFFF", // Comoyoko
     tag: "#C2BBA9",      // Greige claro
   },

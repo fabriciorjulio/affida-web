@@ -24,8 +24,11 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
       className={cn(
         "sticky top-0 z-40 w-full border-b backdrop-blur-md",
         isDark
-          ? "border-champagne-500/10 bg-navy-900/70"
-          : "border-navy-100 bg-ivory/80"
+          ? // Dress Blues sólido + leve translucidez (95%) — garante que o
+            // header permaneça PROFUNDAMENTE escuro mesmo no scroll=0,
+            // antes da seção Hero começar a renderizar atrás dele.
+            "border-champagne-500/10 bg-navy-900/95"
+          : "border-navy-100 bg-ivory/90"
       )}
     >
       <div className="container-wide flex h-20 items-center justify-between">

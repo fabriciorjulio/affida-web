@@ -11,7 +11,7 @@ import { Footer } from "@/components/marketing/footer";
 
 export default function HomePage() {
   return (
-    <main className="bg-ivory">
+    <main className="bg-navy-900">
       <Navbar tone="dark" />
       <Hero />
       <TrustBar />

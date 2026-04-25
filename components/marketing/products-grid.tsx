@@ -1,97 +1,201 @@
 import Link from "next/link";
 import {
-  Shield,
-  Crown,
   HeartPulse,
   Smile,
+  Shield,
+  Crown,
   Scale,
   Car,
   Building2,
   PawPrint,
+  ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
-import { products } from "@/lib/mock-data";
-import { Badge } from "@/components/ui/badge";
 
-const iconMap = {
-  Shield,
-  Crown,
-  HeartPulse,
-  Smile,
-  Scale,
-  Car,
-  Building2,
-  PawPrint,
-};
-
+/**
+ * Grupos consultivos da landing pública.
+ *
+ * Filosofia (orientação do dono): a landing NÃO é prateleira de produtos.
+ * O objetivo é levar para CONSULTORIA + COTAÇÃO de Saúde (produto principal).
+ * Por isso esta seção exibe 3 BLOCOS DE INTENÇÃO, com ícones agrupados em
+ * cluster, não 8 cards separados:
+ *
+ *   1. SAÚDE & ODONTO  → CTA forte de cotação direta (nosso produto âncora)
+ *   2. PESSOAS         → Vida Empresarial + Vida Sócios → consultoria
+ *   3. EMPRESA         → RC, Frota, Patrimonial, Pet     → consultoria
+ *
+ * A prateleira completa de 8 produtos fica em /cotar (página institucional).
+ * Aqui na landing só listamos os clusters + um link discreto "Ver todos".
+ */
 export function ProductsGrid() {
   return (
     <section className="bg-navy-900" id="produtos">
       <div className="container-wide py-24">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="eyebrow text-champagne-500">Portfólio Affida</p>
+            <p className="eyebrow text-champagne-500">Como começamos</p>
             <h2 className="heading-display mt-4 text-display-lg text-ivory">
-              Proteções para cada momento{" "}
-              <em className="italic text-champagne-300">do seu negócio.</em>
+              Por onde sua empresa quer{" "}
+              <em className="italic text-champagne-300">começar</em>?
             </h2>
           </div>
           <p className="max-w-sm text-sm text-ivory/70">
-            Produtos simples: contratação 100% digital em minutos. Produtos complexos:
-            consultoria dedicada com um closer Affida.
+            Saúde é o ponto de entrada da maioria. Os demais ramos vêm como
+            cross-sell sobre a base — sempre com um consultor sênior.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => {
-            const Icon = iconMap[p.icon as keyof typeof iconMap] ?? Shield;
-            return (
-              <Link
-                key={p.id}
-                href={`/cotar/${p.id}`}
-                className={`group relative flex flex-col justify-between gap-6 overflow-hidden rounded-2xl border p-7 backdrop-blur-sm transition-all hover:-translate-y-1 ${
-                  p.featured
-                    ? "border-champagne-400/40 bg-navy-800 text-ivory hover:border-champagne-300/60"
-                    : "border-champagne-500/15 bg-navy-800/50 text-ivory hover:border-champagne-400/30 hover:bg-navy-800/70"
-                }`}
-              >
-                {p.featured && (
-                  <div className="absolute right-5 top-5 rounded-full bg-champagne-500/20 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-champagne-300">
-                    Destaque
-                  </div>
-                )}
+        {/* ═════════ Bloco 1 — SAÚDE & ODONTO (âncora, ocupa toda a linha) ═════════ */}
+        <div className="mt-12">
+          <Link
+            href="/cotar/saude-coletiva"
+            className="group relative flex flex-col gap-8 overflow-hidden rounded-3xl border border-champagne-400/40 bg-gradient-to-br from-navy-800 to-navy-900 p-8 transition-all hover:-translate-y-0.5 hover:border-champagne-300/60 sm:p-10 lg:flex-row lg:items-center lg:gap-14"
+          >
+            {/* Cluster de ícones — saúde principal + odonto cross-sell */}
+            <div className="flex shrink-0 items-center gap-4">
+              <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-champagne-500/15 text-champagne-300">
+                <HeartPulse size={32} strokeWidth={1.4} />
+              </span>
+              <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-champagne-500/10 text-champagne-300/80">
+                <Smile size={22} strokeWidth={1.4} />
+              </span>
+            </div>
 
-                <div className="space-y-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-champagne-500/15 text-champagne-300">
-                    <Icon size={22} strokeWidth={1.5} />
-                  </div>
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-champagne-500/20 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-champagne-300">
+                Produto principal
+              </span>
+              <h3 className="mt-4 font-display text-3xl font-light text-ivory sm:text-4xl">
+                Plano de saúde + odonto PME
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
+                Cotação online em minutos nas principais operadoras do Brasil —
+                Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed e Hapvida.
+                Comparativo por faixa etária ANS, com migração analisada vs. seu
+                plano atual. Odonto entra junto com mensalidade reduzida.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ivory/65">
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-champagne-400" />
+                  6 operadoras nacionais
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-champagne-400" />
+                  A partir de 2 vidas
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-1 w-1 rounded-full bg-champagne-400" />
+                  Cotação em ~3 min
+                </span>
+              </div>
+            </div>
 
-                  <div>
-                    <h3 className="font-display text-2xl font-light text-ivory">{p.name}</h3>
-                    <p className="mt-1.5 text-sm text-ivory/65">{p.tagline}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between border-t border-champagne-500/15 pt-5 text-xs tracking-wide">
-                  <span className="uppercase text-champagne-400/80">
-                    {p.salesMode === "self_service" ? "Contratação digital" : "Consultoria dedicada"}
-                  </span>
-                  <ArrowUpRight
-                    size={18}
-                    className="text-champagne-300 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </div>
-              </Link>
-            );
-          })}
+            <div className="flex shrink-0 items-center gap-2 rounded-full bg-champagne-500 px-6 py-3 text-sm font-medium text-navy-900 transition-all group-hover:shadow-gold">
+              Cotar agora <ArrowRight size={14} />
+            </div>
+          </Link>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Badge tone="gold">Contratação digital</Badge>
-          <Badge tone="navy">Consultoria dedicada</Badge>
-          <span className="text-xs text-ivory/65">
-            Todos os produtos passam pela análise consultiva tailormade Affida.
-          </span>
+        {/* ═════════ Blocos 2 e 3 — clusters de cross-sell ═════════ */}
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          {/* PESSOAS — Vida Empresarial + Vida Sócios */}
+          <Link
+            href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+quero+conversar+sobre+seguro+de+vida+empresarial%2Fs%C3%B3cios."
+            target="_blank"
+            className="group flex flex-col gap-6 rounded-3xl border border-champagne-500/15 bg-navy-800/50 p-8 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-champagne-400/30 hover:bg-navy-800/70"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-champagne-500/15 text-champagne-300">
+                <Shield size={22} strokeWidth={1.4} />
+              </span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-champagne-500/10 text-champagne-300/80">
+                <Crown size={20} strokeWidth={1.4} />
+              </span>
+            </div>
+
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-500">
+                Pessoas
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-light text-ivory">
+                Vida em grupo + key person
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ivory/65">
+                Proteção do time (capital segurado a partir de 12× salário) e
+                blindagem patrimonial dos sócios. Cross-sell natural sobre a
+                carteira de saúde.
+              </p>
+            </div>
+
+            <div className="mt-auto flex items-center justify-between border-t border-champagne-500/15 pt-5 text-xs">
+              <span className="uppercase tracking-wide text-champagne-400/80">
+                Consultoria dedicada
+              </span>
+              <ArrowUpRight
+                size={18}
+                className="text-champagne-300 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </div>
+          </Link>
+
+          {/* EMPRESA — RC, Frota, Patrimonial, Pet */}
+          <Link
+            href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+quero+conversar+sobre+seguros+da+minha+empresa+%28RC%2C+frota%2C+patrim%C3%B4nio%29."
+            target="_blank"
+            className="group flex flex-col gap-6 rounded-3xl border border-champagne-500/15 bg-navy-800/50 p-8 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-champagne-400/30 hover:bg-navy-800/70"
+          >
+            <div className="flex items-center gap-3">
+              {[Scale, Car, Building2, PawPrint].map((Icon, i) => (
+                <span
+                  key={i}
+                  className={`flex items-center justify-center rounded-xl ${
+                    i === 0
+                      ? "h-14 w-14 bg-champagne-500/15 text-champagne-300"
+                      : "h-12 w-12 bg-champagne-500/10 text-champagne-300/80"
+                  }`}
+                >
+                  <Icon size={i === 0 ? 22 : 18} strokeWidth={1.4} />
+                </span>
+              ))}
+            </div>
+
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-500">
+                Empresa
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-light text-ivory">
+                Riscos do seu negócio
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ivory/65">
+                Responsabilidade civil profissional, frota corporativa,
+                patrimonial (sede e estoque) e pet como benefício de retenção.
+                Sob medida, com closer sênior.
+              </p>
+            </div>
+
+            <div className="mt-auto flex items-center justify-between border-t border-champagne-500/15 pt-5 text-xs">
+              <span className="uppercase tracking-wide text-champagne-400/80">
+                Consultoria dedicada
+              </span>
+              <ArrowUpRight
+                size={18}
+                className="text-champagne-300 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </div>
+          </Link>
+        </div>
+
+        {/* Link discreto para a prateleira institucional completa */}
+        <div className="mt-10 flex flex-col items-start gap-2 border-t border-champagne-500/10 pt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <p className="text-sm text-ivory/65">
+            Quer ver a lista completa dos ramos que operamos?
+          </p>
+          <Link
+            href="/cotar"
+            className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-champagne-400 transition-colors hover:text-champagne-200"
+          >
+            Ver todos os produtos <ArrowRight size={13} />
+          </Link>
         </div>
       </div>
     </section>

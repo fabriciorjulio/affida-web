@@ -27,6 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import { openWhatsapp } from "@/components/ui/action-button";
 import { toast } from "@/components/ui/toaster";
 import { brl, cnpjMask } from "@/lib/utils";
+import { PORTES } from "@/lib/portes";
 import { QuoteShell } from "./quote-shell";
 import {
   parseBeneficiarios,
@@ -387,13 +388,16 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
                 placeholder="Nome oficial da empresa"
               />
             </FieldGroup>
-            <FieldGroup label="Porte">
+            {/* Driver comercial = nº de funcionários (=vidas potenciais).
+                Classe legal SEBRAE como apoio textual à direita. */}
+            <FieldGroup label="Tamanho da empresa (funcionários)">
               <Select value={form.porte} onChange={(e) => set("porte", e.target.value)}>
-                <option value="">Selecione</option>
-                <option value="MEI">MEI</option>
-                <option value="ME">ME (até R$ 360 mil)</option>
-                <option value="EPP">EPP (até R$ 4,8 mi)</option>
-                <option value="Media">Média empresa</option>
+                <option value="">Selecione a faixa de funcionários</option>
+                {PORTES.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label} · {p.classe}
+                  </option>
+                ))}
               </Select>
             </FieldGroup>
             <FieldGroup label="CNAE principal">

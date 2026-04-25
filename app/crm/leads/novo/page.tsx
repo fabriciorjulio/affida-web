@@ -7,6 +7,7 @@ import { Input, Select, FieldGroup } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toaster";
 import { products } from "@/lib/mock-data";
+import { PORTES } from "@/lib/portes";
 
 export default function NovoLeadPage() {
   const [loading, setLoading] = useState(false);
@@ -77,14 +78,16 @@ export default function NovoLeadPage() {
             <FieldGroup label="Nome fantasia">
               <Input placeholder="Adiantajus" />
             </FieldGroup>
-            <FieldGroup label="Porte">
+            {/* Driver comercial = funcionários (vidas potenciais), não
+                faturamento. Classe legal SEBRAE aparece como apoio. */}
+            <FieldGroup label="Tamanho (funcionários)">
               <Select>
-                <option value="">Selecione</option>
-                <option>MEI</option>
-                <option>ME</option>
-                <option>EPP</option>
-                <option>Média</option>
-                <option>Grande</option>
+                <option value="">Selecione a faixa de funcionários</option>
+                {PORTES.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label} · {p.classe}
+                  </option>
+                ))}
               </Select>
             </FieldGroup>
             <FieldGroup label="CNAE">

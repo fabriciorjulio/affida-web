@@ -20,6 +20,7 @@ import { openWhatsapp } from "@/components/ui/action-button";
 import { toast } from "@/components/ui/toaster";
 import { brl, cnpjMask } from "@/lib/utils";
 import { operatorById } from "@/lib/mock-data";
+import { PORTES } from "@/lib/portes";
 import { QuoteShell } from "./quote-shell";
 
 type FormState = {
@@ -162,13 +163,17 @@ export function QuoteWizard({ product }: { product: Product }) {
               />
             </FieldGroup>
 
-            <FieldGroup label="Porte">
+            {/* O driver comercial em PME é número de funcionários (=vidas
+                potenciais), não faturamento. A classe legal SEBRAE entra
+                como apoio textual no fim de cada opção. */}
+            <FieldGroup label="Tamanho da empresa (funcionários)">
               <Select value={form.porte} onChange={(e) => set("porte", e.target.value)}>
-                <option value="">Selecione</option>
-                <option value="MEI">MEI</option>
-                <option value="ME">ME (até R$ 360 mil)</option>
-                <option value="EPP">EPP (até R$ 4,8 mi)</option>
-                <option value="Media">Média empresa</option>
+                <option value="">Selecione a faixa de funcionários</option>
+                {PORTES.map((p) => (
+                  <option key={p.value} value={p.value}>
+                    {p.label} · {p.classe}
+                  </option>
+                ))}
               </Select>
             </FieldGroup>
 

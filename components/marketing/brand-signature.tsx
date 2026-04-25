@@ -21,23 +21,23 @@ export function BrandSignature() {
       aria-label="Assinatura institucional Affida Partners"
       id="identidade"
     >
-      {/* Pattern oficial Affida — respeita a recomendação do manual de
-          "fundos lisos ou texturas discretas" (p.17). */}
-      <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.07]" />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-champagne-500/40 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-champagne-500/40 to-transparent" />
-
-      {/* Glow sutil para dar profundidade — mesmo gradient ellipse do .grid-pattern-navy */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(225,217,198,0.08),transparent_60%)]" />
+      {/* p.17.4 — "fundos lisos ou texturas discretas". Mantemos APENAS a
+          textura oficial do pattern Affida em opacidade muito baixa; nenhum
+          gradiente, glow ou efeito decorativo é aplicado ao redor do logo
+          (p.18.8 — não aplicar gradientes/efeitos não oficiais). */}
+      <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.06]" />
 
       <div className="container-wide relative z-10 flex flex-col items-center gap-10 py-20 text-center sm:py-28">
         <p className="eyebrow text-champagne-500">Identidade institucional</p>
 
-        {/* Aplicação PRIMÁRIA: Dress Blues + logo integral em UP cream (p.14 col 2, p.26) */}
+        {/* Aplicação PRIMÁRIA do Manual p.6 + p.14 col 2: fundo Dress Blues + logo
+            (mark + AFFIDA + PARTNERS) em UP cream. Renderizado a partir da máscara
+            PNG oficial extraída do PDF — proporção e Corbert preservados conforme
+            DO p.17.1 (proporção original) + DO p.17.6 (alinhamento equilibrado). */}
         <AffidaLogo
           variant="stacked"
           tone="gold"
-          className="gap-5 [&>span[role=img]]:h-12 sm:[&>span[role=img]]:h-16"
+          className="h-32 sm:h-40"
         />
 
         <div className="hairline mx-auto bg-champagne-500/50" />

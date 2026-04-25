@@ -85,12 +85,11 @@ export function CrmSidebar() {
 
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-navy-700/40 bg-navy-950 text-ivory lg:flex">
-      <div className="flex h-16 items-center gap-3 border-b border-navy-700/40 px-6">
-        <AffidaLogo variant="mark" tone="light" className="h-7 w-7" />
-        <div>
-          <p className="font-display text-sm font-light tracking-wide text-ivory">Affida Partners</p>
-          <p className="text-[10px] uppercase tracking-widest text-champagne-400">CRM · Operação</p>
-        </div>
+      {/* Logo oficial Corbert (p.6) — sem substituição de fonte por Montserrat (DON'T #3).
+          Sidebar tem fundo navy-950 muito escuro → tone "light" (versão negativa branca). */}
+      <div className="flex h-16 items-center gap-4 border-b border-navy-700/40 px-6">
+        <AffidaLogo variant="full" tone="light" />
+        <p className="text-[10px] uppercase tracking-widest text-champagne-400">CRM</p>
       </div>
       <NavList pathname={pathname} />
     </aside>
@@ -162,16 +161,12 @@ export function CrmHeader({ title, subtitle }: { title: string; subtitle?: strin
           />
           <aside className="relative flex h-full w-72 max-w-[85%] flex-col bg-navy-950 text-ivory shadow-2xl">
             <div className="flex h-16 items-center justify-between border-b border-navy-700/40 px-6">
-              <div className="flex items-center gap-3">
-                <AffidaLogo variant="mark" tone="light" className="h-7 w-7" />
-                <div>
-                  <p className="font-display text-sm font-light tracking-wide text-ivory">
-                    Affida Partners
-                  </p>
-                  <p className="text-[10px] uppercase tracking-widest text-champagne-400">
-                    CRM · Operação
-                  </p>
-                </div>
+              {/* Drawer mobile — mesma versão negativa do sidebar (Corbert oficial). */}
+              <div className="flex items-center gap-4">
+                <AffidaLogo variant="full" tone="light" />
+                <p className="text-[10px] uppercase tracking-widest text-champagne-400">
+                  CRM
+                </p>
               </div>
               <button
                 type="button"

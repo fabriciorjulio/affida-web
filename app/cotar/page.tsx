@@ -27,9 +27,9 @@ export default function CotarIndexPage() {
     <main className="min-h-screen bg-ivory">
       <header className="border-b border-champagne-200/60 bg-white/80 backdrop-blur-sm">
         <div className="container-narrow flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 text-navy-900">
-            <AffidaLogo variant="mark" tone="dark" className="h-7 w-7" />
-            <span className="font-display text-lg font-light tracking-wide">Affida Partners</span>
+          {/* Logo oficial Corbert via máscara PNG (p.6) — sem substituição de fonte. */}
+          <Link href="/" className="flex items-center" aria-label="Affida Partners — página inicial">
+            <AffidaLogo variant="full" tone="dark" />
           </Link>
           <Link href="/" className="text-xs text-navy-700/80 hover:text-navy-900">
             Voltar à home

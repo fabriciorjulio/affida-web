@@ -43,12 +43,12 @@ export function Hero() {
               Corretora boutique de seguros e benefícios
             </p>
 
-            {/* Aplicação primária do logo (Manual p.14 col 2, p.26): fundo Dress Blues + AFFIDA gigante em UP cream para máxima legibilidade */}
-            <div className="mt-8">
+            {/* Aplicação primária do logo (Manual p.14 col 2, p.26): fundo Dress Blues + AFFIDA gigante em UP cream para máxima legibilidade. Renderizado a partir da máscara oficial extraída do PDF p.6 — Corbert Demi Bold Extended preservado. */}
+            <div className="mt-8 flex">
               <AffidaLogo
                 variant="stacked"
                 tone="gold"
-                className="items-start gap-4 [&>span[role=img]]:h-10 [&>div]:items-start sm:[&>span[role=img]]:h-14"
+                className="h-24 sm:h-32"
               />
             </div>
 

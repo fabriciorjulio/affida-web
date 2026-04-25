@@ -37,11 +37,9 @@ export function PortalShell({
     <div className="min-h-screen bg-sand/30">
       <header className="sticky top-0 z-30 border-b border-champagne-200/60 bg-white/90 backdrop-blur-sm">
         <div className="container-wide flex h-16 items-center justify-between gap-3">
-          <Link href="/portal" className="flex min-w-0 items-center gap-3 text-navy-900">
-            <AffidaLogo variant="mark" tone="dark" className="h-7 w-7 shrink-0" />
-            <span className="truncate font-display text-base font-light tracking-wide sm:text-lg">
-              Affida Partners
-            </span>
+          {/* Logo oficial Corbert (mark + AFFIDA + PARTNERS) — DON'T #3 honrado. */}
+          <Link href="/portal" className="flex min-w-0 items-center gap-4" aria-label="Affida Partners — portal do cliente">
+            <AffidaLogo variant="full" tone="dark" />
             <span className="hidden text-xs text-champagne-700 md:inline">Portal do cliente</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3">

@@ -111,8 +111,40 @@ export const operatorById = (id: string) => operators.find((o) => o.id === id);
 
 // ============================================================================
 // PRODUTOS
+//
+// ORDEM = ordem de prioridade comercial. SAÚDE COLETIVA é o produto principal
+// da Affida PME — aparece sempre primeiro em listas, grids, footer, navegação
+// e meta. Vida vira cross-sell sobre a base de saúde (não é mais o foco).
 // ============================================================================
 export const products: Product[] = [
+  {
+    id: "saude-coletiva",
+    code: "SAUDE_COL",
+    name: "Saúde Coletiva Empresarial",
+    segment: "saude",
+    tagline: "Plano de saúde PME nas principais operadoras",
+    description:
+      "Cotação direta com Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed e Hapvida. Comparativo transparente por faixa etária ANS, com rede nacional, opções de coparticipação e migração da operadora atual.",
+    salesMode: "self_service",
+    minVidas: 2,
+    avgTicket: 9800,
+    featured: true,
+    icon: "HeartPulse",
+  },
+  {
+    id: "odonto-col",
+    code: "ODONTO_COL",
+    name: "Odontológico Empresarial",
+    segment: "odonto",
+    tagline: "Cross-sell natural do plano de saúde",
+    description:
+      "Plano odontológico com rede ampla, sem carência para urgências e ortodontia inclusa nos níveis superiores. Contratado em conjunto com saúde reduz mensalidade média.",
+    salesMode: "self_service",
+    minVidas: 2,
+    avgTicket: 420,
+    featured: true,
+    icon: "Smile",
+  },
   {
     id: "vida-empresarial",
     code: "VIDA_EMP",
@@ -120,11 +152,10 @@ export const products: Product[] = [
     segment: "vida",
     tagline: "Proteção para seu time, tranquilidade para o negócio",
     description:
-      "Cobertura de vida em grupo para colaboradores e PJs, com capital segurado a partir de 12x o salário e assistência funeral inclusa.",
+      "Cobertura de vida em grupo para colaboradores e PJs, com capital segurado a partir de 12x o salário e assistência funeral inclusa. Cross-sell padrão sobre a carteira de saúde Affida.",
     salesMode: "self_service",
     minVidas: 2,
     avgTicket: 4200,
-    featured: true,
     icon: "Shield",
   },
   {
@@ -139,35 +170,7 @@ export const products: Product[] = [
     minVidas: 1,
     maxVidas: 10,
     avgTicket: 2800,
-    featured: true,
     icon: "Crown",
-  },
-  {
-    id: "saude-coletiva",
-    code: "SAUDE_COL",
-    name: "Saúde Coletiva Empresarial",
-    segment: "saude",
-    tagline: "O plano que seus talentos merecem",
-    description:
-      "Planos empresariais com rede referência, abrangência nacional e opções de coparticipação flexível. A partir de 2 vidas.",
-    salesMode: "assisted",
-    minVidas: 2,
-    avgTicket: 9800,
-    featured: true,
-    icon: "HeartPulse",
-  },
-  {
-    id: "odonto-col",
-    code: "ODONTO_COL",
-    name: "Odontológico Empresarial",
-    segment: "odonto",
-    tagline: "Sorriso garantido em rede nacional",
-    description:
-      "Plano odontológico com rede ampla, sem carência para urgências e ortodontia inclusa nos níveis superiores.",
-    salesMode: "self_service",
-    minVidas: 2,
-    avgTicket: 420,
-    icon: "Smile",
   },
   {
     id: "rc-profissional",

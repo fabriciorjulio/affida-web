@@ -5,10 +5,11 @@ const footerNav = [
   {
     title: "Seguros",
     items: [
-      { label: "Vida Empresarial", href: "/cotar/vida-empresarial" },
-      { label: "Vida para Sócios", href: "/cotar/vida-socios" },
+      // Saúde Coletiva é o produto principal — sempre primeiro.
       { label: "Saúde Coletiva", href: "/cotar/saude-coletiva" },
       { label: "Odontológico", href: "/cotar/odonto-col" },
+      { label: "Vida Empresarial", href: "/cotar/vida-empresarial" },
+      { label: "Vida para Sócios", href: "/cotar/vida-socios" },
       { label: "Responsabilidade Civil", href: "/cotar/rc-profissional" },
       { label: "Frota", href: "/cotar/frota-leve" },
     ],
@@ -26,7 +27,7 @@ const footerNav = [
     title: "Institucional",
     items: [
       { label: "Sobre a Affida", href: "/#sobre" },
-      { label: "Associação MDS", href: "/#mds" },
+      { label: "Operadoras parceiras", href: "/#operadoras" },
       { label: "Parceiros & Indicadores", href: "/parceiros" },
       { label: "Carreiras", href: "/#carreiras" },
       { label: "Imprensa", href: "/#imprensa" },
@@ -58,16 +59,18 @@ export function Footer() {
               Construindo o futuro, juntos.
             </p>
             <p className="max-w-sm text-sm leading-relaxed text-ivory/70">
-              Corretora boutique de seguros e benefícios, criada para oferecer serviço
-              personalizado, próximo e de alto nível. Em associação com MDS Group, parte do
-              Grupo Ardonagh.
+              Corretora autônoma de seguros e benefícios, registrada SUSEP, com código de
+              corretagem aberto nas principais operadoras do Brasil. Foco PME e plano de saúde
+              empresarial — serviço personalizado, próximo e de alto nível.
             </p>
-            <div className="flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-champagne-400/80">
-              <span>MDS Group</span>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] uppercase tracking-[0.22em] text-champagne-400/80">
+              <span>SUSEP</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/40" />
-              <span>Brokerslink</span>
+              <span>ANS</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/40" />
-              <span>Ardonagh</span>
+              <span>LGPD</span>
+              <span className="h-1 w-1 rounded-full bg-champagne-500/40" />
+              <span>Cód. próprio</span>
             </div>
           </div>
 

@@ -16,9 +16,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Affida Partners — Corretora boutique de seguros e benefícios",
+  title: "Affida Partners — Plano de saúde empresarial PME",
   description:
-    "Construindo o futuro, juntos. Corretora boutique premium de seguros e benefícios, em associação com MDS Group. Consultoria próxima, personalizada e de alto nível para empresas que valorizam relações de confiança.",
+    "Corretora autônoma SUSEP com código aberto nas principais operadoras (Amil, Bradesco Saúde, SulAmérica, Porto, Unimed, Hapvida). Cotação de plano de saúde empresarial em minutos, com consultoria boutique e benchmark setorial — para empresas que valorizam relações de confiança.",
   icons: { icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/favicon.svg` },
 };
 

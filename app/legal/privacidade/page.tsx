@@ -18,7 +18,7 @@ export default function PrivacidadePage() {
           <section>
             <h2 className="font-display text-xl text-navy-900">1. Controlador de dados</h2>
             <p className="mt-2">
-              Affida Partners Corretora de Seguros Ltda., em associação com MDS Group, é a
+              Affida Partners Corretora de Seguros Ltda. — corretora autônoma registrada SUSEP — é a
               controladora dos dados pessoais tratados neste site e nos portais autenticados. DPO:{" "}
               <a href="mailto:dpo@affida.com.br" className="underline">
                 dpo@affida.com.br
@@ -49,9 +49,10 @@ export default function PrivacidadePage() {
           <section>
             <h2 className="font-display text-xl text-navy-900">4. Compartilhamento</h2>
             <p className="mt-2">
-              Compartilhamos estritamente o necessário com operadoras parceiras (Amil, Bradesco,
-              SulAmérica, Icatu, Prudential, MetLife, Porto e outras) para efetivação de cotação e
-              apólice, e com o grupo MDS para backoffice regulado. Não vendemos dados.
+              Compartilhamos estritamente o necessário com operadoras parceiras (Amil, Bradesco
+              Saúde, SulAmérica, Porto Saúde, Unimed, Hapvida, Icatu, Prudential, MetLife e outras)
+              para efetivação de cotação e apólice. Operamos sob código de corretagem próprio —
+              não há intermediários adicionais entre Affida e operadora. Não vendemos dados.
             </p>
           </section>
 
@@ -80,8 +81,8 @@ export default function PrivacidadePage() {
             <h2 className="font-display text-xl text-navy-900">7. Segurança</h2>
             <p className="mt-2">
               Criptografia em trânsito (TLS 1.3) e em repouso, controle de acesso por papel,
-              auditoria de acessos sensíveis, e revisão periódica com o time MDS de Segurança da
-              Informação.
+              auditoria de acessos sensíveis e revisão periódica de segurança da informação por
+              equipe interna dedicada.
             </p>
           </section>
         </div>

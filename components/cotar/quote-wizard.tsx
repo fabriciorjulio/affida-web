@@ -305,7 +305,7 @@ export function QuoteWizard({ product }: { product: Product }) {
             <ShieldCheck size={20} className="mt-0.5 text-forest" />
             <p>
               Seus dados ficam protegidos em servidores brasileiros. Não compartilhamos com seguradoras
-              sem sua autorização. Em conformidade com a LGPD e com a governança do grupo MDS.
+              sem sua autorização. Em conformidade com a LGPD e com a regulação SUSEP/ANS.
             </p>
           </div>
         </div>

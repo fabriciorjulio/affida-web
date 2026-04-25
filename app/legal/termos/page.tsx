@@ -14,10 +14,11 @@ export default function TermosPage() {
           <section>
             <h2 className="font-display text-xl text-navy-900">1. Sobre a Affida</h2>
             <p className="mt-2">
-              Affida Partners Corretora de Seguros Ltda. (CNPJ em processo), em associação com MDS
-              Brasil Corretora e Administradora de Seguros Ltda. (CNPJ 01.233.200/0001-35), opera
-              sob registro SUSEP do grupo MDS. Cotações, propostas e apólices intermediadas pelo
-              site/portal seguem a regulamentação da SUSEP e das operadoras parceiras.
+              Affida Partners Corretora de Seguros Ltda. (CNPJ em processo) é uma corretora
+              autônoma registrada na SUSEP, com código de corretagem aberto nas principais
+              operadoras de saúde, vida e ramos elementares do Brasil. Cotações, propostas e
+              apólices intermediadas pelo site/portal seguem a regulamentação da SUSEP, da ANS
+              (no caso de planos de saúde) e das operadoras parceiras.
             </p>
           </section>
 

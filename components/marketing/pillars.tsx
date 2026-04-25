@@ -29,12 +29,12 @@ export function Pillars() {
           <p className="eyebrow text-champagne-500">A forma Affida de cuidar</p>
           <h2 className="heading-display mt-4 text-display-lg text-ivory">
             Consultoria boutique.{" "}
-            <em className="italic text-champagne-300">Com robustez global.</em>
+            <em className="italic text-champagne-300">Acesso direto ao mercado.</em>
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-            Unimos o melhor dos dois mundos: atendimento consultivo Affida, onde cada cliente é
-            cuidado com exclusividade, e a robustez técnica e mercadológica da MDS Group em todas
-            as linhas de seguros e benefícios.
+            Atendimento consultivo, onde cada cliente PME é cuidado com exclusividade, combinado a
+            código de corretagem aberto nas principais operadoras de saúde, vida e ramos
+            elementares — a Affida negocia direto, sem intermediários no caminho.
           </p>
         </div>
 

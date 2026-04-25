@@ -40,7 +40,7 @@ export function Hero() {
         <div className="lg:col-span-7 xl:col-span-6">
           <div className="animate-fade-up rounded-3xl border border-champagne-500/25 bg-navy-900/85 p-8 backdrop-blur-md sm:p-10 lg:p-12">
             <p className="eyebrow text-champagne-400">
-              Corretora boutique de seguros e benefícios
+              Plano de saúde empresarial · Corretora SUSEP
             </p>
 
             {/* Aplicação primária do logo (Manual p.14 col 2, p.26): fundo Dress Blues + AFFIDA gigante em UP cream para máxima legibilidade. Renderizado a partir da máscara oficial extraída do PDF p.6 — Corbert Demi Bold Extended preservado. */}
@@ -53,26 +53,26 @@ export function Hero() {
             </div>
 
             <h1 className="mt-10 font-display text-3xl font-light leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl lg:text-5xl">
-              Benefícios que{" "}
-              <em className="italic font-light text-champagne-300">transformam</em>.
+              Plano de saúde PME que{" "}
+              <em className="italic font-light text-champagne-300">cuida de quem cuida</em>.
             </h1>
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
-              Nascemos para resgatar a essência do relacionamento no mercado de seguros e
-              benefícios. Serviço personalizado, próximo e de alto nível — unindo tecnologia e
-              sensibilidade para entregar soluções sob medida.
+              Cotação em minutos nas principais operadoras de saúde do Brasil — Amil, Bradesco
+              Saúde, SulAmérica, Porto Saúde, Unimed e Hapvida — com código de corretagem direto.
+              Consultoria boutique, comparativo transparente e benchmark setorial por CNAE.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-              <Button href="/cotar/vida-empresarial" variant="gold" size="lg">
-                Solicitar proposta
+              <Button href="/cotar/saude-coletiva" variant="gold" size="lg">
+                Cotar plano de saúde
                 <ArrowRight size={16} />
               </Button>
               <a
                 href="/#consultoria"
                 className="text-xs font-medium uppercase tracking-[0.22em] text-champagne-400 transition-colors hover:text-champagne-200"
               >
-                Saiba mais
+                Como funciona
               </a>
             </div>
 
@@ -93,10 +93,15 @@ export function Hero() {
         <aside className="animate-fade-up animate-delay-300 lg:col-span-5 lg:col-start-8 xl:col-span-5">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-32">
             {[
-              { value: "R$11 bi", label: "Prêmios administrados" },
-              { value: "4 mi", label: "Vidas cuidadas" },
-              { value: "20 mil", label: "Clientes corporativos" },
-              { value: "130+", label: "Países presença global" },
+              // Argumentos verdadeiros de uma corretora autônoma boutique:
+              // - acessibilidade às operadoras (código aberto = sem intermediário)
+              // - tempo até cotação online
+              // - foco PME (recorte de mercado real)
+              // - regulação SUSEP/ANS/LGPD
+              { value: "20+", label: "Operadoras acessíveis" },
+              { value: "3 min", label: "Cotação online" },
+              { value: "100%", label: "Foco PME (2-99 vidas)" },
+              { value: "SUSEP", label: "Corretora regulada" },
             ].map((stat) => (
               <div
                 key={stat.label}

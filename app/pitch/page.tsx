@@ -164,8 +164,8 @@ const diferenciais = [
   },
   {
     icon: ShieldCheck,
-    title: "Backoffice MDS por trás",
-    desc: "Associação ao grupo MDS dá SUSEP, tecnologia de backoffice e acesso a todas as operadoras relevantes do Brasil. Nasce com capacidade de empresa grande.",
+    title: "Corretora SUSEP com código aberto",
+    desc: "Registro SUSEP próprio + código de corretagem aberto nas principais operadoras do Brasil (Amil, Bradesco Saúde, SulAmérica, Porto, Unimed, Hapvida). Sem intermediário entre Affida e operadora — comissão e condições negociadas direto.",
   },
   {
     icon: Handshake,
@@ -221,7 +221,7 @@ const benchmark = [
     corretorTradicional: "parcial",
     bidu: true,
     minutoSeguros: true,
-    nota: "Via MDS Group",
+    nota: "Código de corretagem próprio aberto nas top 10 operadoras",
   },
   {
     recurso: "Programa de parceiros estruturado",
@@ -245,7 +245,7 @@ const benchmark = [
     corretorTradicional: "parcial",
     bidu: true,
     minutoSeguros: true,
-    nota: "Associação MDS resolve dia 1",
+    nota: "SUSEP própria + código aberto nas operadoras desde dia 1",
   },
 ];
 
@@ -276,14 +276,14 @@ const gaps = [
   {
     severity: "alto",
     gap: "Cotação com preço oficial da operadora",
-    desc: "Hoje o cliente recebe uma estimativa Affida. O próximo salto é preço oficial em tempo real — o que muda a conversa de 'estimativa' para 'proposta pronta pra assinar'.",
-    mitigacao: "Pipe de cotação MDS em 2 operadoras (Bradesco + Amil) nos primeiros 90 dias. Rollout gradual por produto.",
+    desc: "Hoje o cliente recebe uma estimativa Affida baseada em tabelas de referência. O próximo salto é preço oficial em tempo real, via integração direta com cada operadora — o que muda a conversa de 'estimativa' para 'proposta pronta pra assinar'.",
+    mitigacao: "Integração API direta com Bradesco Saúde + Amil nos primeiros 90 dias (já com código aberto). SulAmérica + Porto Saúde + Unimed em 6 meses. Rollout gradual por operadora.",
   },
   {
     severity: "alto",
-    gap: "Dependência estratégica do MDS",
-    desc: "A associação ao MDS dá SUSEP, tecnologia de backoffice e acesso a operadoras. Em contrapartida, vira pilar do go-to-market — se a relação azedar ou MDS redirecionar foco, o produto perde oxigênio.",
-    mitigacao: "Acordo de longo prazo com cláusulas de continuidade + SUSEP própria gradualmente em 24-36 meses.",
+    gap: "Volume inicial baixo limita poder de negociação",
+    desc: "Como corretora autônoma nova, a Affida começa sem volume consolidado em nenhuma operadora — o que significa receber tabelas-padrão, sem condições especiais de comissão, prazo de pagamento ou flexibilização de subscrição que corretoras grandes obtêm.",
+    mitigacao: "Foco vertical em saúde nos primeiros 12 meses para concentrar volume em 3 operadoras-chave (Bradesco Saúde, Amil, SulAmérica). A partir de R$ 500k de prêmio mensal por operadora, abre janela de renegociação contratual.",
   },
   {
     severity: "medio",
@@ -295,19 +295,19 @@ const gaps = [
     severity: "medio",
     gap: "Motor de reoferta depende de sinal externo",
     desc: "O motor é o diferencial mais forte, mas sua inteligência depende de dados que ainda não entram sozinhos: sinistralidade, reajuste real da operadora, movimentação de folha do cliente.",
-    mitigacao: "Integração Omie/ContaAzul para folha + contrato com provedor de sinistralidade + canal MDS para reajustes antecipados.",
+    mitigacao: "Integração Omie/ContaAzul para folha + contrato com provedor de sinistralidade + parceria com FENASEG/ANS para sinal antecipado de reajuste setorial.",
   },
   {
     severity: "medio",
     gap: "Marca desconhecida num mercado relacional",
     desc: "PME compra seguro de quem conhece. Em cidade menor, o corretor do primo ganha da plataforma bonita. Barreira cultural, não só de branding — e se estende à defesa contra concorrência na renovação.",
-    mitigacao: "Ancoragem em 'em associação ao MDS' nos primeiros 18 meses, case studies premium, relacionamento direto com associações setoriais e sindicatos patronais.",
+    mitigacao: "Ancoragem em SUSEP + código aberto nas top operadoras nos primeiros 18 meses, case studies premium, relacionamento direto com associações setoriais, sindicatos patronais e contadores.",
   },
   {
     severity: "baixo",
     gap: "Benchmark setorial precisa de dados reais",
-    desc: "Hoje os números do CNAE 6435-2 são inferidos. Pra virar o ativo proprietário que defende carteira na renovação, precisa base consolidada ANS + MDS anonimizada + bureau PME.",
-    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS pública + base MDS anonimizada + enriquecimento Serasa PME + retroalimentação da própria carteira.",
+    desc: "Hoje os números do CNAE 6435-2 são inferidos. Pra virar o ativo proprietário que defende carteira na renovação, precisa base consolidada ANS + RN 412 + bureau PME + dados anonimizados da própria carteira ao longo do tempo.",
+    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS RN 412/RN 565 + dados públicos SUSEP + enriquecimento Serasa PME + retroalimentação da própria carteira a partir do mês 9.",
   },
 ];
 
@@ -316,9 +316,9 @@ const roadmap = [
     fase: "30 dias",
     color: "forest",
     items: [
-      "Pipe de cotação MDS em 2 operadoras (Bradesco + Amil)",
+      "Cotação online de saúde com preço de referência (Bradesco Saúde + Amil)",
       "Primeiros 3 parceiros contadores ativos + material comercial",
-      "Playbook do closer + scripts consultivos por segmento",
+      "Playbook do closer + scripts consultivos por porte/CNAE",
       "Tracking completo (GA4 + Hotjar + atribuição CRM)",
     ],
   },
@@ -326,9 +326,9 @@ const roadmap = [
     fase: "60-90 dias",
     color: "champagne",
     items: [
-      "Integração Omie/ContaAzul (folha automática)",
-      "Cotação Saúde empresarial",
-      "Primeiras 10 apólices na carteira",
+      "Integração API Bradesco Saúde + Amil (preço oficial em tempo real)",
+      "Onboarding SulAmérica + Porto Saúde",
+      "Primeiras 10 apólices de saúde na carteira",
       "Campanha paga Google + LinkedIn",
     ],
   },
@@ -336,9 +336,9 @@ const roadmap = [
     fase: "6 meses",
     color: "navy",
     items: [
-      "Benchmark com dados reais (ANS + MDS)",
+      "Benchmark com dados reais (ANS RN 412 + carteira própria)",
       "Motor de reoferta com sinal real de sinistralidade",
-      "Odonto + Vida sócios como produtos ativos",
+      "Vida + odonto como cross-sell automático sobre base de saúde",
       "50+ clientes na carteira",
     ],
   },
@@ -550,7 +550,7 @@ export default function PitchPage() {
           <p className="mt-5 max-w-3xl text-base text-navy-700/80">
             Olhamos três arquétipos: corretor PME tradicional (nosso concorrente real em 80% dos
             casos), Bidu Corretora (plataforma digital PME/PF) e MinutoSeguros (plataforma digital
-            B2C). Não incluímos MDS/AON/Marsh porque atacam enterprise.
+            B2C). Não incluímos AON/Marsh/MDS porque atacam enterprise.
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -888,9 +888,9 @@ export default function PitchPage() {
             <em className="italic text-champagne-300">pronto pra validação com sócio e operador</em>.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base text-ivory/75">
-            O que precisamos agora: decisão sobre rota de integração com operadoras, validação do
-            escopo com MDS, e três parceiros-piloto (1 contador, 1 RH, 1 influenciador PME) pra
-            testar o funil ponta a ponta.
+            O que precisamos agora: decisão sobre rota de integração API com Bradesco Saúde + Amil
+            como operadoras-piloto, e três parceiros-piloto (1 contador, 1 RH, 1 influenciador PME)
+            pra testar o funil ponta a ponta.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">

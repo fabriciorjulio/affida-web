@@ -65,8 +65,8 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
           >
             Área do cliente
           </Button>
-          <Button href="/cotar/vida-empresarial" variant="gold" size="sm">
-            Solicitar proposta
+          <Button href="/cotar/saude-coletiva" variant="gold" size="sm">
+            Cotar saúde PME
           </Button>
         </div>
 

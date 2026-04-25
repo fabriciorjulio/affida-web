@@ -18,8 +18,8 @@ export function CtaFinal() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button href="/cotar/vida-empresarial" variant="gold" size="lg">
-              Solicitar análise consultiva
+            <Button href="/cotar/saude-coletiva" variant="gold" size="lg">
+              Cotar plano de saúde PME
               <ArrowRight size={16} />
             </Button>
             <Button href="https://wa.me/5511900000000" variant="outline" size="lg">

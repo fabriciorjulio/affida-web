@@ -23,7 +23,7 @@ const beneficios = [
     icon: ShieldCheck,
     title: "Compliance & SUSEP",
     description:
-      "Operação 100% regulada, em associação ao grupo MDS. Sem risco jurídico para sua marca.",
+      "Corretora autônoma SUSEP com código aberto nas principais operadoras. Operação 100% regulada — sem risco jurídico para sua marca.",
   },
   {
     icon: Handshake,

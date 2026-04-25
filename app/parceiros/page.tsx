@@ -46,8 +46,11 @@ export default function ParceirosPublicPage() {
     <main className="bg-ivory">
       <Navbar tone="dark" />
 
-      <section className="grid-pattern-navy relative overflow-hidden">
-        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-30" />
+      {/* Hero superior colado ao header — bg-ink (Neutral Black) cria
+          continuidade com o chrome. BrandSignature logo abaixo entrega o
+          respiro Dress Blues como bloco institucional autocontido. */}
+      <section className="relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.08]" />
         <div className="container-wide relative z-10 py-24">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow text-champagne-500">Programa de parcerias Affida</p>

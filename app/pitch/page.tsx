@@ -369,8 +369,14 @@ export default function PitchPage() {
     <main className="bg-ivory">
       <Navbar tone="dark" />
 
-      <section className="grid-pattern-navy relative overflow-hidden">
-        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-30" />
+      {/* Hero superior colado ao header Neutral Black — usamos bg-ink (#222222)
+          para criar UMA fita contínua entre chrome e hero, evitando o degrau
+          Neutral Black → Dress Blues. Padrão fechado: páginas internas com
+          Navbar tone="dark" continuam em Neutral Black no hero topo; Dress
+          Blues fica reservado para blocos institucionais autocontidos do
+          meio/fim de página (BrandSignature, CTA final, footer). */}
+      <section className="relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.08]" />
         <div className="container-wide relative z-10 py-16 sm:py-20 lg:py-24">
           <div className="mx-auto max-w-4xl">
             <div className="flex flex-wrap items-center gap-3">

@@ -12,7 +12,8 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { products } from "@/lib/mock-data";
-import { AffidaLogo } from "@/components/ui/logo";
+import { Navbar } from "@/components/marketing/navbar";
+import { Footer } from "@/components/marketing/footer";
 import { Badge } from "@/components/ui/badge";
 
 const iconMap = { Shield, Crown, HeartPulse, Smile, Scale, Car, Building2, PawPrint };
@@ -25,30 +26,33 @@ export const metadata = {
 export default function CotarIndexPage() {
   return (
     <main className="min-h-screen bg-ivory">
-      <header className="border-b border-champagne-200/60 bg-white/80 backdrop-blur-sm">
-        <div className="container-narrow flex h-16 items-center justify-between">
-          {/* Logo oficial Corbert via máscara PNG (p.6) — sem substituição de fonte. */}
-          <Link href="/" className="flex items-center" aria-label="Affida Partners — página inicial">
-            <AffidaLogo variant="full" tone="dark" />
-          </Link>
-          <Link href="/" className="text-xs text-navy-700/80 hover:text-navy-900">
-            Voltar à home
-          </Link>
+      {/* Navbar institucional padrão (Neutral Black + logo branco) — substituiu
+          o header custom que estava em white/80 com logo dark, fora do padrão
+          fechado. */}
+      <Navbar tone="dark" />
+
+      {/* Hero superior em bg-ink (Neutral Black) — fita contínua com o
+          chrome do header. Padrão fechado: páginas internas com Navbar
+          tone="dark" mantêm Neutral Black no hero topo, evitando o degrau
+          Neutral Black → Dress Blues. */}
+      <section className="relative overflow-hidden bg-ink">
+        <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.08]" />
+        <div className="container-narrow relative z-10 py-16 sm:py-20">
+          <p className="eyebrow text-champagne-500">Comece por onde faz sentido</p>
+          <h1 className="heading-display mt-4 text-display-lg text-ivory text-balance">
+            Qual seguro você quer{" "}
+            <em className="italic text-champagne-300">cotar</em>?
+          </h1>
+          <p className="mt-5 max-w-2xl text-base text-ivory/75">
+            Nossa plataforma compara em minutos as principais condições das operadoras líderes do
+            mercado brasileiro. Saúde é o produto principal — Amil, Bradesco Saúde, SulAmérica,
+            Porto Saúde, Unimed e Hapvida. Demais ramos viram cross-sell sobre a base de saúde.
+          </p>
         </div>
-      </header>
+      </section>
 
       <section className="container-narrow py-16">
-        <p className="eyebrow">Comece por onde faz sentido</p>
-        <h1 className="heading-display mt-3 text-display-lg text-navy-900">
-          Qual seguro você quer <em className="italic text-forest">cotar</em>?
-        </h1>
-        <p className="mt-4 max-w-2xl text-base text-navy-700/80">
-          Nossa plataforma compara em minutos as principais condições das operadoras líderes do
-          mercado brasileiro. Produtos simples têm contratação 100% digital — complexos recebem
-          consultoria dedicada de um closer Affida.
-        </p>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => {
             const Icon = iconMap[p.icon as keyof typeof iconMap] ?? Shield;
             return (
@@ -101,6 +105,8 @@ export default function CotarIndexPage() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

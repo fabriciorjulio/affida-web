@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -15,6 +15,10 @@ import {
   Trash2,
   HeartPulse,
   TrendingDown,
+  Upload,
+  FileSpreadsheet,
+  AlertTriangle,
+  X,
 } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { Input, Select, FieldGroup } from "@/components/ui/input";
@@ -24,6 +28,11 @@ import { openWhatsapp } from "@/components/ui/action-button";
 import { toast } from "@/components/ui/toaster";
 import { brl, cnpjMask } from "@/lib/utils";
 import { QuoteShell } from "./quote-shell";
+import {
+  parseBeneficiarios,
+  CSV_TEMPLATE,
+  type ImportedRow,
+} from "@/lib/beneficiario-import";
 
 /**
  * Wizard de cotação de PLANO DE SAÚDE EMPRESARIAL.
@@ -239,6 +248,70 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
           ? p.beneficiarios
           : p.beneficiarios.filter((b) => b.id !== id),
     }));
+  }
+
+  // ---------- Upload em massa (Excel/CSV/TSV/TXT) ----------
+  // Para empresas maiores (50+ vidas) preencher 1-a-1 é inviável. O painel de
+  // import abaixo aceita CSV (vírgula ou ponto-vírgula), TSV (paste direto do
+  // Excel via clipboard) e arquivo .csv/.txt. .xlsx puro: orientamos a usuária
+  // a exportar como CSV ou simplesmente colar a seleção do Excel — o paste do
+  // Excel já vem em TSV pronto, sem precisar de SheetJS no bundle.
+  const [importOpen, setImportOpen] = useState(false);
+  const [importText, setImportText] = useState("");
+  const importFileRef = useRef<HTMLInputElement>(null);
+
+  const importPreview = useMemo(
+    () => (importText.trim() ? parseBeneficiarios(importText) : null),
+    [importText]
+  );
+
+  async function handleImportFile(file: File) {
+    const text = await file.text();
+    setImportText(text);
+  }
+
+  function applyImport(rows: ImportedRow[]) {
+    if (!rows.length) return;
+    setForm((p) => {
+      // Substitui o titular vazio inicial se ele ainda não tem dados.
+      const startsEmpty =
+        p.beneficiarios.length === 1 &&
+        !p.beneficiarios[0].dataNascimento &&
+        !p.beneficiarios[0].sexo &&
+        !p.beneficiarios[0].nome;
+
+      const novos = rows.map((r) => ({
+        id: crypto.randomUUID(),
+        nome: r.nome ?? "",
+        dataNascimento: r.dataNascimento!,
+        sexo: r.sexo!,
+        parentesco: r.parentesco!,
+      }));
+
+      // Se nenhum import veio com parentesco "titular", promove o primeiro.
+      if (!novos.some((b) => b.parentesco === "titular") && novos[0]) {
+        novos[0].parentesco = "titular";
+      }
+
+      return {
+        ...p,
+        beneficiarios: startsEmpty ? novos : [...p.beneficiarios, ...novos],
+      };
+    });
+    setImportOpen(false);
+    setImportText("");
+    if (importFileRef.current) importFileRef.current.value = "";
+    toast(`${rows.length} vida(s) importada(s) da planilha.`, "success");
+  }
+
+  function downloadTemplate() {
+    const blob = new Blob([CSV_TEMPLATE], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "affida-beneficiarios-template.csv";
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   // ---------- Cálculos derivados ----------
@@ -485,10 +558,188 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
               <Button variant="dark-outline" size="md" onClick={() => addBeneficiario("dependente")}>
                 <Plus size={14} /> Adicionar vida
               </Button>
+              <Button
+                variant="ghost"
+                size="md"
+                onClick={() => setImportOpen((v) => !v)}
+              >
+                <FileSpreadsheet size={14} />
+                {importOpen ? "Fechar importação" : "Importar planilha (CSV/Excel)"}
+              </Button>
               <span className="text-xs text-navy-700/60">
                 {totalVidas} vida(s) adicionada(s) · idade média {idadeMedia || "—"} anos
               </span>
             </div>
+
+            {/* ----- Painel de upload em massa ----- */}
+            {importOpen && (
+              <div className="mt-6 rounded-3xl border border-navy-900/15 bg-navy-50/40 p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-display text-lg font-light text-navy-900">
+                      Importar beneficiários em massa
+                    </p>
+                    <p className="mt-1 max-w-xl text-xs text-navy-700/70">
+                      Para empresas com muitas vidas, importe direto da sua planilha em vez
+                      de digitar uma por uma. Aceita CSV (vírgula ou ponto-e-vírgula), arquivo
+                      de texto, ou paste direto do Excel/Google Sheets (basta selecionar as
+                      células com Ctrl+C e colar abaixo).
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setImportOpen(false)}
+                    aria-label="Fechar"
+                    className="flex h-8 w-8 items-center justify-center rounded-full text-navy-700/50 hover:bg-white hover:text-navy-900"
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto_auto]">
+                  <input
+                    ref={importFileRef}
+                    type="file"
+                    accept=".csv,.txt,.tsv,text/csv,text/plain,text/tab-separated-values"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) handleImportFile(f);
+                    }}
+                    className="block w-full text-xs text-navy-700 file:mr-4 file:rounded-full file:border-0 file:bg-navy-900 file:px-4 file:py-2 file:text-xs file:font-medium file:text-ivory hover:file:bg-navy-700"
+                  />
+                  <Button variant="ghost" size="sm" onClick={downloadTemplate}>
+                    <Download size={13} /> Baixar template
+                  </Button>
+                  <span className="text-[10px] uppercase tracking-widest text-navy-700/50 self-center">
+                    ou cole abaixo
+                  </span>
+                </div>
+
+                <textarea
+                  value={importText}
+                  onChange={(e) => setImportText(e.target.value)}
+                  placeholder={`Cole aqui o conteúdo da planilha (Ctrl+V do Excel funciona).\n\nExemplo:\nnome,data_nascimento,sexo,parentesco\nMaria Silva,15/03/1985,F,titular\nJoão Silva,22/06/1987,M,conjuge\nPedro Silva,10/01/2015,M,filho`}
+                  className="mt-4 h-44 w-full rounded-2xl border border-navy-100 bg-white p-4 font-mono text-xs text-navy-900 placeholder:text-navy-400 focus:border-navy-400 focus:outline-none focus:ring-4 focus:ring-navy-900/5"
+                />
+
+                {/* ----- Preview do parse ----- */}
+                {importPreview && importPreview.totalRows > 0 && (
+                  <div className="mt-5 rounded-2xl border border-champagne-200/60 bg-white p-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Badge tone="success">
+                        {importPreview.validRows.length} válida(s)
+                      </Badge>
+                      {importPreview.totalRows -
+                        importPreview.validRows.length >
+                        0 && (
+                        <Badge tone="warning">
+                          {importPreview.totalRows -
+                            importPreview.validRows.length}{" "}
+                          com erro
+                        </Badge>
+                      )}
+                      <Badge tone="neutral">
+                        Separador detectado:{" "}
+                        {importPreview.delimiter === "\t"
+                          ? "TAB (Excel)"
+                          : importPreview.delimiter === ";"
+                          ? "; (CSV BR)"
+                          : ", (CSV)"}
+                      </Badge>
+                    </div>
+
+                    <div className="mt-4 max-h-64 overflow-auto rounded-xl border border-champagne-200/60">
+                      <table className="w-full text-left text-xs">
+                        <thead className="bg-navy-50 text-[10px] uppercase tracking-widest text-navy-700/70">
+                          <tr>
+                            <th className="px-3 py-2">Linha</th>
+                            <th className="px-3 py-2">Nome</th>
+                            <th className="px-3 py-2">Nascimento</th>
+                            <th className="px-3 py-2">Sexo</th>
+                            <th className="px-3 py-2">Parentesco</th>
+                            <th className="px-3 py-2">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-champagne-200/40">
+                          {importPreview.rows.slice(0, 50).map((r) => (
+                            <tr
+                              key={r.rowIndex}
+                              className={
+                                r.errors.length > 0
+                                  ? "bg-champagne-50/40"
+                                  : ""
+                              }
+                            >
+                              <td className="px-3 py-2 font-mono text-[10px] text-navy-700/60">
+                                {r.rowIndex}
+                              </td>
+                              <td className="px-3 py-2 text-navy-900">
+                                {r.nome || "—"}
+                              </td>
+                              <td className="px-3 py-2 text-navy-900">
+                                {r.dataNascimento || "—"}
+                              </td>
+                              <td className="px-3 py-2 text-navy-900">
+                                {r.sexo || "—"}
+                              </td>
+                              <td className="px-3 py-2 text-navy-900">
+                                {r.parentesco || "—"}
+                              </td>
+                              <td className="px-3 py-2">
+                                {r.errors.length === 0 ? (
+                                  <span className="inline-flex items-center gap-1 text-forest">
+                                    <Check size={12} /> ok
+                                  </span>
+                                ) : (
+                                  <span
+                                    className="inline-flex items-center gap-1 text-champagne-800"
+                                    title={r.errors.join(" · ")}
+                                  >
+                                    <AlertTriangle size={12} />{" "}
+                                    {r.errors[0]}
+                                  </span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      {importPreview.rows.length > 50 && (
+                        <p className="border-t border-champagne-200/40 px-3 py-2 text-[10px] text-navy-700/60">
+                          Mostrando 50 de {importPreview.rows.length} linhas. Todas serão
+                          importadas (apenas as válidas, sem erro).
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
+                      <Button
+                        variant="primary"
+                        size="md"
+                        onClick={() => applyImport(importPreview.validRows)}
+                        {...(importPreview.validRows.length === 0
+                          ? { disabled: true }
+                          : {})}
+                      >
+                        <Upload size={14} /> Importar{" "}
+                        {importPreview.validRows.length} vida(s)
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setImportText("");
+                          if (importFileRef.current)
+                            importFileRef.current.value = "";
+                        }}
+                      >
+                        Limpar
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="mt-8 flex items-start gap-4 rounded-2xl bg-champagne-50/60 p-5 text-sm text-navy-700/80">

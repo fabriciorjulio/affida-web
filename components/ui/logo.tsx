@@ -46,10 +46,14 @@ const tones: Record<LogoTone, { mark: string; wordmark: string; tag: string }> =
     wordmark: "#E1D9C6", // UP — AFFIDA em creme integral (corrigido p/ manual)
     tag: "#E1D9C6",      // UP — PARTNERS
   },
+  // p.14 col 7 — Versão NEGATIVA: fundo Neutral Black (#222222) → tudo em branco.
+  // Aplicação prescrita pelo manual para headers/UI chrome em Neutral Black,
+  // conforme orientação p.17 boas práticas: "Utilizar a versão que oferece
+  // melhor legibilidade sobre fundo (claro ou escuro)".
   light: {
-    mark: "#E1D9C6",     // UP — símbolo em fundo escuro
-    wordmark: "#FFFFFF", // Comoyoko
-    tag: "#C2BBA9",      // Greige claro
+    mark: "#FFFFFF",     // Comoyoko (branco) — símbolo em fundo Neutral Black
+    wordmark: "#FFFFFF", // Comoyoko — wordmark integral em branco
+    tag: "#FFFFFF",      // Comoyoko — PARTNERS em branco
   },
   // p.14 cols 5-6 — UP/Comoyoko bg: tudo em Dress Blues (versão mais escura,
   // signalizada como primária na p.13).

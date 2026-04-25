@@ -24,20 +24,22 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
       className={cn(
         "sticky top-0 z-40 w-full border-b backdrop-blur-md",
         isDark
-          ? // Dress Blues sólido + leve translucidez (95%) — garante que o
-            // header permaneça PROFUNDAMENTE escuro mesmo no scroll=0,
-            // antes da seção Hero começar a renderizar atrás dele.
-            "border-champagne-500/10 bg-navy-900/95"
+          ? // Header em NEUTRAL BLACK #222222 (Pantone Neutral Black C) —
+            // p.13 categoriza Neutral Black como Cor de Apoio (chrome de UI),
+            // p.17 boas práticas prescreve "versão de melhor legibilidade
+            // sobre fundo escuro" + p.14 col 7 (versão negativa) confirma
+            // logo INTEGRALMENTE em branco sobre Neutral Black.
+            "border-white/10 bg-ink/95"
           : "border-navy-100 bg-ivory/90"
       )}
     >
       <div className="container-wide flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="Affida Partners — página inicial">
-          {/* Em fundo Dress Blues, aplicação primária = "gold" (logo integral em UP cream
-              conforme p.14 col 2 do Manual de Marca). Em fundo claro, versão positiva
-              sóbria: logo integral em Dress Blues #0B1E33 — versão de máxima legibilidade
-              sinalizada na p.13. */}
-          <AffidaLogo tone={isDark ? "gold" : "dark"} className="h-auto" />
+          {/* Em fundo Neutral Black (header), aplicação NEGATIVA = "light"
+              (logo integral em branco), conforme p.14 col 7 e orientação
+              p.17 boas práticas. Em fundo claro, versão positiva sóbria:
+              logo integral em Dress Blues #0B1E33. */}
+          <AffidaLogo tone={isDark ? "light" : "dark"} className="h-auto" />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

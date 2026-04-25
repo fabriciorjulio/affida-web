@@ -4,13 +4,15 @@ import { AffidaLogo } from "@/components/ui/logo";
  * Assinatura institucional Affida Partners — replica a aplicação PRIMÁRIA
  * do logo definida no Manual de Marca (dez/2025):
  *
- *   • Mockup do website (p.26): fundo Dress Blues + logo dourado
- *   • Business card (p.28):     fundo Dress Blues + logo dourado
- *   • Social media (p.29):      fundo Dress Blues + logo dourado
- *   • Aplicação positiva 1ª col (p.14): Dress Blues + AFFIDA Greige
- *
- * Esta é a face primária da marca. Fundo Dress Blues #0B1E33,
- * AFFIDA em Greige #928475 (champagne dourado) + PARTNERS em UP.
+ *   • Sinalização p.13: Dress Blues #0B1E33 é o swatch dominante (≈2× o
+ *     tamanho dos demais) e o único sem CMYK/RGB/HEX impressos — sinal de
+ *     que é a cor PRIMÁRIA, oferecendo máxima legibilidade tanto sobre
+ *     fundo claro quanto como fundo p/ tipografia clara.
+ *   • Aplicação positiva p.14 col 2: fundo Dress Blues #0B1E33 +
+ *     mark + AFFIDA + PARTNERS integralmente em UP #E1D9C6 (cream),
+ *     garantindo o contraste de máxima legibilidade prescrito pelo manual.
+ *   • Mockup website (p.26), business card (p.28), social media (p.29):
+ *     replicam a mesma aplicação primária.
  */
 export function BrandSignature() {
   return (
@@ -31,7 +33,7 @@ export function BrandSignature() {
       <div className="container-wide relative z-10 flex flex-col items-center gap-10 py-20 text-center sm:py-28">
         <p className="eyebrow text-champagne-500">Identidade institucional</p>
 
-        {/* Aplicação PRIMÁRIA: Dress Blues + AFFIDA Greige + PARTNERS UP (p.14, p.26) */}
+        {/* Aplicação PRIMÁRIA: Dress Blues + logo integral em UP cream (p.14 col 2, p.26) */}
         <AffidaLogo
           variant="stacked"
           tone="gold"

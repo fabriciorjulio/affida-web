@@ -16,29 +16,47 @@ type LogoTone = "light" | "dark" | "gold" | "mono-dark" | "mono-light";
  * com tracking ampliado como substituição que preserva a leitura geométrica
  * "extended sans" do manual.
  */
-// Aplicações do logo conforme Manual de Marca (dez/2025), p.14:
-//   • "gold"  → primeira coluna positiva, fundo Dress Blues + AFFIDA em
-//              champagne dourado (Greige) + PARTNERS em UP. É a aplicação
-//              PRIMÁRIA institucional — é a versão usada no mockup do
-//              website (p.26), business card (p.28) e social media (p.29).
-//   • "dark"  → segunda coluna positiva, fundo claro + logo Dress Blues
-//              (versão sóbria sobre creme/UP).
-//   • "light" → versão negativa para fundos muito escuros (Neutral Black).
+// Aplicações do logo conforme Manual de Marca (dez/2025), p.13 + p.14.
+//
+// Sinalização p.13: o swatch DRESS BLUES (Pantone 19-4028 TCX, #0B1E33)
+// é o maior da paleta (≈2× qualquer outro) e é o único sem CMYK/RGB/HEX
+// impressos — a manual sinaliza Dress Blues como cor PRIMÁRIA, oferecendo
+// máxima legibilidade tanto sobre fundos claros quanto como fundo de
+// referência para tipografia/UP clara.
+//
+// p.14 (aplicações positivas) — pareamento canônico fundo→logo:
+//   • Dress Blues bg     → mark/AFFIDA/PARTNERS em UP #E1D9C6 (col 2)
+//   • Midnight Blue bg   → tudo em Greige #928475 — efeito champagne (col 1)
+//   • Brown bg           → tudo em Greige #928475 (col 3)
+//   • Greige bg          → tudo em Brown #423933 (col 4)
+//   • UP / Comoyoko bg   → tudo em Dress Blues #0B1E33 (cols 5-6)
+//   • Neutral Black bg   → tudo em white (versão negativa)
+//
+// Tones disponíveis:
+//   • "gold"      → para Dress Blues bg = APLICAÇÃO PRIMÁRIA institucional
+//                  (mockup website p.26, cartão p.28, social p.29).
+//                  Tudo em UP cream — máxima legibilidade conforme p.14 col 2.
+//   • "champagne" → para Midnight Blue ou Brown bg — Greige dourado.
+//   • "dark"      → para fundos claros (UP/Comoyoko) — Dress Blues integral.
+//   • "light"     → versão negativa em fundos pretos (Neutral Black).
 const tones: Record<LogoTone, { mark: string; wordmark: string; tag: string }> = {
+  // p.14 col 2 — Dress Blues bg: tudo em UP cream para máxima legibilidade
   gold: {
-    mark: "#E1D9C6",     // UP (Pantone 2157) — símbolo em UP claro
-    wordmark: "#928475", // Greige (Pantone 16-1109 TCX) — AFFIDA em dourado/champagne
-    tag: "#E1D9C6",      // UP — assinatura PARTNERS em creme claro
+    mark: "#E1D9C6",     // UP (Pantone 2157)
+    wordmark: "#E1D9C6", // UP — AFFIDA em creme integral (corrigido p/ manual)
+    tag: "#E1D9C6",      // UP — PARTNERS
   },
   light: {
     mark: "#E1D9C6",     // UP — símbolo em fundo escuro
     wordmark: "#FFFFFF", // Comoyoko
     tag: "#C2BBA9",      // Greige claro
   },
+  // p.14 cols 5-6 — UP/Comoyoko bg: tudo em Dress Blues (versão mais escura,
+  // signalizada como primária na p.13).
   dark: {
-    mark: "#173F65",     // Midnight Blue (Pantone 18-4005 TCX) — símbolo
-    wordmark: "#0B1E33", // Dress Blues (Pantone 19-4028 TCX) — wordmark principal
-    tag: "#173F65",      // Midnight Blue — assinatura PARTNERS
+    mark: "#0B1E33",     // Dress Blues — versão de máxima legibilidade
+    wordmark: "#0B1E33", // Dress Blues — wordmark principal
+    tag: "#0B1E33",      // Dress Blues — PARTNERS
   },
   "mono-dark": {
     mark: "#222222",

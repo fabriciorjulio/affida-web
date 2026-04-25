@@ -43,7 +43,7 @@ export function Hero() {
               Corretora boutique de seguros e benefícios
             </p>
 
-            {/* Aplicação primária do logo (Manual p.14, p.26): AFFIDA gigante em UP/Greige */}
+            {/* Aplicação primária do logo (Manual p.14 col 2, p.26): fundo Dress Blues + AFFIDA gigante em UP cream para máxima legibilidade */}
             <div className="mt-8">
               <AffidaLogo
                 variant="stacked"

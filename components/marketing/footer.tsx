@@ -52,7 +52,7 @@ export function Footer() {
       <div className="container-wide relative z-10 py-20">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="space-y-6 lg:col-span-2">
-            {/* Aplicação primária do logo (Manual p.14, primeira coluna positiva): fundo Dress Blues + AFFIDA Greige */}
+            {/* Aplicação primária do logo (Manual p.14 col 2): fundo Dress Blues + logo integral em UP cream */}
             <AffidaLogo tone="gold" variant="stacked" />
             <p className="font-light tracking-wider text-[13px] uppercase text-champagne-300/80">
               Construindo o futuro, juntos.

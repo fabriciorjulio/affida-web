@@ -47,11 +47,14 @@ const tones: Record<LogoTone, string> = {
   "mono-light": "#FFFFFF",
 };
 
-// Razões de aspecto extraídas dos PNGs oficiais (p.6 do Manual)
+// Razões de aspecto extraídas dos PNGs oficiais (p.6 do Manual).
+// Cada PNG inclui 60px de respiro transparente em todas as direções —
+// garantindo que nenhum traço (nem o ápice mais fino dos A's da Corbert
+// Demi Bold Extended) toque a borda da imagem (DON'T p.18.1 + p.17.8).
 const ASPECT = {
-  mark: "798 / 184",       // só símbolo (lemniscata aberta)
-  wordmark: "3164 / 955",  // AFFIDA (Demi Bold Ext) + PARTNERS (Reg Ext)
-  stacked: "3164 / 1926",  // composição completa do manual p.6
+  mark: "1717 / 490",       // só símbolo (lemniscata aberta) + 60px pad
+  wordmark: "3536 / 1075",  // AFFIDA (Demi Bold Ext) + PARTNERS (Reg Ext)
+  stacked: "3536 / 2046",   // composição completa do manual p.6
 } as const;
 
 function maskStyle(url: string, color: string) {

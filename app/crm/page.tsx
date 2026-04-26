@@ -10,6 +10,7 @@ import {
   MessageCircle,
   Activity as ActivityIcon,
   Sparkles,
+  AlertTriangle,
 } from "lucide-react";
 import {
   kpis,
@@ -29,6 +30,13 @@ import { KpiCard } from "@/components/crm/kpi-card";
 import { Badge } from "@/components/ui/badge";
 import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
+import {
+  clientsByRenewalUrgency,
+  formatRenewalDistance,
+  severityStyle,
+  type RenewalSeverity,
+} from "@/lib/renovacao";
+import { RenewalBadge } from "@/components/crm/renewal-alert";
 
 function stageCount(stageId: string) {
   return leads.filter((l) => l.stage === stageId).length;
@@ -83,6 +91,104 @@ export default function CrmDashboardPage() {
             accent="navy"
           />
         </section>
+
+        {/* ─────────────────────────────────────────────────────────────
+             Bloco RENOVAÇÕES EM DESTAQUE (≤ 60 dias)
+             Primeira coisa que o closer vê após os KPIs. Lista os
+             clientes com vencimento próximo, ordenados por SEVERIDADE
+             (crítico ≤ 30d → atenção 31-60d) E por COMISSÃO em risco
+             (top ticket primeiro). Critério de "destaque": premiar
+             quem tem mais a perder se a renovação atrasar.
+             ─────────────────────────────────────────────────────────── */}
+        {(() => {
+          const urgentes = clientsByRenewalUrgency(60);
+          if (urgentes.length === 0) return null;
+          const topUrgentes = urgentes.slice(0, 6);
+          const totalPremio = urgentes.reduce((s, c) => s + c.premioEmRisco, 0);
+          const totalComissao = urgentes.reduce((s, c) => s + c.comissaoEmRisco, 0);
+          const criticos = urgentes.filter((c) => c.severity === "critico" || c.severity === "vencido").length;
+          return (
+            <section className="rounded-2xl border-l-4 border-l-champagne-500 border border-champagne-200/60 bg-white p-6 shadow-[0_2px_20px_-8px_rgba(196,141,18,0.18)]">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <AlertTriangle size={16} className="text-champagne-700" />
+                    <p className="eyebrow text-champagne-700">
+                      Renovações em destaque · próximos 60 dias
+                    </p>
+                  </div>
+                  <h2 className="heading-display mt-2 text-2xl text-navy-900">
+                    {urgentes.length} cliente{urgentes.length > 1 ? "s" : ""} exigindo{" "}
+                    <em className="italic text-champagne-700">ação imediata</em>.
+                  </h2>
+                  <p className="mt-1 text-xs text-navy-700/70">
+                    {criticos} em janela crítica (≤ 30 dias) · prêmio em risco{" "}
+                    <strong className="text-navy-900">{brl(totalPremio)}</strong>/mês ·
+                    comissão{" "}
+                    <strong className="text-navy-900">{brl(totalComissao)}</strong>/mês
+                  </p>
+                </div>
+                <Link
+                  href="/crm/carteira"
+                  className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+                >
+                  Ver carteira completa <ArrowUpRight size={13} />
+                </Link>
+              </div>
+
+              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {topUrgentes.map((c) => {
+                  const s = severityStyle[c.severity as RenewalSeverity];
+                  return (
+                    <Link
+                      key={c.id}
+                      href={`/crm/carteira/${c.id}`}
+                      className={`group flex flex-col gap-3 rounded-xl border-l-4 ${s.border} border border-champagne-200/40 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-premium`}
+                    >
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <p className="truncate font-medium text-sm text-navy-900">
+                            {c.nomeFantasia}
+                          </p>
+                          <p className="mt-0.5 truncate text-[10px] uppercase tracking-widest text-champagne-700">
+                            {c.ramoAtividade}
+                          </p>
+                        </div>
+                        <RenewalBadge
+                          daysLeft={c.daysLeft}
+                          severity={c.severity}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between border-t border-champagne-200/40 pt-3 text-xs">
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-navy-700/55">
+                            Comissão em risco
+                          </p>
+                          <p className="mt-0.5 font-display text-base font-light text-navy-900">
+                            {brl(c.comissaoEmRisco)}<span className="text-[10px] text-navy-700/55">/mês</span>
+                          </p>
+                        </div>
+                        <span className="text-[10px] text-navy-700/55">
+                          {c.vidas} vidas · {c.owner}
+                        </span>
+                      </div>
+                      <ArrowUpRight
+                        size={14}
+                        className="self-end text-navy-700/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {urgentes.length > 6 && (
+                <p className="mt-4 text-center text-[11px] text-navy-700/60">
+                  + {urgentes.length - 6} clientes adicionais em renovação · veja tudo na carteira
+                </p>
+              )}
+            </section>
+          );
+        })()}
 
         {/* Pipeline snapshot + Re-oferta */}
         <section className="grid gap-6 lg:grid-cols-3">

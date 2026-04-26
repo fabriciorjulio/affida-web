@@ -5,16 +5,52 @@ import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
 import { ActionButton } from "@/components/ui/action-button";
 import { brl } from "@/lib/utils";
+import {
+  daysUntil,
+  severityFor,
+  nextRenewalDateForClient,
+  formatRenewalDistance,
+} from "@/lib/renovacao";
+import { RenewalBadge } from "@/components/crm/renewal-alert";
 
 function policiesForClient(clientId: string) {
   return policies.filter((p) => p.clientId === clientId);
 }
+
+/** Anota cada cliente com sua próxima renovação e severidade.
+ *  Clientes sem apólice vão para o final (severityRank = 99). */
+function withRenewalInfo() {
+  return clients.map((c) => {
+    const next = nextRenewalDateForClient(c.id);
+    const daysLeft = next ? daysUntil(next) : null;
+    const severity = daysLeft != null ? severityFor(daysLeft) : null;
+    return { ...c, nextRenewalAt: next, daysLeft, severity };
+  });
+}
+
+const severityRank: Record<string, number> = {
+  vencido: 0,
+  critico: 1,
+  atencao: 2,
+  lembrete: 3,
+  tranquilo: 4,
+};
 
 export default function CarteiraPage() {
   const totalMrr = clients.reduce((acc, c) => acc + c.monthlyRevenue, 0);
   const totalVidas = clients.reduce((acc, c) => acc + c.vidas, 0);
   const renewals = clients.filter((c) => c.status === "em_renovacao").length;
   const churnRisk = clients.filter((c) => c.status === "churn_risk" || c.status === "inadimplente").length;
+
+  // Lista ordenada por urgência de renovação — clientes com vigência
+  // mais próxima (e severidade maior) aparecem PRIMEIRO. Foco do PDF
+  // Conselho · re-oferta antes do concorrente.
+  const annotated = withRenewalInfo().sort((a, b) => {
+    const ra = a.severity ? severityRank[a.severity] : 99;
+    const rb = b.severity ? severityRank[b.severity] : 99;
+    if (ra !== rb) return ra - rb;
+    return (a.daysLeft ?? 9999) - (b.daysLeft ?? 9999);
+  });
 
   return (
     <>
@@ -76,24 +112,32 @@ export default function CarteiraPage() {
             <thead className="bg-sand/40 text-[10px] uppercase tracking-widest text-navy-700/60">
               <tr>
                 <th className="px-5 py-3">Cliente</th>
-                <th className="px-5 py-3">Porte</th>
+                <th className="px-5 py-3">Renovação</th>
                 <th className="px-5 py-3">Vidas</th>
                 <th className="px-5 py-3">Apólices</th>
                 <th className="px-5 py-3">Operadoras</th>
                 <th className="px-5 py-3">MRR</th>
-                <th className="px-5 py-3">Desde</th>
                 <th className="px-5 py-3">NPS</th>
                 <th className="px-5 py-3">Status</th>
                 <th className="px-5 py-3"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-champagne-200/60">
-              {clients.map((c) => {
+              {annotated.map((c) => {
                 const pols = policiesForClient(c.id);
                 const ops = Array.from(new Set(pols.map((p) => operatorById(p.operatorId)?.name).filter(Boolean)));
-                const since = new Date(c.sinceAt).getFullYear();
+                // Linha INTEIRA recebe um realce sutil quando a
+                // renovação está em janela crítica (≤30d) ou atenção
+                // (≤60d). Reforça visualmente onde o closer deve atuar
+                // primeiro mesmo se ele não ler a coluna "Renovação".
+                const rowAccent =
+                  c.severity === "critico" || c.severity === "vencido"
+                    ? "bg-champagne-50/40 hover:bg-champagne-50"
+                    : c.severity === "atencao"
+                      ? "bg-champagne-50/20 hover:bg-champagne-50/60"
+                      : "hover:bg-sand/30";
                 return (
-                  <tr key={c.id} className="hover:bg-sand/30">
+                  <tr key={c.id} className={rowAccent}>
                     <td className="px-5 py-3">
                       <Link
                         href={`/crm/carteira/${c.id}`}
@@ -101,9 +145,17 @@ export default function CarteiraPage() {
                       >
                         {c.nomeFantasia}
                       </Link>
-                      <p className="text-[11px] text-navy-700/60">{c.ramoAtividade}</p>
+                      <p className="text-[11px] text-navy-700/60">
+                        {c.porte} · {c.ramoAtividade}
+                      </p>
                     </td>
-                    <td className="px-5 py-3 text-navy-700">{c.porte}</td>
+                    <td className="px-5 py-3">
+                      {c.daysLeft != null && c.severity ? (
+                        <RenewalBadge daysLeft={c.daysLeft} severity={c.severity} />
+                      ) : (
+                        <span className="text-[11px] text-navy-700/40">—</span>
+                      )}
+                    </td>
                     <td className="px-5 py-3 text-navy-700">{c.vidas}</td>
                     <td className="px-5 py-3 text-navy-700">{pols.length}</td>
                     <td className="px-5 py-3 text-[11px] text-navy-700/80">
@@ -111,7 +163,6 @@ export default function CarteiraPage() {
                       {ops.length > 2 && <> +{ops.length - 2}</>}
                     </td>
                     <td className="px-5 py-3 text-navy-900">{brl(c.monthlyRevenue)}</td>
-                    <td className="px-5 py-3 text-navy-700">{since}</td>
                     <td className="px-5 py-3">
                       <span className="inline-flex h-7 w-10 items-center justify-center rounded-full bg-forest-50 text-xs font-semibold text-forest-700">
                         {c.nps ?? "—"}

@@ -21,6 +21,13 @@ import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
 import { ActionButton } from "@/components/ui/action-button";
 import { brl, percent } from "@/lib/utils";
+import {
+  upcomingPoliciesForClient,
+  daysUntil,
+  severityFor,
+  formatBR,
+} from "@/lib/renovacao";
+import { RenewalBanner, RenewalBadge } from "@/components/crm/renewal-alert";
 
 export function generateStaticParams() {
   return clients.map((c) => ({ id: c.id }));
@@ -36,6 +43,15 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
   const totalMrr = clientPolicies.reduce((acc, p) => acc + p.premioMensal * p.comissaoPercent, 0);
   const totalPremio = clientPolicies.reduce((acc, p) => acc + p.premioMensal, 0);
 
+  // Apólices em renovação ≤ 60 dias — banner crítico no topo se houver
+  const upcoming = upcomingPoliciesForClient(params.id, 60);
+  const banner = upcoming[0];
+  const premioEmRisco = upcoming.reduce((s, p) => s + p.premioMensal, 0);
+  const comissaoEmRisco = upcoming.reduce(
+    (s, p) => s + p.premioMensal * p.comissaoPercent,
+    0
+  );
+
   return (
     <>
       <CrmHeader title={client!.nomeFantasia} subtitle={`Cliente desde ${new Date(client!.sinceAt).getFullYear()}`} />
@@ -44,6 +60,21 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
         <Link href="/crm/carteira" className="inline-flex items-center gap-2 text-xs text-navy-700 hover:text-navy-900">
           <ArrowLeft size={14} /> Voltar
         </Link>
+
+        {/* Banner crítico de renovação — primeira coisa que o closer vê
+            ao abrir a ficha do cliente. Aparece SOMENTE se houver
+            apólice vencendo em ≤ 60 dias (severidade vencido/crítico/
+            atenção). Acima de 60 dias, nada é mostrado para evitar ruído. */}
+        {banner && (
+          <RenewalBanner
+            daysLeft={banner.daysLeft}
+            severity={banner.severity}
+            vigenciaFim={banner.vigenciaFim}
+            premioEmRisco={premioEmRisco}
+            comissaoEmRisco={comissaoEmRisco}
+            apolicesCount={upcoming.length}
+          />
+        )}
 
         {/* Cabeçalho do cliente */}
         <section className="rounded-2xl border border-champagne-200/60 bg-white p-6">
@@ -129,14 +160,25 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
                 {clientPolicies.map((p) => {
                   const product = productById(p.product);
                   const operator = operatorById(p.operatorId);
+                  // Severidade por apólice (cada apólice tem sua vigência —
+                  // cliente pode ter uma crítica e outra tranquila).
+                  const days = daysUntil(p.vigenciaFim);
+                  const sev = severityFor(days);
                   return (
                     <tr key={p.id}>
                       <td className="px-4 py-3 font-medium text-navy-900">{product?.name ?? p.product}</td>
                       <td className="px-4 py-3 text-navy-700">{operator?.name ?? p.operatorId}</td>
                       <td className="px-4 py-3 text-[11px] text-navy-700/80">{p.plano}</td>
                       <td className="px-4 py-3 text-[11px] text-navy-700/80">
-                        {new Date(p.vigenciaInicio).toLocaleDateString("pt-BR")} →{" "}
-                        {new Date(p.vigenciaFim).toLocaleDateString("pt-BR")}
+                        <div>
+                          {new Date(p.vigenciaInicio).toLocaleDateString("pt-BR")} →{" "}
+                          {new Date(p.vigenciaFim).toLocaleDateString("pt-BR")}
+                        </div>
+                        {(sev === "critico" || sev === "atencao" || sev === "vencido") && (
+                          <div className="mt-1">
+                            <RenewalBadge daysLeft={days} severity={sev} />
+                          </div>
+                        )}
                       </td>
                       <td className="px-4 py-3 text-navy-700">{p.vidas}</td>
                       <td className="px-4 py-3 text-navy-900">{brl(p.premioMensal)}</td>

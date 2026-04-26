@@ -115,12 +115,10 @@ export default function IndicadoresPublicPage() {
               apólice estiver ativa: 30% no primeiro ano, 15% no ano 2, 10% no ano 3+.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+quero+entrar+no+programa+de+indica%C3%A7%C3%A3o."
-                variant="gold"
-                size="lg"
-                target="_blank"
-              >
+              {/* Jornada MGM real — leva ao formulário de cadastro próprio,
+                  não mais para o WhatsApp. Indicador completa o cadastro
+                  online e recebe seu link único de indicação na hora. */}
+              <Button href="/parceiros/cadastro" variant="gold" size="lg">
                 Quero indicar empresas <ArrowRight size={14} />
               </Button>
               <Button href="#programa" variant="outline" size="lg">
@@ -199,13 +197,12 @@ export default function IndicadoresPublicPage() {
                 </strong>
               </p>
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+gostaria+de+convite+para+o+programa+de+indica%C3%A7%C3%A3o."
+                href="/parceiros/cadastro"
                 variant="primary"
                 size="lg"
                 className="mt-8"
-                target="_blank"
               >
-                Solicitar convite <ArrowRight size={14} />
+                Cadastrar agora <ArrowRight size={14} />
               </Button>
             </div>
 
@@ -277,21 +274,19 @@ export default function IndicadoresPublicPage() {
               convite e o link único para começar a indicar.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+gostaria+de+agendar+conversa+sobre+o+programa+de+indica%C3%A7%C3%A3o."
-                variant="primary"
-                size="lg"
-                target="_blank"
-              >
-                Agendar conversa <ArrowRight size={14} />
+              {/* Caminho principal = cadastro online. WhatsApp fica como
+                  fallback para quem prefere conversar antes (questões
+                  específicas de modelo, contrato, etc.). */}
+              <Button href="/parceiros/cadastro" variant="primary" size="lg">
+                Cadastrar agora <ArrowRight size={14} />
               </Button>
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%21+Quero+saber+mais+sobre+o+programa+de+indica%C3%A7%C3%A3o."
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%21+Tenho+d%C3%BAvidas+sobre+o+programa+de+indica%C3%A7%C3%A3o+antes+de+me+cadastrar."
                 variant="dark-outline"
                 size="lg"
                 target="_blank"
               >
-                WhatsApp indicação
+                Tirar dúvidas no WhatsApp
               </Button>
             </div>
           </div>

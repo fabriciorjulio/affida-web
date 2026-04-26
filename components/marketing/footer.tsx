@@ -38,6 +38,7 @@ const footerNav = [
       { label: "Sobre a Affida", href: "/#sobre" },
       { label: "Operadoras parceiras", href: "/#operadoras" },
       { label: "Programa de indicação", href: "/parceiros" },
+      { label: "Cadastrar como indicador", href: "/parceiros/cadastro" },
       { label: "Carreiras", href: "/#carreiras" },
       { label: "Imprensa", href: "/#imprensa" },
     ],

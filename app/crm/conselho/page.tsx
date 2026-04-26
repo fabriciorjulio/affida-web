@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Target,
   CheckCircle2,
@@ -14,6 +15,7 @@ import {
   Cpu,
   Wallet,
   Layers,
+  ArrowLeft,
 } from "lucide-react";
 import { CrmHeader } from "@/components/crm/sidebar";
 import { Badge } from "@/components/ui/badge";
@@ -376,6 +378,13 @@ export default function ConselhoPage() {
       <CrmHeader title="Painel do Conselho" subtitle="Plano de implementação · 25-abr-2026" />
 
       <div className="container-wide px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <Link
+          href="/crm"
+          className="mb-6 inline-flex items-center gap-2 text-xs text-navy-700 hover:text-navy-900"
+        >
+          <ArrowLeft size={14} /> Voltar ao dashboard
+        </Link>
+
         {/* Re-enquadramento dos 4 pilares */}
         <section className="mb-12">
           <p className="eyebrow">0 · Re-enquadramento</p>

@@ -238,12 +238,17 @@ export default function ClientDetailPage({ params }: { params: { id: string } })
               <p className="mt-2 text-sm text-navy-700/80">
                 Abra o portal na visão do cliente para acompanhar apólices, faturas e propostas.
               </p>
-              <Link
+              {/* Abrir em nova aba — closer espia o portal sem perder
+                  contexto do CRM. PortalShell não tem link de volta para
+                  o CRM (correto: portal é do cliente final). */}
+              <a
                 href="/portal"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
               >
                 Abrir portal do cliente <ArrowUpRight size={14} />
-              </Link>
+              </a>
             </div>
 
             <div className="rounded-2xl border border-champagne-200/60 bg-white p-6">

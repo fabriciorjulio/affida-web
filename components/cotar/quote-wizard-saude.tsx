@@ -232,6 +232,36 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
     cnpjData: null,
   });
 
+  // ---------- Tracking de indicação MGM (?ref=IND-XXXXXX) ----------
+  // Lê o query param via window.location.search direto (não usa o hook
+  // useSearchParams do Next porque static export exige Suspense boundary
+  // ao redor de páginas que usam o hook — mais código e zero benefício
+  // aqui já que só precisamos ler uma vez no mount).
+  const [refCode, setRefCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const refParam = params.get("ref");
+    if (refParam && refParam.startsWith("IND-")) {
+      setRefCode(refParam);
+      try {
+        localStorage.setItem("affida_indicacao_ref", refParam);
+        localStorage.setItem("affida_indicacao_at", new Date().toISOString());
+      } catch {
+        // localStorage pode falhar (modo privado); não é crítico
+      }
+    } else {
+      // Recupera indicação de visita anterior
+      try {
+        const stored = localStorage.getItem("affida_indicacao_ref");
+        if (stored) setRefCode(stored);
+      } catch {
+        /* ignore */
+      }
+    }
+  }, []);
+
   // ---------- Lookup automático de CNPJ via BrasilAPI ----------
   // Quando o usuário completa os 14 dígitos, dispara fetch e auto-preenche
   // razão social, CNAE e porte (sugestão). Mantém o que ele já digitou
@@ -423,6 +453,28 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
     <QuoteShell productName={product.name} currentStep={step} totalSteps={totalSteps}>
       {step === 1 && (
         <div className="animate-fade-up">
+          {/* Banner de indicação MGM — só aparece quando o usuário entra
+              via link ?ref=IND-XXXXXX. Reforça que veio recomendado por
+              alguém + persistência da indicação para futura atribuição
+              de comissão pelo backend. */}
+          {refCode && (
+            <div className="mb-6 flex items-center gap-3 rounded-2xl border border-forest/30 bg-forest-50/40 p-4 text-sm text-navy-800">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest text-ivory">
+                <Check size={14} strokeWidth={1.8} />
+              </span>
+              <div className="min-w-0">
+                <p className="font-medium text-navy-900">
+                  Indicação reconhecida ·{" "}
+                  <code className="font-mono text-forest">{refCode}</code>
+                </p>
+                <p className="mt-0.5 text-xs text-navy-700/75">
+                  Você foi indicado por um parceiro do programa Affida.
+                  Continue normalmente — a indicação fica registrada.
+                </p>
+              </div>
+            </div>
+          )}
+
           <div className="max-w-2xl">
             <p className="eyebrow">Passo 1 · Empresa & situação atual</p>
             <h1 className="heading-display mt-3 text-display-md text-navy-900">

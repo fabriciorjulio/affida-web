@@ -11,6 +11,9 @@ const nav = [
   { label: "Produtos", href: "/#produtos" },
   { label: "Consultoria", href: "/#consultoria" },
   { label: "Indique e ganhe", href: "/parceiros" },
+  // Página /parceiros é a institucional do programa; /parceiros/cadastro
+  // é a jornada MGM para virar indicador. CTAs internos da /parceiros
+  // levam para /parceiros/cadastro.
   { label: "Para empresas", href: "/portal" },
   { label: "Painel", href: "/crm" },
 ];

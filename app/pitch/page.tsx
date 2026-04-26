@@ -395,13 +395,16 @@ export default function PitchPage() {
               gaps estratégicos que precisamos endereçar antes de escalar.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:mt-10">
-              <Button href="/crm" variant="gold" size="lg">
+              {/* Abrem em nova aba: pitch é doc interno; CRM/Portal/Home têm
+                  shells próprios sem volta para /pitch. Manter pitch aberto
+                  na aba original preserva o contexto de leitura. */}
+              <Button href="/crm" variant="gold" size="lg" target="_blank">
                 Entrar no CRM <ArrowRight size={14} />
               </Button>
-              <Button href="/portal" variant="outline" size="lg">
+              <Button href="/portal" variant="outline" size="lg" target="_blank">
                 Portal do cliente
               </Button>
-              <Button href="/" variant="outline" size="lg">
+              <Button href="/" variant="outline" size="lg" target="_blank">
                 Landing pública
               </Button>
             </div>
@@ -900,13 +903,13 @@ export default function PitchPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button href="/" variant="gold" size="lg">
+            <Button href="/" variant="gold" size="lg" target="_blank">
               Ver sistema funcionando <ArrowRight size={14} />
             </Button>
-            <Button href="/crm" variant="outline" size="lg">
+            <Button href="/crm" variant="outline" size="lg" target="_blank">
               Entrar no CRM
             </Button>
-            <Button href="/portal" variant="outline" size="lg">
+            <Button href="/portal" variant="outline" size="lg" target="_blank">
               Portal do cliente
             </Button>
           </div>

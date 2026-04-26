@@ -211,10 +211,13 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
             </ol>
 
             <div className="mt-6 space-y-3">
+              {/* Antes: href="/portal/proposta" pulava para o shell do PORTAL
+                  do cliente sem caminho de volta — closer ficava preso em
+                  outro shell. Agora apenas notifica que a proposta foi
+                  preparada (envio real é por e-mail/WhatsApp ao cliente). */}
               <ActionButton
                 action="toast"
-                href="/portal/proposta"
-                message={`Proposta para ${lead!.nomeFantasia} preparada — abrindo preview.`}
+                message={`Proposta para ${lead!.nomeFantasia} preparada e enviada por e-mail e WhatsApp ao contato principal.`}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-champagne-500 px-4 py-2.5 text-xs font-medium text-navy-900"
               >
                 <FileSignature size={14} /> Enviar proposta

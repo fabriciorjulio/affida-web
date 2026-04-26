@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 const steps = [
   {
     n: "01",
@@ -33,7 +36,11 @@ const steps = [
 
 export function ProcessSteps() {
   return (
-    <section className="bg-navy-900 text-ivory">
+    <section
+      className="bg-navy-900 text-ivory"
+      id="como-funciona"
+      aria-label="Como funciona o processo Affida"
+    >
       <div className="container-wide py-24">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
@@ -63,6 +70,14 @@ export function ProcessSteps() {
                 </li>
               ))}
             </ol>
+            {/* CTA de fechamento da seção — converte quem desce até o passo
+                5 e ainda não viu CTA além dos do hero. */}
+            <Link
+              href="/cotar/saude-coletiva"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-champagne-500 px-6 py-3 text-sm font-medium text-navy-900 transition-all hover:shadow-gold"
+            >
+              Começar minha cotação <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </div>

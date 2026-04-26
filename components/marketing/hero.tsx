@@ -68,8 +68,14 @@ export function Hero() {
                 Cotar plano de saúde
                 <ArrowRight size={16} />
               </Button>
+              {/* Âncora relativa (sem barra inicial) — em produção com
+                  basePath="/affida-web", `href="/#..."` mandaria para a
+                  RAIZ do domínio (fora do site). Relativo funciona em
+                  qualquer rota. Aponta para ProcessSteps (5 passos do
+                  funil consultivo), que é o que o nome "Como funciona"
+                  promete. */}
               <a
-                href="/#consultoria"
+                href="#como-funciona"
                 className="text-xs font-medium uppercase tracking-[0.22em] text-champagne-400 transition-colors hover:text-champagne-200"
               >
                 Como funciona

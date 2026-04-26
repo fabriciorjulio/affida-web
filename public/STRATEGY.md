@@ -1,12 +1,14 @@
 # Affida Partners — Estratégia & Arquitetura
 
 > **Documento canônico.** Consolida posicionamento, modelo de negócio,
-> identidade visual, stack técnica, padrões de UI, fluxos de produto e
-> roadmap. Fonte de verdade para qualquer pessoa (humano ou agente)
-> que entrar no projeto.
+> identidade visual, stack técnica, padrões de UI, fluxos de produto,
+> tese revisada do Conselho (4 pilares) e roadmap. Fonte de verdade
+> para qualquer pessoa (humano ou agente) que entrar no projeto.
 >
-> **Última atualização:** 25 de abril de 2026 · commit `9e15a2c`
+> **Última atualização:** 25 de abril de 2026 · commit pós-PDF Conselho
 > **Manual de Marca:** dez/2025 (`202512_AFFIDA_PARTNERS_MANUAL DE MARCA.pdf`)
+> **PDF Conselho:** Plano de Implementação · 25-abr-2026 (Avaliação Crítica
+> de Iniciativas) · documentos derivados em `/docs/`
 
 ---
 
@@ -35,20 +37,45 @@
 
 **Affida Partners — Consultoria de seguros e benefícios.**
 
-Corretora boutique digital focada em PME, com tese central:
+### 1.1 Tese revisada pelo Conselho (PDF 25-abr-2026)
 
-> O mercado PME investe pesado em **venda nova** e perde o cliente
-> (que volta como lead pago meses depois). Condições mudam rápido entre
-> seguradoras. **Quem monitora a própria carteira reoferta antes do
-> concorrente** — esse é o nosso fosso.
+> **A Affida não é uma corretora — é um stack vertical de 4 negócios
+> interdependentes sobre a mesma carteira PME.**
+>
+> O jogo não é "ser broker boutique digital". É ser o **sistema operacional
+> financeiro-regulatório do plano de saúde PME**. CRM + RPA + Financeira
+> existem para colapsar custo marginal e capturar fluxo financeiro que a
+> corretora pura não captura. **A corretora vira porta de entrada; o stack é
+> o produto.**
 
-**Três decisões estruturais que moldam tudo:**
+### 1.2 Os 4 pilares
+
+| Pilar | Função no stack | Receita | Fosso |
+|---|---|---|---|
+| **Corretora (SUSEP)** | Origem de carteira regulada de saúde/vida PME | Comissão de operadora (8-15% do prêmio) | Direito de relacionamento + dado primário do beneficiário |
+| **CRM proprietário** | Espinha dorsal de carteira, pipeline e renovação | Sem receita direta — habilita as outras | Lock-in operacional + dado de comportamento |
+| **RPA** | Cotação, emissão, conciliação, glosa, inclusão/exclusão de vidas | Margem operacional (corta custo backoffice) + venda futura de capacidade | Custo marginal de apólice próximo de zero |
+| **Financeira (SCD/IP)** | Antecipação de comissão a parceiros, parcelamento de prêmio, folha | Spread + tarifa | Embedded finance no fluxo de saúde PME |
+
+> **Nota:** "Financeira" aqui é interpretada como SCD/IP de embedded finance.
+> Se significar outra coisa (BU de seguros financeiros, holding, family office),
+> algumas ações em §14 mudam.
+
+### 1.3 Hipótese de mercado mantida
+
+O mercado PME investe pesado em **venda nova** e perde o cliente (que volta
+como lead pago meses depois). Condições mudam rápido entre seguradoras.
+**Quem monitora a própria carteira reoferta antes do concorrente.**
+
+### 1.4 Decisões estruturais
 
 | # | Decisão | Implicação |
 |---|---|---|
 | 1 | **Independente da MDS** | A Affida tem SUSEP própria + código de corretagem aberto nas top operadoras. NÃO usa MDS/Brokerslink/Ardonagh para o vertical PME. Toda a credibilidade ancora em "corretora autônoma SUSEP + sem intermediários". |
 | 2 | **Saúde é o produto âncora** | Plano de saúde empresarial é o ponto de entrada de praticamente todo cliente PME. Vida, odonto, RC, frota e demais ramos são cross-sell SOBRE a base de saúde — nunca produto principal. |
-| 3 | **Tech proprietária como fosso** | CRM, motor de re-oferta, portal do cliente e parceiros são todos código nosso (não Pipedrive maquiado). A combinação portal + benchmark + reoferta cria lock-in consultivo difícil de copiar. |
+| 3 | **Tech proprietária como fosso** | CRM, motor de re-oferta, portal do cliente e parceiros são todos código nosso. A combinação portal + benchmark + reoferta cria lock-in consultivo difícil de copiar. |
+| 4 | **MVP foca 3 produtos** | Saúde + Odonto + Vida Empresarial têm cotador online ativo. 5 demais ramos (vida sócios, RC, frota, patrimonial, pet) ficam "sob consulta" via WhatsApp consultivo até a Wave 3. |
+| 5 | **3 SLAs verificáveis substituem narrativa de "tech como fosso"** | Lead→vigência ≤ 72h · Re-oferta proativa em 100% da carteira · Benchmark CNAE+porte com cohort ≥ 50 empresas. Mensurados e publicados mensalmente a partir da Wave 2. |
 
 ---
 
@@ -751,6 +778,57 @@ Seguir Conventional Commits:
    `BRAND_COMPLIANCE.md`. Removidos gradients, glows e radial-gradients
    que violavam DON'T #8.
 
+### Decisões pós-PDF Conselho (25-abr-2026)
+
+10. **Tese reposicionada para stack vertical de 4 pilares** (Corretora
+    + CRM + RPA + Financeira). Affida deixa de se vender como "broker
+    boutique digital" e passa a se posicionar como "sistema operacional
+    financeiro-regulatório do plano de saúde PME". Detalhes em §1.
+
+11. **Wave 0 D+2: substituir mockup de mensalidades por "Cotação
+    personalizada".** Banner referencial em ambos os wizards (saúde e
+    genérico) com:
+    - Prefixo `≈` em todos os preços exibidos.
+    - Box destacando metodologia ANS (RN 63/RN 309) e que cotação
+      vinculativa só é emitida pela operadora após análise de risco.
+    - CTA "Falar com consultor" no lugar de "Contratar".
+    - Toast e copy explicitando "resumo referencial" em vez de
+      "proposta gerada".
+
+12. **Eliminar prateleira de 8 produtos no MVP** (PDF D4.2). Adicionado
+    campo `mvp: boolean` em `Product`. 3 produtos ativos (saúde + odonto
+    + vida empresarial) renderizados com cotador online; 5 demais
+    (vida sócios, RC, frota, patrimonial, pet) movidos para seção
+    "Sob consulta" via WhatsApp consultivo. `/cotar`, `products-grid`
+    e `footer` atualizados.
+
+13. **3 atributos verificáveis com SLA na home** (PDF D4.1). `Pillars`
+    reescrito: substituídos textos genéricos ("atendimento sofisticado")
+    por compromissos mensuráveis com número, prazo e janela:
+    - **≤ 72h** lead → vigência (Wave 2 · D+180)
+    - **100%** re-oferta proativa em carteira (Wave 2 · D+150)
+    - **≥ 50** empresas/cohort no benchmark CNAE+porte (Wave 2 · D+180)
+
+14. **Programa de parceiros: comissão declinante** (PDF D7.1). Saiu
+    de flat 25% recorrente para curva 30% (ano 1) → 15% (ano 2) →
+    10% (ano 3+) com cap por contrato. Acelera ROI do parceiro e
+    protege margem Affida no longo prazo. Atualizado em `/parceiros`.
+
+15. **Painel `/crm/conselho`** (PDF §3, §4, §5, §6). Dashboard interno
+    com KPIs mestre (Wave 1/2/3), 12 frentes regulatórias, kill criteria,
+    diagrama de dependências e riscos. Vira a "tela de status" semanal
+    para o Conselho. Item adicionado à sidebar do CRM.
+
+16. **7 documentos estratégicos derivados em `/docs/`**:
+    - `UNIT_ECONOMICS.md` (D7) — modelo + 3 cenários + sensibilidade
+    - `MARKET.md` (D2) — TAM/SAM/SOM + war-game + signal detection
+    - `JTBD_TEMPLATE.md` (D3) — roteiro 30 entrevistas estruturadas
+    - `COMPLIANCE.md` (D6) — matriz regulatória 12 frentes
+    - `ARCHITECTURE.md` (D5) — stack-alvo multi-pilar + ADRs
+    - `ORG_CHART.md` (D8) — 4 áreas + KPIs em pirâmide + RACI
+    - `BCP.md` (D8.4) — vault, sucessão, drills semestrais
+    - `README.md` (índice)
+
 ---
 
 ## 16. Pendências pausadas (a pedido do dono)
@@ -790,6 +868,140 @@ dono pedir:
 
 ---
 
+## 17. Plano de Implementação (PDF Conselho 25-abr-2026)
+
+> **Objetivo:** elevar score consolidado do Conselho de **40 → ≥ 80** em 6
+> meses, com cada dimensão da avaliação ≥ 7. Painel ao vivo em
+> [`/crm/conselho`](/crm/conselho). Documentos derivados em `/docs/`.
+
+### 17.1 Plano em 3 ondas
+
+#### Wave 0 — Destravar (Dias 0-30)
+
+**Objetivo:** remover bloqueadores que impedem operar.
+
+| Ação | Owner | Prazo | KPI saída |
+|---|---|---|---|
+| CNPJ Affida + registro SUSEP da PJ corretora | Sócio + advogado SUSEP | D+30 | Certificado SUSEP emitido |
+| Código de corretagem aberto em ≥ 2 operadoras (Bradesco + Amil) | Diretor comercial | D+30 | E-mail formal de homologação |
+| RIPD + DPO designado + Política de Privacidade auditada | DPO + jurídico | D+15 | RIPD assinado, contrato DPO ativo |
+| Substituir mockup de mensalidades por "Cotação personalizada" | Dev | D+2 | ✅ **Concluído** — banner referencial + "≈" nos preços |
+| Termos e disclaimers de mock removidos do wizard | Dev + jurídico | D+7 | ✅ **Concluído** — CTA "Falar com consultor" no lugar de "Contratar" |
+| Dashboard interno de status regulatório | PM | D+30 | ✅ **Concluído** — `/crm/conselho` com 12 frentes |
+
+#### Wave 1 — Operar (Dias 31-90)
+
+**Objetivo:** entrar em produção real com primeiros 10 contratos e validar
+unit economics.
+
+| Ação | Owner | Prazo | KPI saída |
+|---|---|---|---|
+| Backend FastAPI + Postgres em Railway com auth real, audit log, encryption rest | Tech lead | D+60 | API em produção com SOC-light checklist |
+| Integração API Bradesco Saúde (preço oficial PME 1-29 vidas) | Dev + comercial Bradesco | D+90 | Cotação real em /cotar/saude-coletiva |
+| Integração API Amil PME | Dev + comercial Amil | D+90 | 2ª operadora ao vivo |
+| 10 primeiros contratos PME saúde fechados | Closer | D+90 | MRR ≥ R$ 80k em prêmio |
+| Onboarding 30 contadores parceiros + material vertical por CNAE | Head parcerias | D+90 | 30 acordos + 1ª comissão paga |
+| RPA-1: cotação multi-operadora (scrape + API) | RPA dev | D+75 | Cotação 5 operadoras em < 90s |
+| RPA-2: inclusão/exclusão de vidas em portal operadora | RPA dev | D+90 | Tempo médio < 3min vs. ~20min manual |
+| CRM persistido no backend (deixa de ser mock) | CRM dev | D+60 | 100% dos leads em DB real |
+
+#### Wave 2 — Construir o fosso (Dias 91-180)
+
+**Objetivo:** construir os ativos que tornam a Affida não-substituível.
+
+| Ação | Owner | Prazo | KPI saída |
+|---|---|---|---|
+| Motor de re-oferta v1: trigger de renovação 90/60/30 + alerta de reajuste anômalo | Data + CRM dev | D+150 | 100% da carteira monitorada; ≥ 1 re-oferta concretizada |
+| Pipeline de dados: ANS RN 412 + DOPS SUSEP + carteira própria → benchmark CNAE+porte | Data eng | D+180 | Benchmark setorial publicado para clientes ativos |
+| Financeira v0: parceria white-label com SCD/IP existente para antecipação a parceiros | Head financeira | D+150 | 1ª antecipação operada |
+| Credenciamento como SPOC Open Insurance (fase prática 2026) | Compliance | D+180 | Dossiê submetido SUSEP |
+| 3ª e 4ª operadoras (SulAmérica + Porto) com API direta | Dev + comercial | D+180 | 4 operadoras ao vivo |
+| RPA-3: conciliação de comissão recebida vs. esperada | RPA dev | D+150 | < 1% comissão não-conciliada |
+| RPA-4: emissão de proposta + assinatura digital + carga inicial na operadora | RPA dev | D+180 | "lead → vigência" mediano < 72h |
+| Carteira ativa ≥ 50 contratos | Comercial | D+180 | MRR ≥ R$ 400k em prêmio |
+
+### 17.2 KPIs mestre — dashboard único para o Conselho
+
+| KPI | Wave 1 (D+90) | Wave 2 (D+180) | Wave 3 (D+365) |
+|---|---|---|---|
+| Carteira ativa (apólices saúde PME) | 10 | 50 | 200 |
+| MRR de prêmio sob gestão | R$ 80k | R$ 400k | R$ 1,6M |
+| Comissão recorrente mensal | R$ 8k | R$ 40k | R$ 160k |
+| Operadoras com API direta | 2 | 4 | 6 |
+| Tempo lead → vigência (mediana) | < 7 dias | **< 72h** | < 24h |
+| Close-rate em lead qualificado | 3-5% | 5-8% | 8-12% |
+| Re-ofertas em renovação | — | ≥ 80% da carteira | 100% |
+| LTV/CAC | n/a | ≥ 2,0 | **≥ 3,0** |
+| Payback CAC | n/a | ≤ 18m | **≤ 12m** |
+| Apólices automatizadas via RPA (e2e) | 30% | 70% | 90% |
+| Margem de contribuição por contrato | — | ≥ 25% | **≥ 35%** |
+| Não-conformidades regulatórias > 30d | 0 | 0 | 0 |
+
+Dashboard ao vivo: [`/crm/conselho`](/crm/conselho).
+
+### 17.3 Kill criteria
+
+- **D+90 sem CNPJ ativo + 2 operadoras integradas:** parar captação
+  pública; regularizar antes de retomar.
+- **D+180 com carteira < 30 contratos OU LTV/CAC < 1,5:** rever tese
+  ou pivotar para canal exclusivo de parceiros (largar o digital direto).
+- **A qualquer momento, notificação de ANS, SUSEP, ANPD ou Procon:**
+  congelar operação afetada, parecer jurídico independente, plano de
+  remediação aprovado pelo Conselho antes de retomar.
+- **D+365 com margem de contribuição < 20% por contrato:** fechar pilar
+  Financeira ou renegociar contrato com SCD/IP — matemática não fecha.
+- **Bliss anuncia canal direto B2B em SP/RJ ou parceria exclusiva com
+  Bradesco:** reavaliar competitividade em 30 dias; considerar tese
+  embedded (Asaas/Omie) como alternativa.
+
+### 17.4 Dependências e sequenciamento crítico
+
+```
+CNPJ + SUSEP ─┬─> Código operadora ─┬─> API real ─┬─> Cotação real
+              │                     │             │
+              └─> RIPD/DPO ─────────┴─> Backend ──┴─> RPA ──> Re-oferta
+                                                           │
+                                                           └─> Financeira (antecipação)
+                                                                   │
+                                                                   └─> SPOC Open Insurance
+```
+
+**Caminhos críticos:**
+- **CNPJ + SUSEP bloqueia tudo.** Caminho crítico real, não tech.
+- **Backend real bloqueia** RPA, CRM persistente e financeira.
+- **Carteira ≥ 50 bloqueia** benchmark setorial e re-oferta com sinal.
+- **Financeira só faz sentido com volume** — não antes da Wave 2.
+
+### 17.5 Riscos que este plano não elimina
+
+1. **Capacidade do time** — 4 pilares em paralelo exigem 8-15 pessoas.
+   Time < 5 pessoas → sequenciar (corretora → CRM → RPA → financeira),
+   não paralelizar.
+2. **Conflito Bradesco** — investidor da Bliss e operadora-âncora da
+   Affida. Avaliar se Bradesco é fornecedor estratégico ou canal
+   perdido. Pode justificar swap para Amil/Porto como âncora primária.
+3. **Tempo regulatório** — registros SUSEP e ANS têm prazos pouco
+   previsíveis. Plano assume 30 dias para CNPJ/SUSEP — se demorar 90,
+   tudo desliza.
+4. **Concentração em saúde** — se ANS muda regra de pool de risco ou
+   de portabilidade, todo argumento de re-oferta muda. Diversificar
+   para vida + odonto cedo é hedging.
+
+### 17.6 8 dimensões avaliadas (status)
+
+| # | Dimensão | Score atual | Meta | Doc derivado |
+|---|---|---|---|---|
+| D1 | Estratégica | 5 → 8 | tese 4 pilares + 3 vetores de moat | Esta seção §1 + `/docs/` |
+| D2 | Mercado & Competição | 4 → 8 | TAM/SAM/SOM + war-game | [`docs/MARKET.md`](docs/MARKET.md) |
+| D3 | Cliente & JTBD | 6 → 8 | 30 entrevistas + NPS ≥ 60 | [`docs/JTBD_TEMPLATE.md`](docs/JTBD_TEMPLATE.md) |
+| D4 | Produto & Proposta de Valor | 4 → 8 | 3 atributos com SLA + foco MVP 3 produtos | ✅ Implementado em `pillars.tsx` + `mvp` flag |
+| D5 | Arquitetura & Tecnologia | 4 → 9 | stack-alvo multi-pilar | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| D6 | Regulatório & Compliance | 3 → 9 | matriz 12 frentes | [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md) |
+| D7 | Financeiro & Unit Economics | 2 → 8 | modelo + 3 cenários + parceiro declinante | [`docs/UNIT_ECONOMICS.md`](docs/UNIT_ECONOMICS.md) + ✅ implementado em `/parceiros` |
+| D8 | Execução & Organizacional | 3 → 8 | 4 áreas + RACI + BCP | [`docs/ORG_CHART.md`](docs/ORG_CHART.md) + [`docs/BCP.md`](docs/BCP.md) |
+
+---
+
 ## Apêndice A — Comandos rápidos
 
 ```bash
@@ -819,12 +1031,24 @@ python3 /tmp/extract_logo.py      # script já documentado no commit 642d0c5
 | Texto institucional do footer | `components/marketing/footer.tsx` |
 | Lista de operadoras na trust-bar | `components/marketing/trust-bar.tsx` |
 | Ordem dos produtos | `lib/mock-data.ts` (array `products[]`) |
+| Quais produtos têm cotador online (MVP) | `lib/mock-data.ts` (campo `mvp`) + helpers `mvpProducts` / `consultiveProducts` |
 | Faixas de funcionários | `lib/portes.ts` |
 | Faixas etárias ANS / preço base de plano | `components/cotar/quote-wizard-saude.tsx` (consts `FAIXAS_ANS` e `PLANOS_SAUDE`) |
 | Parser de upload em massa | `lib/beneficiario-import.ts` |
 | Hero da home | `components/marketing/hero.tsx` |
+| 3 SLAs publicados (≤72h, 100%, ≥50) | `components/marketing/pillars.tsx` |
 | Pitch / argumentos para sócios | `app/pitch/page.tsx` |
+| Painel do Conselho (KPIs/kill criteria/regulatório) | `app/crm/conselho/page.tsx` |
 | Compliance do Manual de Marca | `BRAND_COMPLIANCE.md` |
+| Plano de implementação completo (PDF Conselho) | Esta `STRATEGY.md` §17 + dashboard `/crm/conselho` |
+| Modelo de unit economics (3 cenários) | `docs/UNIT_ECONOMICS.md` |
+| TAM/SAM/SOM + concorrentes-foco | `docs/MARKET.md` |
+| Roteiro JTBD para 30 entrevistas | `docs/JTBD_TEMPLATE.md` |
+| Matriz regulatória 12 frentes | `docs/COMPLIANCE.md` |
+| Stack-alvo multi-pilar | `docs/ARCHITECTURE.md` |
+| Org chart + RACI por release | `docs/ORG_CHART.md` |
+| Plano de continuidade (BCP) | `docs/BCP.md` |
+| Programa de parceiros (curva declinante) | `app/parceiros/page.tsx` |
 
 ---
 

@@ -98,38 +98,34 @@ export function ProductsGrid() {
 
         {/* ═════════ Blocos 2 e 3 — clusters de cross-sell ═════════ */}
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          {/* PESSOAS — Vida Empresarial + Vida Sócios */}
+          {/* VIDA EMPRESARIAL — produto MVP, cotador online direto */}
           <Link
-            href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+quero+conversar+sobre+seguro+de+vida+empresarial%2Fs%C3%B3cios."
-            target="_blank"
+            href="/cotar/vida-empresarial"
             className="group flex flex-col gap-6 rounded-3xl border border-champagne-500/15 bg-navy-800/50 p-8 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-champagne-400/30 hover:bg-navy-800/70"
           >
             <div className="flex items-center gap-3">
               <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-champagne-500/15 text-champagne-300">
                 <Shield size={22} strokeWidth={1.4} />
               </span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-champagne-500/10 text-champagne-300/80">
-                <Crown size={20} strokeWidth={1.4} />
-              </span>
             </div>
 
             <div>
               <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-500">
-                Pessoas
+                Cross-sell sobre saúde
               </p>
               <h3 className="mt-2 font-display text-2xl font-light text-ivory">
-                Vida em grupo + key person
+                Vida em grupo
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ivory/65">
-                Proteção do time (capital segurado a partir de 12× salário) e
-                blindagem patrimonial dos sócios. Cross-sell natural sobre a
-                carteira de saúde.
+                Proteção do time com capital segurado a partir de 12× salário,
+                assistência funeral e coberturas extras. Cross-sell natural
+                sobre a carteira de saúde, com cotação online.
               </p>
             </div>
 
             <div className="mt-auto flex items-center justify-between border-t border-champagne-500/15 pt-5 text-xs">
               <span className="uppercase tracking-wide text-champagne-400/80">
-                Consultoria dedicada
+                Cotar online
               </span>
               <ArrowUpRight
                 size={18}
@@ -138,14 +134,18 @@ export function ProductsGrid() {
             </div>
           </Link>
 
-          {/* EMPRESA — RC, Frota, Patrimonial, Pet */}
+          {/* SOB CONSULTA — Vida Sócios + RC + Frota + Patrimonial + Pet
+              PDF Conselho D4.2: foco do MVP em saúde+odonto+vida coletivo;
+              demais ramos atendidos por consultor sênior, sem cotador online
+              até a Wave 3. Mantemos a completude da carteira visível mas
+              sem competir com o foco comercial. */}
           <Link
-            href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+quero+conversar+sobre+seguros+da+minha+empresa+%28RC%2C+frota%2C+patrim%C3%B4nio%29."
+            href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+quero+consultoria+sobre+outros+ramos+%28vida+s%C3%B3cios%2C+RC%2C+frota%2C+patrim%C3%B4nio%29."
             target="_blank"
             className="group flex flex-col gap-6 rounded-3xl border border-champagne-500/15 bg-navy-800/50 p-8 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-champagne-400/30 hover:bg-navy-800/70"
           >
             <div className="flex items-center gap-3">
-              {[Scale, Car, Building2, PawPrint].map((Icon, i) => (
+              {[Crown, Scale, Car, Building2, PawPrint].map((Icon, i) => (
                 <span
                   key={i}
                   className={`flex items-center justify-center rounded-xl ${
@@ -161,21 +161,21 @@ export function ProductsGrid() {
 
             <div>
               <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-500">
-                Empresa
+                Sob consulta
               </p>
               <h3 className="mt-2 font-display text-2xl font-light text-ivory">
-                Riscos do seu negócio
+                Vida sócios + ramos elementares
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ivory/65">
-                Responsabilidade civil profissional, frota corporativa,
-                patrimonial (sede e estoque) e pet como benefício de retenção.
-                Sob medida, com closer sênior.
+                Vida para sócios-chave, RC profissional, frota, patrimonial
+                e pet corporativo — atendidos direto por consultor sênior
+                Affida. Cotador online previsto para a próxima fase.
               </p>
             </div>
 
             <div className="mt-auto flex items-center justify-between border-t border-champagne-500/15 pt-5 text-xs">
               <span className="uppercase tracking-wide text-champagne-400/80">
-                Consultoria dedicada
+                Consultoria via WhatsApp
               </span>
               <ArrowUpRight
                 size={18}

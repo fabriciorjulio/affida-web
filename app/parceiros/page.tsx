@@ -9,9 +9,12 @@ import { Footer } from "@/components/marketing/footer";
 const beneficios = [
   {
     icon: Coins,
-    title: "Até 25% de comissão recorrente",
+    // PDF Conselho D7.1: comissão flat 25% recorrente compromete margem.
+    // Modelo declinante 30% (ano 1) → 15% (ano 2) → 10% (ano 3+) chega
+    // mais cedo ao parceiro E protege unit economics no longo prazo.
+    title: "30% no ano 1, declinante",
     description:
-      "Receba comissão mensal enquanto a apólice indicada estiver ativa. Não é one-time — é renda recorrente.",
+      "Comissão de 30% sobre o prêmio nos primeiros 12 meses, 15% no ano 2 e 10% a partir do ano 3 — enquanto a apólice estiver ativa. Modelo desenhado para te pagar mais cedo e ainda manter a relação saudável no longo prazo.",
   },
   {
     icon: TrendingUp,
@@ -33,12 +36,15 @@ const beneficios = [
   },
 ];
 
+// Curva declinante por perfil de parceiro — modelo PDF D7.1.
+// Curva única: 30% ano 1 → 15% ano 2 → 10% ano 3+. Cap por contrato evita
+// distorção em prêmios atípicos. % do ano 1 abaixo destaca o pico inicial.
 const tiposParceiros = [
-  { nome: "Contadores", share: "20%", descricao: "Escritórios contábeis com carteira PME" },
-  { nome: "Associações e sindicatos", share: "10-15%", descricao: "Entidades de classe e setoriais" },
-  { nome: "Influenciadores de negócios", share: "25%", descricao: "Criadores com audiência PME/RH" },
-  { nome: "Afiliados digitais", share: "10%", descricao: "Sites, blogs, indicadores online" },
-  { nome: "Consultores de RH", share: "25%", descricao: "Especialistas em benefícios" },
+  { nome: "Contadores", share: "30% → 10%", descricao: "Escritórios contábeis com carteira PME" },
+  { nome: "Associações e sindicatos", share: "30% → 10%", descricao: "Entidades de classe e setoriais" },
+  { nome: "Influenciadores de negócios", share: "30% → 10%", descricao: "Criadores com audiência PME/RH" },
+  { nome: "Afiliados digitais", share: "30% → 10%", descricao: "Sites, blogs, indicadores online" },
+  { nome: "Consultores de RH", share: "30% → 10%", descricao: "Especialistas em benefícios" },
 ];
 
 export default function ParceirosPublicPage() {
@@ -60,7 +66,9 @@ export default function ParceirosPublicPage() {
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
               Se você atende empresários — contadores, consultores, associações, influenciadores — o
-              programa de parcerias Affida te paga comissão recorrente por cada cliente indicado.
+              programa de parcerias Affida paga comissão recorrente por cada cliente indicado:
+              30% no primeiro ano, declinando para 15% e 10% — modelo desenhado para acelerar o
+              seu retorno e manter o pagamento por toda a vida da apólice.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button
@@ -169,7 +177,7 @@ export default function ParceirosPublicPage() {
                   "Acesso ao painel de parceiro com link de indicação e materiais co-branded",
                   "Indique empresas por WhatsApp, e-mail, ou envio direto da cotação online",
                   "Acompanhe status em tempo real: recebida, cotada, proposta, fechada",
-                  "Comissão paga todo dia 15, enquanto a apólice estiver ativa",
+                  "Comissão paga todo dia 15: 30% no ano 1, 15% no ano 2, 10% a partir do ano 3 — enquanto a apólice estiver ativa",
                 ].map((step, i) => (
                   <li key={i} className="relative">
                     <span className="absolute -left-[2.55rem] flex h-6 w-6 items-center justify-center rounded-full bg-champagne-500/20 text-[10px] font-medium text-champagne-300">

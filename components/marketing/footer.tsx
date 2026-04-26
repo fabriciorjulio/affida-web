@@ -3,15 +3,24 @@ import { AffidaLogo } from "@/components/ui/logo";
 
 const footerNav = [
   {
-    title: "Seguros",
+    title: "Cotar online",
     items: [
-      // Saúde Coletiva é o produto principal — sempre primeiro.
+      // Os 3 produtos do MVP (PDF Conselho D4.2). Demais ramos vão em
+      // "Sob consulta" abaixo, sem cotador no MVP.
       { label: "Saúde Coletiva", href: "/cotar/saude-coletiva" },
       { label: "Odontológico", href: "/cotar/odonto-col" },
       { label: "Vida Empresarial", href: "/cotar/vida-empresarial" },
+      { label: "Ver tudo em /cotar", href: "/cotar" },
+    ],
+  },
+  {
+    title: "Sob consulta",
+    items: [
       { label: "Vida para Sócios", href: "/cotar/vida-socios" },
       { label: "Responsabilidade Civil", href: "/cotar/rc-profissional" },
       { label: "Frota", href: "/cotar/frota-leve" },
+      { label: "Patrimonial", href: "/cotar/patrimonial" },
+      { label: "Pet corporativo", href: "/cotar/pet-corporate" },
     ],
   },
   {
@@ -51,7 +60,7 @@ export function Footer() {
           "Não utilizar a logo sobre imagens ou texturas que prejudiquem a leitura". */}
       <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.12]" />
       <div className="container-wide relative z-10 py-20">
-        <div className="grid gap-12 lg:grid-cols-5">
+        <div className="grid gap-12 lg:grid-cols-7">
           <div className="space-y-6 lg:col-span-2">
             {/* Aplicação primária do logo (Manual p.14 col 2): fundo Dress Blues + logo integral em UP cream */}
             <AffidaLogo tone="gold" variant="stacked" />

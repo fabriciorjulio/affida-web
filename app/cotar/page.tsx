@@ -11,7 +11,7 @@ import {
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
-import { products } from "@/lib/mock-data";
+import { mvpProducts, consultiveProducts } from "@/lib/mock-data";
 import { Navbar } from "@/components/marketing/navbar";
 import { Footer } from "@/components/marketing/footer";
 import { Badge } from "@/components/ui/badge";
@@ -52,8 +52,17 @@ export default function CotarIndexPage() {
       </section>
 
       <section className="container-narrow py-16">
+        {/* Bloco MVP: 3 produtos com cotador online + closer ativo (PDF D4.2) */}
+        <div className="mb-4 flex items-center gap-3">
+          <span className="inline-flex h-8 items-center rounded-full bg-forest-50 px-3 text-[10px] font-medium uppercase tracking-widest text-forest">
+            Cotação online · MVP ativo
+          </span>
+          <p className="text-xs text-navy-700/70">
+            3 produtos com comparativo digital em minutos
+          </p>
+        </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => {
+          {mvpProducts.map((p) => {
             const Icon = iconMap[p.icon as keyof typeof iconMap] ?? Shield;
             return (
               <Link
@@ -65,9 +74,7 @@ export default function CotarIndexPage() {
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy-50 text-navy-800">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>
-                  <Badge tone={p.salesMode === "self_service" ? "gold" : "neutral"}>
-                    {p.salesMode === "self_service" ? "Digital" : "Consultoria"}
-                  </Badge>
+                  <Badge tone="gold">Cotar online</Badge>
                 </div>
                 <div>
                   <h3 className="font-display text-xl font-light text-navy-900">{p.name}</h3>
@@ -83,6 +90,51 @@ export default function CotarIndexPage() {
               </Link>
             );
           })}
+        </div>
+
+        {/* Bloco "sob consulta": 5 ramos sem cotador no MVP, atendidos por
+            consultor sênior. PDF D4.2 — diversificação fica para Wave 3. */}
+        <div className="mt-14">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="inline-flex h-8 items-center rounded-full bg-champagne-100 px-3 text-[10px] font-medium uppercase tracking-widest text-champagne-800">
+              Sob consulta
+            </span>
+            <p className="text-xs text-navy-700/70">
+              Demais ramos atendidos por consultor sênior · cotador online
+              previsto na Wave 3
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {consultiveProducts.map((p) => {
+              const Icon = iconMap[p.icon as keyof typeof iconMap] ?? Shield;
+              return (
+                <Link
+                  key={p.id}
+                  href={`https://wa.me/5511900000000?text=${encodeURIComponent(
+                    `Olá Affida, gostaria de uma consultoria sobre ${p.name} para a minha empresa.`
+                  )}`}
+                  target="_blank"
+                  className="group flex items-center gap-4 rounded-2xl border border-champagne-200/60 bg-white/60 p-5 transition-all hover:-translate-y-0.5 hover:border-champagne-300 hover:bg-white"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-champagne-50 text-champagne-700">
+                    <Icon size={18} strokeWidth={1.5} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-display text-sm font-light text-navy-900">
+                      {p.name}
+                    </p>
+                    <p className="mt-0.5 truncate text-[11px] text-navy-700/65">
+                      {p.tagline}
+                    </p>
+                  </div>
+                  <ArrowUpRight
+                    size={14}
+                    className="shrink-0 text-navy-700/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         <div className="mt-16 rounded-3xl bg-navy-900 p-10 text-ivory">

@@ -11,6 +11,7 @@ import {
   MessageCircle,
   Download,
   Star,
+  AlertTriangle,
 } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { Input, Select, FieldGroup } from "@/components/ui/input";
@@ -318,9 +319,27 @@ export function QuoteWizard({ product }: { product: Product }) {
 
       {step === 4 && (
         <div className="animate-fade-up">
+          {/* PDF Conselho D+2 (Wave 0): substituir mockup de mensalidades por
+              "Cotação personalizada" enquanto não temos preço oficial via API.
+              Banner deixa claro que valores são REFERENCIAIS. */}
+          <div className="mb-6 flex items-start gap-4 rounded-2xl border border-champagne-300 bg-champagne-50/70 p-5 text-sm text-navy-800">
+            <AlertTriangle size={20} className="mt-0.5 shrink-0 text-champagne-700" />
+            <div>
+              <p className="font-medium text-navy-900">
+                Estimativa referencial · cotação oficial pelo consultor
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-navy-700/80">
+                Valores abaixo são <strong>estimativas</strong> baseadas em tabelas vigentes das
+                operadoras. A <strong>cotação vinculativa</strong> é emitida pela seguradora após
+                análise de risco e validação documental — seu consultor Affida envia em até 24h
+                úteis. Isto não constitui proposta SUSEP até a emissão formal pela operadora.
+              </p>
+            </div>
+          </div>
+
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div>
-              <p className="eyebrow">Proposta Affida — válida por 10 dias</p>
+              <p className="eyebrow">Estimativa referencial · {product.name}</p>
               <h1 className="heading-display mt-3 text-display-md text-navy-900">
                 Comparativo para <em className="italic text-forest">{form.razaoSocial || product.name}</em>
               </h1>
@@ -334,12 +353,12 @@ export function QuoteWizard({ product }: { product: Product }) {
                 size="md"
                 onClick={() =>
                   toast(
-                    `Proposta ${product.name} gerada em PDF — enviada ao seu e-mail e WhatsApp.`,
+                    `Resumo referencial de ${product.name} gerado — enviado para seu e-mail. Cotação vinculativa segue após contato do consultor.`,
                     "success"
                   )
                 }
               >
-                <Download size={14} /> Baixar PDF
+                <Download size={14} /> Baixar resumo
               </Button>
               <Button
                 variant="primary"
@@ -388,11 +407,15 @@ export function QuoteWizard({ product }: { product: Product }) {
                   </div>
 
                   <div className="border-y border-champagne-200/60 py-4">
-                    <p className="text-xs uppercase tracking-widest text-navy-700/60">Mensal</p>
-                    <p className="mt-1 font-display text-4xl font-light text-navy-900">
-                      {brl(p.valorMensal)}
+                    <p className="text-xs uppercase tracking-widest text-navy-700/60">
+                      Mensal estimado
                     </p>
-                    <p className="mt-1 text-xs text-navy-700/70">{brl(p.valorPorVida)} por vida</p>
+                    <p className="mt-1 font-display text-4xl font-light text-navy-900">
+                      ≈ {brl(p.valorMensal)}
+                    </p>
+                    <p className="mt-1 text-xs text-navy-700/70">
+                      ≈ {brl(p.valorPorVida)} por vida
+                    </p>
                   </div>
 
                   <ul className="space-y-2 text-xs text-navy-700/80">
@@ -420,11 +443,11 @@ export function QuoteWizard({ product }: { product: Product }) {
                     className="mt-auto"
                     onClick={() =>
                       openWhatsapp(
-                        `Olá Affida, quero contratar o plano ${p.plano} (${op?.name}) — ${brl(p.valorMensal)}/mês — para ${form.razaoSocial || "minha empresa"}.`
+                        `Olá Affida, quero a cotação oficial do plano ${p.plano} (${op?.name}) — estimado em ≈ ${brl(p.valorMensal)}/mês — para ${form.razaoSocial || "minha empresa"}.`
                       )
                     }
                   >
-                    Contratar {op?.name.split(" ")[0]}
+                    Falar com consultor
                     <ArrowRight size={14} />
                   </Button>
                 </div>

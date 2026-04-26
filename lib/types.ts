@@ -21,6 +21,14 @@ export type Product = {
   avgTicket: number;
   featured?: boolean;
   icon: string;
+  /**
+   * `mvp: true` → produto ativo no MVP da Affida (cotação online + consultor
+   *   pronto para fechar). PDF Conselho D4.2: foco em saúde + odonto + vida
+   *   nos primeiros 6 meses; demais ramos atendidos sob consulta.
+   * `mvp: false` ou ausente → produto "sob consulta" (atendimento via
+   *   WhatsApp consultivo, sem cotador online no MVP).
+   */
+  mvp?: boolean;
 };
 
 export type PipelineStage =

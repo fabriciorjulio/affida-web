@@ -117,6 +117,10 @@ export const operatorById = (id: string) => operators.find((o) => o.id === id);
 // e meta. Vida vira cross-sell sobre a base de saúde (não é mais o foco).
 // ============================================================================
 export const products: Product[] = [
+  // ──────────────── 3 PRODUTOS MVP (cotação online + closer ativo) ────────
+  // PDF Conselho D4.2: "Eliminar prateleira de 8 produtos no MVP: foco em
+  // saúde + odonto + vida (3 produtos), com cross-sell automático após 90
+  // dias de saúde ativa." Esses 3 ficam featured + mvp:true.
   {
     id: "saude-coletiva",
     code: "SAUDE_COL",
@@ -129,6 +133,7 @@ export const products: Product[] = [
     minVidas: 2,
     avgTicket: 9800,
     featured: true,
+    mvp: true,
     icon: "HeartPulse",
   },
   {
@@ -143,6 +148,7 @@ export const products: Product[] = [
     minVidas: 2,
     avgTicket: 420,
     featured: true,
+    mvp: true,
     icon: "Smile",
   },
   {
@@ -156,8 +162,14 @@ export const products: Product[] = [
     salesMode: "self_service",
     minVidas: 2,
     avgTicket: 4200,
+    featured: true,
+    mvp: true,
     icon: "Shield",
   },
+  // ──────────────── 5 PRODUTOS SOB CONSULTA (sem cotador no MVP) ───────────
+  // Atendidos via consultor sênior por WhatsApp; sem auto-serviço até a Wave
+  // 3 do PDF (D+365). Continuam listados em /cotar como linha "sob consulta"
+  // para sinalizar a completude da carteira sem comprometer foco do MVP.
   {
     id: "vida-socios",
     code: "VIDA_SOCIOS",
@@ -228,6 +240,10 @@ export const products: Product[] = [
 
 export const productById = (id: string) => products.find((p) => p.id === id);
 export const featuredProducts = products.filter((p) => p.featured);
+/** PDF Conselho D4.2 — produtos do MVP (cotador online + closer ativo). */
+export const mvpProducts = products.filter((p) => p.mvp);
+/** PDF Conselho D4.2 — demais ramos atendidos sob consulta no MVP. */
+export const consultiveProducts = products.filter((p) => !p.mvp);
 
 // ============================================================================
 // LEADS — funil ativo

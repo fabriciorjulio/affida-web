@@ -16,6 +16,15 @@
     scroll-behavior: smooth;
   }
 
+  /* Compensa o header sticky (h-16 a h-20) ao rolar para qualquer
+     elemento com id (links âncora /#consultoria, /#operadoras, etc.).
+     Sem isso, o âncora cai EXATAMENTE na borda da seção e o header
+     cobre o título. Aplicado globalmente para que TODO id seja
+     scroll-friendly. */
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   body {
     @apply bg-ivory text-navy-900 font-light;
     font-feature-settings: "ss01", "cv11";

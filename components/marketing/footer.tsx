@@ -27,27 +27,27 @@ const footerNav = [
     title: "Consultoria",
     items: [
       { label: "Processo Affida", href: "/#consultoria" },
-      { label: "Benchmark setorial", href: "/#benchmark" },
       { label: "Motor de re-oferta", href: "/#reoferta" },
-      { label: "Conciliação de faturas", href: "/#conciliacao" },
+      { label: "Operadoras parceiras", href: "/#operadoras" },
+      { label: "Falar com consultor", href: "/#contato" },
     ],
   },
   {
     title: "Institucional",
     items: [
-      { label: "Sobre a Affida", href: "/#sobre" },
-      { label: "Operadoras parceiras", href: "/#operadoras" },
+      // Apenas rotas/âncoras que existem de fato. Linkar para id
+      // inexistente (ex: /#sobre, /#carreiras, /#imprensa) faz o
+      // browser ir para o topo da home sem efeito visível, parecendo
+      // que o link "não funciona".
       { label: "Programa de indicação", href: "/parceiros" },
       { label: "Cadastrar como indicador", href: "/parceiros/cadastro" },
-      { label: "Carreiras", href: "/#carreiras" },
-      { label: "Imprensa", href: "/#imprensa" },
+      { label: "Pitch institucional", href: "/pitch" },
     ],
   },
   {
     title: "Atendimento",
     items: [
       { label: "Área do cliente", href: "/portal" },
-      { label: "Falar com consultor", href: "/#contato" },
       { label: "WhatsApp", href: "https://wa.me/5511900000000" },
       { label: "contato@affida.partners", href: "mailto:contato@affida.partners" },
     ],
@@ -70,8 +70,9 @@ export function Footer() {
             </p>
             <p className="max-w-sm text-sm leading-relaxed text-ivory/70">
               Corretora autônoma de seguros e benefícios, registrada SUSEP, com código de
-              corretagem aberto nas principais operadoras do Brasil. Foco PME e plano de saúde
-              empresarial — serviço personalizado, próximo e de alto nível.
+              corretagem aberto nas principais operadoras do Brasil. Foco principal em
+              plano de saúde empresarial — atendemos PME, médias, grandes empresas e
+              pessoa física quando necessário, com serviço personalizado e de alto nível.
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] uppercase tracking-[0.22em] text-champagne-400/80">
               <span>SUSEP</span>
@@ -108,7 +109,7 @@ export function Footer() {
           <div className="flex gap-6">
             <Link href="/legal/privacidade" className="hover:text-ivory">Privacidade (LGPD)</Link>
             <Link href="/legal/termos" className="hover:text-ivory">Termos</Link>
-            <Link href="/legal/suitability" className="hover:text-ivory">Suitability</Link>
+            <Link href="/parceiros/cadastro" className="hover:text-ivory">Programa de indicação</Link>
           </div>
         </div>
       </div>

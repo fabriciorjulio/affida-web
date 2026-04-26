@@ -47,7 +47,7 @@ export const PORTES: ReadonlyArray<{
     value: "10-49",
     label: "10 a 49 funcionários",
     classe: "Pequena empresa (EPP)",
-    hint: "Foco PME · todas operadoras",
+    hint: "Comercialmente prioritário · todas operadoras",
   },
   {
     value: "50-99",

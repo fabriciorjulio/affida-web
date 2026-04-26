@@ -93,14 +93,13 @@ export function Hero() {
         <aside className="animate-fade-up animate-delay-300 lg:col-span-5 lg:col-start-8 xl:col-span-5">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-32">
             {[
-              // Argumentos verdadeiros de uma corretora autônoma boutique:
-              // - acessibilidade às operadoras (código aberto = sem intermediário)
-              // - tempo até cotação online
-              // - foco PME (recorte de mercado real)
-              // - regulação SUSEP/ANS/LGPD
+              // Argumentos verdadeiros de uma corretora autônoma boutique.
+              // Atende PME, médias, grandes empresas e PF — não há
+              // restrição de porte/forma. PME é o nosso foco principal
+              // (volume), mas atendemos qualquer cliente que precisar.
               { value: "20+", label: "Operadoras acessíveis" },
               { value: "3 min", label: "Cotação online" },
-              { value: "100%", label: "Foco PME (2-99 vidas)" },
+              { value: "Sob medida", label: "Empresas e pessoa física" },
               { value: "SUSEP", label: "Corretora regulada" },
             ].map((stat) => (
               <div

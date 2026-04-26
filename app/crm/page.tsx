@@ -108,35 +108,69 @@ export default function CrmDashboardPage() {
           const totalComissao = urgentes.reduce((s, c) => s + c.comissaoEmRisco, 0);
           const criticos = urgentes.filter((c) => c.severity === "critico" || c.severity === "vencido").length;
           return (
-            <section className="rounded-2xl border-l-4 border-l-champagne-500 border border-champagne-200/60 bg-white p-6 shadow-[0_2px_20px_-8px_rgba(196,141,18,0.18)]">
-              <div className="flex flex-wrap items-start justify-between gap-4">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <AlertTriangle size={16} className="text-champagne-700" />
-                    <p className="eyebrow text-champagne-700">
-                      Renovações em destaque · próximos 60 dias
-                    </p>
-                  </div>
-                  <h2 className="heading-display mt-2 text-2xl text-navy-900">
-                    {urgentes.length} cliente{urgentes.length > 1 ? "s" : ""} exigindo{" "}
-                    <em className="italic text-champagne-700">ação imediata</em>.
-                  </h2>
-                  <p className="mt-1 text-xs text-navy-700/70">
-                    {criticos} em janela crítica (≤ 30 dias) · prêmio em risco{" "}
-                    <strong className="text-navy-900">{brl(totalPremio)}</strong>/mês ·
-                    comissão{" "}
-                    <strong className="text-navy-900">{brl(totalComissao)}</strong>/mês
-                  </p>
-                </div>
-                <Link
-                  href="/crm/carteira"
-                  className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
-                >
-                  Ver carteira completa <ArrowUpRight size={13} />
-                </Link>
+            <section className="overflow-hidden rounded-3xl border border-champagne-300/70 bg-gradient-to-br from-champagne-50 via-white to-champagne-50/40 shadow-[0_8px_40px_-12px_rgba(196,141,18,0.25)]">
+              {/* Faixa superior tipo "marquise" — cor sólida que destaca
+                  imediatamente o bloco como um QUADRO de alerta. */}
+              <div className="flex items-center gap-3 border-b border-champagne-300/60 bg-champagne-500 px-6 py-3 sm:px-8">
+                <AlertTriangle size={18} className="text-navy-900" strokeWidth={2.2} />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-navy-900">
+                  Quadro de Renovações · próximos 60 dias
+                </p>
+                <span className="ml-auto inline-flex items-center rounded-full bg-navy-900 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-champagne-300">
+                  {urgentes.length} cliente{urgentes.length > 1 ? "s" : ""}
+                </span>
               </div>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {/* Headline com métricas grandes — peso visual de
+                  protagonista. Closer entende a urgência em 1 segundo. */}
+              <div className="grid gap-6 px-6 py-6 sm:grid-cols-3 sm:px-8 sm:py-8">
+                <div className="sm:col-span-2">
+                  <p className="eyebrow text-champagne-700">Ação imediata</p>
+                  <h2 className="heading-display mt-2 text-3xl text-navy-900 sm:text-4xl">
+                    <em className="italic text-champagne-700">{criticos}</em> em janela crítica ·{" "}
+                    <em className="italic text-champagne-700">{urgentes.length - criticos}</em> em atenção
+                  </h2>
+                  <p className="mt-3 text-sm text-navy-700/80">
+                    Cada dia sem contato com esses clientes aumenta a chance de o
+                    concorrente apresentar proposta primeiro. Atue HOJE nos críticos
+                    e agende as conversas dos demais nos próximos 7 dias.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
+                  <div className="rounded-2xl border border-champagne-200/70 bg-white/80 p-4">
+                    <p className="text-[10px] uppercase tracking-widest text-champagne-700">
+                      Prêmio em risco
+                    </p>
+                    <p className="mt-1 font-display text-2xl font-light text-navy-900">
+                      {brl(totalPremio)}
+                      <span className="text-xs text-navy-700/55">/mês</span>
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-forest/30 bg-forest-50/40 p-4">
+                    <p className="text-[10px] uppercase tracking-widest text-forest">
+                      Comissão em risco
+                    </p>
+                    <p className="mt-1 font-display text-2xl font-light text-navy-900">
+                      {brl(totalComissao)}
+                      <span className="text-xs text-navy-700/55">/mês</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-champagne-200/50 bg-white/60 px-6 pb-6 pt-5 sm:px-8 sm:pb-8">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-navy-700/65">
+                    Top {topUrgentes.length} prioridades · ordenadas por severidade × ticket
+                  </p>
+                  <Link
+                    href="/crm/carteira"
+                    className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-2 text-xs text-ivory hover:bg-navy-700"
+                  >
+                    Ver carteira completa <ArrowUpRight size={13} />
+                  </Link>
+                </div>
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {topUrgentes.map((c) => {
                   const s = severityStyle[c.severity as RenewalSeverity];
                   return (
@@ -186,6 +220,7 @@ export default function CrmDashboardPage() {
                   + {urgentes.length - 6} clientes adicionais em renovação · veja tudo na carteira
                 </p>
               )}
+              </div>{/* fim white-bottom */}
             </section>
           );
         })()}

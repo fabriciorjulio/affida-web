@@ -73,6 +73,18 @@ export function PortalShell({
                 BG
               </div>
             </div>
+            {/* Botão "Sair do portal" no header — visível em MOBILE e
+                desktop. Antes só aparecia no sidebar lateral (hidden
+                lg:block), deixando o cliente preso no portal em mobile.
+                Aqui leva direto pra home institucional. */}
+            <Link
+              href="/"
+              aria-label="Sair do portal"
+              title="Sair do portal"
+              className="ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 text-ivory/85 hover:bg-white/10"
+            >
+              <LogOut size={14} />
+            </Link>
           </div>
         </div>
       </header>

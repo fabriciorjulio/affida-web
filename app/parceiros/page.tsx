@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/marketing/navbar";
-import { BrandSignature } from "@/components/marketing/brand-signature";
 import { Footer } from "@/components/marketing/footer";
 
 /**
@@ -129,7 +128,11 @@ export default function IndicadoresPublicPage() {
         </div>
       </section>
 
-      <BrandSignature />
+      {/* BrandSignature (bloco institucional Dress Blues) removido daqui:
+          criava transição Neutral Black (header+hero) → Dress Blues
+          (BrandSignature) → bg-sand, e duas tonalidades escuras coladas
+          fugiam do padrão fechado. Hero ink agora vai DIRETO para
+          conteúdo claro, igual o resto do site. */}
 
       {/* Quem vende */}
       <section className="bg-sand/40">

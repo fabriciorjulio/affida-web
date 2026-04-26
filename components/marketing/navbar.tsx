@@ -61,8 +61,11 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          {/* Bug corrigido: "Área do cliente" estava apontando para /cotar
+              (prateleira de produtos). Agora vai para /portal — a área
+              real do cliente logado, com apólices, faturas, sinistros. */}
           <Button
-            href="/cotar"
+            href="/portal"
             variant={isDark ? "outline" : "dark-outline"}
             size="sm"
           >
@@ -99,11 +102,15 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-2">
-              <Button href="/cotar" variant="dark-outline" size="sm">
+              {/* Mobile drawer — alinhado com versão desktop:
+                  • "Área do cliente" → /portal (não mais /cotar)
+                  • CTA gold → /cotar/saude-coletiva (produto principal,
+                    não mais legado vida-empresarial) */}
+              <Button href="/portal" variant="dark-outline" size="sm">
                 Área do cliente
               </Button>
-              <Button href="/cotar/vida-empresarial" variant="gold" size="sm">
-                Solicitar proposta
+              <Button href="/cotar/saude-coletiva" variant="gold" size="sm">
+                Cotar saúde PME
               </Button>
             </div>
           </nav>

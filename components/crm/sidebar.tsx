@@ -17,6 +17,7 @@ import {
   Menu,
   X,
   Target,
+  LogOut,
 } from "lucide-react";
 import { AffidaLogo } from "@/components/ui/logo";
 import { toast } from "@/components/ui/toaster";
@@ -67,6 +68,18 @@ function NavList({ pathname, onNavigate }: { pathname: string; onNavigate?: () =
         >
           <Settings size={16} strokeWidth={1.5} />
           Configurações
+        </Link>
+        {/* "Sair do painel" — leva o usuário de volta para a home
+            institucional. Antes o CRM não tinha caminho de saída
+            (tanto desktop quanto mobile drawer) — operador ficava
+            preso no shell. */}
+        <Link
+          href="/"
+          onClick={onNavigate}
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-ivory/60 hover:bg-navy-800/60 hover:text-ivory"
+        >
+          <LogOut size={16} strokeWidth={1.5} />
+          Sair do painel
         </Link>
         <div className="mt-4 flex items-center gap-3 rounded-xl bg-navy-800/60 p-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-champagne-500/20 font-display text-sm text-champagne-300">

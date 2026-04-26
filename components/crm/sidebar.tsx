@@ -16,12 +16,14 @@ import {
   Bell,
   Menu,
   X,
+  Target,
 } from "lucide-react";
 import { AffidaLogo } from "@/components/ui/logo";
 import { toast } from "@/components/ui/toaster";
 
 const nav = [
   { label: "Dashboard", href: "/crm", icon: LayoutDashboard },
+  { label: "Conselho", href: "/crm/conselho", icon: Target },
   { label: "Pipeline", href: "/crm/pipeline", icon: Briefcase },
   { label: "Leads", href: "/crm/leads", icon: Users },
   { label: "Carteira", href: "/crm/carteira", icon: FileText },

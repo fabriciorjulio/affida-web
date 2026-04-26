@@ -29,7 +29,7 @@ const nav = [
   { label: "Carteira", href: "/crm/carteira", icon: FileText },
   { label: "Motor de re-oferta", href: "/crm/reoferta", icon: Zap },
   { label: "Campanhas", href: "/crm/campanhas", icon: Megaphone },
-  { label: "Parceiros", href: "/crm/parceiros", icon: Handshake },
+  { label: "Indicadores", href: "/crm/parceiros", icon: Handshake },
 ];
 
 function NavList({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {

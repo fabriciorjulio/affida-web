@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -19,6 +19,9 @@ import {
   FileSpreadsheet,
   AlertTriangle,
   X,
+  Loader2,
+  Building2,
+  MapPin,
 } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { Input, Select, FieldGroup } from "@/components/ui/input";
@@ -34,6 +37,14 @@ import {
   CSV_TEMPLATE,
   type ImportedRow,
 } from "@/lib/beneficiario-import";
+import {
+  lookupCnpj,
+  formatCnae,
+  mapCnaeToGrupo,
+  grupoLabel,
+  type CnpjData,
+  type LookupError,
+} from "@/lib/cnpj-lookup";
 
 /**
  * Wizard de cotação de PLANO DE SAÚDE EMPRESARIAL.
@@ -79,7 +90,13 @@ type FormState = {
   cargo: string;
   email: string;
   telefone: string;
+  // Dados enriquecidos automaticamente pelo lookup CNPJ (BrasilAPI).
+  // Ficam disponíveis para o backend quando ele existir (envio direto à
+  // API de benchmark setorial e à subscrição da operadora).
+  cnpjData: CnpjData | null;
 };
+
+type CnpjStatus = "idle" | "loading" | "ok" | "error";
 
 // ----- ANS: 10 faixas etárias regulamentadas (RN 63 / RN 309 / Lei 9.656) -----
 //
@@ -212,7 +229,53 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
     cargo: "",
     email: "",
     telefone: "",
+    cnpjData: null,
   });
+
+  // ---------- Lookup automático de CNPJ via BrasilAPI ----------
+  // Quando o usuário completa os 14 dígitos, dispara fetch e auto-preenche
+  // razão social, CNAE e porte (sugestão). Mantém o que ele já digitou
+  // manualmente — se o campo já está preenchido, o lookup só preenche se
+  // o novo valor for diferente E o anterior estiver vazio.
+  const [cnpjStatus, setCnpjStatus] = useState<CnpjStatus>("idle");
+  const [cnpjError, setCnpjError] = useState<LookupError | null>(null);
+  const lastLookupCnpj = useRef<string>("");
+
+  useEffect(() => {
+    const digits = form.cnpj.replace(/\D/g, "");
+    if (digits.length !== 14) {
+      // Reset visual quando o usuário apaga
+      if (cnpjStatus !== "idle" && digits.length < 14) setCnpjStatus("idle");
+      return;
+    }
+    // Evita refazer a mesma busca várias vezes (CNPJ não muda)
+    if (digits === lastLookupCnpj.current) return;
+    lastLookupCnpj.current = digits;
+
+    const ctrl = new AbortController();
+    setCnpjStatus("loading");
+    setCnpjError(null);
+
+    lookupCnpj(digits, ctrl.signal).then((res) => {
+      if (ctrl.signal.aborted) return;
+      if (!res.ok) {
+        setCnpjStatus("error");
+        setCnpjError(res.error);
+        return;
+      }
+      setCnpjStatus("ok");
+      // Auto-preenche apenas campos vazios (respeita o que o usuário digitou)
+      setForm((prev) => ({
+        ...prev,
+        razaoSocial: prev.razaoSocial || res.data.razaoSocial,
+        cnae: prev.cnae || formatCnae(res.data.cnaeFiscal),
+        cnpjData: res.data,
+      }));
+    });
+
+    return () => ctrl.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.cnpj]);
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((p) => ({ ...p, [key]: value }));
@@ -374,12 +437,55 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
 
           <div className="mt-10 grid gap-6 rounded-3xl border border-champagne-200/60 bg-white p-8 md:grid-cols-2">
             <FieldGroup label="CNPJ">
-              <Input
-                value={form.cnpj}
-                onChange={(e) => set("cnpj", cnpjMask(e.target.value))}
-                placeholder="00.000.000/0000-00"
-                maxLength={18}
-              />
+              <div className="relative">
+                <Input
+                  value={form.cnpj}
+                  onChange={(e) => set("cnpj", cnpjMask(e.target.value))}
+                  placeholder="00.000.000/0000-00"
+                  maxLength={18}
+                  className="pr-9"
+                />
+                {cnpjStatus === "loading" && (
+                  <Loader2
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin text-navy-700/60"
+                  />
+                )}
+                {cnpjStatus === "ok" && (
+                  <Check
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-forest"
+                  />
+                )}
+                {cnpjStatus === "error" && (
+                  <AlertTriangle
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-champagne-700"
+                  />
+                )}
+              </div>
+              {cnpjStatus === "loading" && (
+                <p className="mt-1 text-[11px] text-navy-700/60">
+                  Buscando dados na Receita Federal…
+                </p>
+              )}
+              {cnpjStatus === "ok" && (
+                <p className="mt-1 text-[11px] text-forest">
+                  Dados carregados. Você pode editar se algum campo estiver
+                  diferente.
+                </p>
+              )}
+              {cnpjStatus === "error" && (
+                <p className="mt-1 text-[11px] text-champagne-800">
+                  {cnpjError === "not_found"
+                    ? "CNPJ não localizado na Receita. Continue preenchendo manualmente."
+                    : cnpjError === "invalid_cnpj"
+                    ? "CNPJ com formato inválido."
+                    : cnpjError === "rate_limit"
+                    ? "Limite temporário da Receita atingido — preencha manualmente."
+                    : "Não foi possível consultar agora — preencha manualmente."}
+                </p>
+              )}
             </FieldGroup>
             <FieldGroup label="Razão social">
               <Input
@@ -408,6 +514,92 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
               />
             </FieldGroup>
           </div>
+
+          {/* Card de mapeamento setorial automático — aparece quando o lookup
+              CNPJ traz CNAE. Visualiza o setor, situação e localização. O CNAE
+              fica salvo em form.cnpjData para enviar ao backend de benchmark
+              (PDF Conselho D2 + D4) quando ele estiver de pé. */}
+          {form.cnpjData && (
+            <div className="mt-6 rounded-3xl border border-forest/30 bg-forest-50/40 p-6">
+              <div className="flex items-start gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-forest text-ivory">
+                  <Building2 size={18} strokeWidth={1.6} />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-medium uppercase tracking-widest text-forest">
+                    Empresa identificada · Receita Federal
+                  </p>
+                  <p className="mt-1 font-display text-lg font-light text-navy-900">
+                    {form.cnpjData.nomeFantasia || form.cnpjData.razaoSocial}
+                  </p>
+                  {form.cnpjData.nomeFantasia && (
+                    <p className="text-xs text-navy-700/70">
+                      {form.cnpjData.razaoSocial}
+                    </p>
+                  )}
+
+                  <div className="mt-4 grid gap-3 text-xs sm:grid-cols-2">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-navy-700/60">
+                        Setor (mapeamento Affida)
+                      </p>
+                      <p className="mt-0.5 text-navy-900">
+                        {grupoLabel[mapCnaeToGrupo(form.cnpjData.cnaeFiscal)]}
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-navy-700/65">
+                        CNAE {formatCnae(form.cnpjData.cnaeFiscal)} ·{" "}
+                        {form.cnpjData.cnaeFiscalDescricao}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-navy-700/60">
+                        Situação cadastral
+                      </p>
+                      <p
+                        className={`mt-0.5 ${
+                          form.cnpjData.situacao.toUpperCase() === "ATIVA"
+                            ? "text-forest"
+                            : "text-champagne-800"
+                        }`}
+                      >
+                        {form.cnpjData.situacao}
+                        {form.cnpjData.dataInicioAtividade && (
+                          <span className="text-navy-700/65">
+                            {" "}
+                            · ativa desde{" "}
+                            {form.cnpjData.dataInicioAtividade
+                              .split("-")
+                              .reverse()
+                              .join("/")}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    {form.cnpjData.municipio && (
+                      <div className="sm:col-span-2 flex items-center gap-2">
+                        <MapPin size={12} className="text-navy-700/60" />
+                        <p className="text-navy-700/80">
+                          {form.cnpjData.municipio}/{form.cnpjData.uf}
+                          {form.cnpjData.bairro && (
+                            <span className="text-navy-700/55">
+                              {" "}
+                              · {form.cnpjData.bairro}
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  <p className="mt-4 text-[11px] text-navy-700/60">
+                    Estes dados alimentam o benchmark setorial Affida e a
+                    análise de risco da operadora. Tudo editável acima — se
+                    algo divergir, basta corrigir manualmente.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="mt-8">
             <p className="eyebrow text-champagne-700">Situação atual (opcional)</p>

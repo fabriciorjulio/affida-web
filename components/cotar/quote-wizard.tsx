@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -12,6 +12,9 @@ import {
   Download,
   Star,
   AlertTriangle,
+  Loader2,
+  Building2,
+  MapPin,
 } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { Input, Select, FieldGroup } from "@/components/ui/input";
@@ -22,7 +25,17 @@ import { toast } from "@/components/ui/toaster";
 import { brl, cnpjMask } from "@/lib/utils";
 import { operatorById } from "@/lib/mock-data";
 import { PORTES } from "@/lib/portes";
+import {
+  lookupCnpj,
+  formatCnae,
+  mapCnaeToGrupo,
+  grupoLabel,
+  type CnpjData,
+  type LookupError,
+} from "@/lib/cnpj-lookup";
 import { QuoteShell } from "./quote-shell";
+
+type CnpjStatus = "idle" | "loading" | "ok" | "error";
 
 type FormState = {
   cnpj: string;
@@ -36,6 +49,7 @@ type FormState = {
   cargo: string;
   email: string;
   telefone: string;
+  cnpjData: CnpjData | null;
 };
 
 const coberturaOpcoes = [
@@ -109,7 +123,47 @@ export function QuoteWizard({ product }: { product: Product }) {
     cargo: "",
     email: "",
     telefone: "",
+    cnpjData: null,
   });
+
+  // ---------- Lookup automático de CNPJ via BrasilAPI ----------
+  // Mesma lógica do wizard de saúde, replicada aqui para uniformidade.
+  const [cnpjStatus, setCnpjStatus] = useState<CnpjStatus>("idle");
+  const [cnpjError, setCnpjError] = useState<LookupError | null>(null);
+  const lastLookupCnpj = useRef<string>("");
+
+  useEffect(() => {
+    const digits = form.cnpj.replace(/\D/g, "");
+    if (digits.length !== 14) {
+      if (cnpjStatus !== "idle" && digits.length < 14) setCnpjStatus("idle");
+      return;
+    }
+    if (digits === lastLookupCnpj.current) return;
+    lastLookupCnpj.current = digits;
+
+    const ctrl = new AbortController();
+    setCnpjStatus("loading");
+    setCnpjError(null);
+
+    lookupCnpj(digits, ctrl.signal).then((res) => {
+      if (ctrl.signal.aborted) return;
+      if (!res.ok) {
+        setCnpjStatus("error");
+        setCnpjError(res.error);
+        return;
+      }
+      setCnpjStatus("ok");
+      setForm((prev) => ({
+        ...prev,
+        razaoSocial: prev.razaoSocial || res.data.razaoSocial,
+        cnae: prev.cnae || formatCnae(res.data.cnaeFiscal),
+        cnpjData: res.data,
+      }));
+    });
+
+    return () => ctrl.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.cnpj]);
 
   const multiplier = form.capital === "6x" ? 6 : form.capital === "24x" ? 24 : form.capital === "12x" ? 12 : 12;
   const packages = useMemo(() => packageFor(form.vidas, multiplier), [form.vidas, multiplier]);
@@ -148,12 +202,50 @@ export function QuoteWizard({ product }: { product: Product }) {
 
           <div className="mt-10 grid gap-6 rounded-3xl border border-champagne-200/60 bg-white p-8 md:grid-cols-2">
             <FieldGroup label="CNPJ">
-              <Input
-                value={form.cnpj}
-                onChange={(e) => set("cnpj", cnpjMask(e.target.value))}
-                placeholder="00.000.000/0000-00"
-                maxLength={18}
-              />
+              <div className="relative">
+                <Input
+                  value={form.cnpj}
+                  onChange={(e) => set("cnpj", cnpjMask(e.target.value))}
+                  placeholder="00.000.000/0000-00"
+                  maxLength={18}
+                  className="pr-9"
+                />
+                {cnpjStatus === "loading" && (
+                  <Loader2
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin text-navy-700/60"
+                  />
+                )}
+                {cnpjStatus === "ok" && (
+                  <Check
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-forest"
+                  />
+                )}
+                {cnpjStatus === "error" && (
+                  <AlertTriangle
+                    size={16}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-champagne-700"
+                  />
+                )}
+              </div>
+              {cnpjStatus === "loading" && (
+                <p className="mt-1 text-[11px] text-navy-700/60">
+                  Buscando dados na Receita Federal…
+                </p>
+              )}
+              {cnpjStatus === "ok" && (
+                <p className="mt-1 text-[11px] text-forest">
+                  Dados carregados. Você pode editar se algo divergir.
+                </p>
+              )}
+              {cnpjStatus === "error" && (
+                <p className="mt-1 text-[11px] text-champagne-800">
+                  {cnpjError === "not_found"
+                    ? "CNPJ não localizado — preencha manualmente."
+                    : "Não foi possível consultar — preencha manualmente."}
+                </p>
+              )}
             </FieldGroup>
 
             <FieldGroup label="Razão social">
@@ -204,6 +296,68 @@ export function QuoteWizard({ product }: { product: Product }) {
               </p>
             </div>
           </div>
+
+          {/* Card de mapeamento setorial automático (preenchido pelo lookup
+              CNPJ na Receita Federal). PDF Conselho D2 + D4: gancho para
+              benchmark CNAE+porte com cohort ≥ 50 empresas. */}
+          {form.cnpjData && (
+            <div className="mt-6 rounded-3xl border border-forest/30 bg-forest-50/40 p-6">
+              <div className="flex items-start gap-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-forest text-ivory">
+                  <Building2 size={18} strokeWidth={1.6} />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[10px] font-medium uppercase tracking-widest text-forest">
+                    Empresa identificada · Receita Federal
+                  </p>
+                  <p className="mt-1 font-display text-lg font-light text-navy-900">
+                    {form.cnpjData.nomeFantasia || form.cnpjData.razaoSocial}
+                  </p>
+                  {form.cnpjData.nomeFantasia && (
+                    <p className="text-xs text-navy-700/70">
+                      {form.cnpjData.razaoSocial}
+                    </p>
+                  )}
+
+                  <div className="mt-4 grid gap-3 text-xs sm:grid-cols-2">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-navy-700/60">
+                        Setor (mapeamento Affida)
+                      </p>
+                      <p className="mt-0.5 text-navy-900">
+                        {grupoLabel[mapCnaeToGrupo(form.cnpjData.cnaeFiscal)]}
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-navy-700/65">
+                        CNAE {formatCnae(form.cnpjData.cnaeFiscal)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-navy-700/60">
+                        Situação cadastral
+                      </p>
+                      <p
+                        className={`mt-0.5 ${
+                          form.cnpjData.situacao.toUpperCase() === "ATIVA"
+                            ? "text-forest"
+                            : "text-champagne-800"
+                        }`}
+                      >
+                        {form.cnpjData.situacao}
+                      </p>
+                    </div>
+                    {form.cnpjData.municipio && (
+                      <div className="sm:col-span-2 flex items-center gap-2">
+                        <MapPin size={12} className="text-navy-700/60" />
+                        <p className="text-navy-700/80">
+                          {form.cnpjData.municipio}/{form.cnpjData.uf}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

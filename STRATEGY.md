@@ -778,7 +778,50 @@ Seguir Conventional Commits:
    `BRAND_COMPLIANCE.md`. Removidos gradients, glows e radial-gradients
    que violavam DON'T #8.
 
-### Decisões pós-PDF Conselho (25-abr-2026)
+### Decisões pós-correção do dono (parceiro vs. indicador)
+
+17. **"Parceiro" só vale para operadora.** Orientação direta do dono:
+    "nada pode ser direcionado a ter um agente de venda; quem vai vender
+    sempre será nossa equipe própria; as parcerias são com as seguradoras
+    e não com outros corretores". Implicações implementadas:
+    - **Programa de Parceiros → Programa de Indicação** em todo o site
+      público (`/parceiros`, footer, navbar) e no CRM (sidebar mostra
+      "Indicadores", header "Indicadores · Canal de indicação · vendas
+      conduzidas pela equipe Affida").
+    - Página `/parceiros` reescrita: bloco em destaque "Quem vende é
+      sempre a equipe Affida" + remoção do termo "parceiro" no contexto
+      B2B + adição explícita "Outros corretores de seguros NÃO são
+      elegíveis — corretagem é exclusividade da equipe Affida."
+    - Beneficios renomeados: "Você não atende o cliente" + "Compliance
+      & SUSEP Affida" deixam claro que toda emissão sai sob CNPJ Affida.
+    - Pitch: "Programa de parceiros pronto" → "Programa de Indicação
+      pronto" + descrição reforça que a venda é interna.
+    - **Mantém intactos:** "operadora parceira" / "operadoras parceiras"
+      (parceria comercial real Affida ↔ seguradora), "Affida Partners"
+      (nome registrado da empresa no Manual de Marca), e o slogan
+      "Parcerias verdadeiras para construir o futuro" (assinatura
+      institucional do Manual).
+
+18. **CNPJ lookup automático via BrasilAPI** (orientação direta:
+    "quero também quando colocar o cnpj já coletar automaticamente os
+    dados da empresa, importante já deixar isso pronto para mapeamento
+    setorial e melhor oferta"):
+    - Novo módulo `lib/cnpj-lookup.ts` consome `https://brasilapi.com.br/
+      api/cnpj/v1/{cnpj}` (open source, CORS aberto, sem auth — funciona
+      em static export sem backend).
+    - Quando o usuário completa os 14 dígitos no passo 1, dispara fetch
+      assíncrono e auto-preenche **razão social, CNAE e descrição**.
+    - Feedback visual no input: spinner durante busca, ✓ verde no
+      sucesso, ⚠ champagne em erro (com mensagem específica para
+      `not_found`, `rate_limit`, `network`, etc.).
+    - **Mapeamento setorial automático**: novo helper `mapCnaeToGrupo()`
+      classifica o CNAE em 11 grupos macro (tecnologia, serviços
+      profissionais, comércio, indústria, construção, saúde-educação,
+      transporte, alimentação, agro, financeiro, outros). Card visual
+      logo abaixo do form mostra setor + situação cadastral + município
+      + CNAE oficial. Fica salvo em `form.cnpjData` pronto para enviar
+      ao backend de benchmark setorial (PDF Conselho D2 + D4).
+    - Aplicado em ambos os wizards (saúde e genérico) para uniformidade.
 
 10. **Tese reposicionada para stack vertical de 4 pilares** (Corretora
     + CRM + RPA + Financeira). Affida deixa de se vender como "broker

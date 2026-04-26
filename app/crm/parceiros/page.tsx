@@ -21,12 +21,12 @@ export default function CrmParceirosPage() {
 
   return (
     <>
-      <CrmHeader title="Parceiros" subtitle="Canal de indicação" />
+      <CrmHeader title="Indicadores" subtitle="Canal de indicação · vendas conduzidas pela equipe Affida" />
 
       <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           <div className="rounded-2xl border border-champagne-200/60 bg-white p-5">
-            <p className="text-[10px] uppercase tracking-widest text-navy-700/60">Parceiros ativos</p>
+            <p className="text-[10px] uppercase tracking-widest text-navy-700/60">Indicadores ativos</p>
             <p className="mt-2 font-display text-3xl font-light text-navy-900">
               {partners.filter((p) => p.status === "ativo").length}
             </p>

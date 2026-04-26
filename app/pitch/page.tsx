@@ -80,10 +80,10 @@ const modulos = [
   {
     icon: Handshake,
     area: "Aquisição",
-    title: "Programa de parceiros",
+    title: "Programa de Indicação",
     rotas: ["/parceiros", "/crm/parceiros"],
     description:
-      "Landing pública para captação + painel admin para onboarding, pagamento de comissão e performance por parceiro.",
+      "Landing pública para captar indicadores (contadores, RH, associações) + painel admin para onboarding, pagamento de comissão e performance. Indicador conecta — Affida vende.",
     status: "MVP pronto",
   },
   {
@@ -169,8 +169,8 @@ const diferenciais = [
   },
   {
     icon: Handshake,
-    title: "Programa de parceiros pronto",
-    desc: "Contadores, consultores de RH, influenciadores — todos com painel próprio e comissão recorrente. Multiplicador de aquisição de baixo custo.",
+    title: "Programa de Indicação pronto",
+    desc: "Contadores, consultores de RH, influenciadores PME — todos com painel próprio e comissão recorrente por INDICAÇÃO (a venda é sempre da equipe Affida). Multiplicador de aquisição de baixo custo, sem terceirizar a venda.",
   },
 ];
 
@@ -224,7 +224,7 @@ const benchmark = [
     nota: "Código de corretagem próprio aberto nas top 10 operadoras",
   },
   {
-    recurso: "Programa de parceiros estruturado",
+    recurso: "Programa de Indicação estruturado",
     affida: true,
     corretorTradicional: false,
     bidu: "parcial",

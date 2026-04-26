@@ -1,83 +1,127 @@
-import Link from "next/link";
-import { Handshake, Coins, TrendingUp, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
-import { AffidaLogo } from "@/components/ui/logo";
+import {
+  Coins,
+  TrendingUp,
+  ShieldCheck,
+  ArrowRight,
+  Users,
+  Lock,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/marketing/navbar";
 import { BrandSignature } from "@/components/marketing/brand-signature";
 import { Footer } from "@/components/marketing/footer";
 
+/**
+ * Programa de INDICAÇÃO Affida (não "parceria de venda").
+ *
+ * IMPORTANTE — orientação direta do dono:
+ *   "Nada pode ser direcionado a ter um agente de venda. Quem vai vender
+ *    sempre será nossa equipe própria. As parcerias são com as seguradoras
+ *    e não com outros corretores."
+ *
+ * Implicações no copy:
+ *   • Indicador NÃO é corretor, NÃO vende, NÃO atende cliente final.
+ *   • Indicador apenas conecta: lead chega no CRM Affida, é roteado para
+ *     o closer Affida que conduz toda a venda do início ao fim.
+ *   • Comissão é por INDICAÇÃO bem-sucedida (não por venda — porque a
+ *     venda é nossa). Modelo de afiliação, não de revenda.
+ *   • "Parceria" só aparece quando se refere a OPERADORAS parceiras
+ *     (parceria comercial real Affida ↔ seguradora).
+ *
+ * URL `/parceiros` mantida para não quebrar links externos compartilhados,
+ * mas todo o conteúdo trata o programa como "Indicação".
+ */
+
 const beneficios = [
   {
     icon: Coins,
     // PDF Conselho D7.1: comissão flat 25% recorrente compromete margem.
-    // Modelo declinante 30% (ano 1) → 15% (ano 2) → 10% (ano 3+) chega
-    // mais cedo ao parceiro E protege unit economics no longo prazo.
+    // Curva 30%→15%→10% chega mais cedo ao indicador E protege margem.
     title: "30% no ano 1, declinante",
     description:
-      "Comissão de 30% sobre o prêmio nos primeiros 12 meses, 15% no ano 2 e 10% a partir do ano 3 — enquanto a apólice estiver ativa. Modelo desenhado para te pagar mais cedo e ainda manter a relação saudável no longo prazo.",
+      "Comissão de indicação de 30% no primeiro ano, 15% no ano 2 e 10% a partir do ano 3 — enquanto a apólice indicada estiver ativa. Pagamento mensal, transparente, com cap por contrato.",
   },
   {
     icon: TrendingUp,
-    title: "Material de marketing pronto",
+    title: "Material co-branded pronto",
     description:
-      "Landing pages, materiais de divulgação, cotações co-brandedas. Você só precisa apresentar.",
+      "Landing pages, materiais de divulgação e link de indicação com seu código. Você só conecta — não precisa cotar nem atender o cliente final.",
+  },
+  {
+    icon: Lock,
+    title: "Você não atende o cliente",
+    description:
+      "Toda venda é conduzida pelo closer Affida (equipe interna SUSEP). Você indica, o time Affida cota, propõe e fecha. Sem responsabilidade jurídica nem operacional para você.",
   },
   {
     icon: ShieldCheck,
-    title: "Compliance & SUSEP",
+    title: "Compliance & SUSEP Affida",
     description:
-      "Corretora autônoma SUSEP com código aberto nas principais operadoras. Operação 100% regulada — sem risco jurídico para sua marca.",
+      "Affida é corretora autônoma SUSEP com código aberto nas principais operadoras. Toda emissão de proposta sai sob registro Affida — sem risco regulatório para sua marca.",
+  },
+];
+
+// Curva declinante por perfil de indicador. Quem está aqui CONECTA empresas
+// à Affida — não atua como corretor. Por isso explicitamente NÃO incluímos
+// "outros corretores de seguros" na lista — corretor não pode revender Affida,
+// só usar nossa cotação para o próprio cliente (caso queira ser corretor
+// preposto, é vínculo trabalhista, fora deste programa).
+const tiposIndicadores = [
+  {
+    nome: "Contadores",
+    share: "30% → 10%",
+    descricao: "Escritórios contábeis com carteira PME. Indicação acontece naturalmente na conversa de folha.",
   },
   {
-    icon: Handshake,
-    title: "Consultor dedicado",
-    description:
-      "Seu cliente é atendido por um closer sênior Affida — com a mesma qualidade que você entrega.",
+    nome: "Consultores de RH",
+    share: "30% → 10%",
+    descricao: "Especialistas em benefícios que recomendam Affida durante o desenho do pacote.",
+  },
+  {
+    nome: "Associações e sindicatos",
+    share: "30% → 10%",
+    descricao: "Entidades de classe e sindicatos patronais que querem oferecer benefício associativo.",
+  },
+  {
+    nome: "Influenciadores PME",
+    share: "30% → 10%",
+    descricao: "Criadores com audiência empresarial de RH/finanças que recomendam serviços.",
+  },
+  {
+    nome: "Afiliados digitais",
+    share: "30% → 10%",
+    descricao: "Sites, blogs e indicadores online via link de indicação.",
   },
 ];
 
-// Curva declinante por perfil de parceiro — modelo PDF D7.1.
-// Curva única: 30% ano 1 → 15% ano 2 → 10% ano 3+. Cap por contrato evita
-// distorção em prêmios atípicos. % do ano 1 abaixo destaca o pico inicial.
-const tiposParceiros = [
-  { nome: "Contadores", share: "30% → 10%", descricao: "Escritórios contábeis com carteira PME" },
-  { nome: "Associações e sindicatos", share: "30% → 10%", descricao: "Entidades de classe e setoriais" },
-  { nome: "Influenciadores de negócios", share: "30% → 10%", descricao: "Criadores com audiência PME/RH" },
-  { nome: "Afiliados digitais", share: "30% → 10%", descricao: "Sites, blogs, indicadores online" },
-  { nome: "Consultores de RH", share: "30% → 10%", descricao: "Especialistas em benefícios" },
-];
-
-export default function ParceirosPublicPage() {
+export default function IndicadoresPublicPage() {
   return (
     <main className="bg-ivory">
       <Navbar tone="dark" />
 
-      {/* Hero superior colado ao header — bg-ink (Neutral Black) cria
-          continuidade com o chrome. BrandSignature logo abaixo entrega o
-          respiro Dress Blues como bloco institucional autocontido. */}
       <section className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.08]" />
         <div className="container-wide relative z-10 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow text-champagne-500">Programa de parcerias Affida</p>
+            <p className="eyebrow text-champagne-500">Programa de Indicação Affida</p>
             <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
-              Transforme seu relacionamento em{" "}
-              <em className="italic text-champagne-300">renda recorrente.</em>
+              Indique empresas e ganhe{" "}
+              <em className="italic text-champagne-300">comissão recorrente.</em>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-              Se você atende empresários — contadores, consultores, associações, influenciadores — o
-              programa de parcerias Affida paga comissão recorrente por cada cliente indicado:
-              30% no primeiro ano, declinando para 15% e 10% — modelo desenhado para acelerar o
-              seu retorno e manter o pagamento por toda a vida da apólice.
+              Você atende empresários (contadores, RH, associações, criadores) e quer monetizar
+              esse relacionamento sem virar corretor? <strong>Indique a Affida.</strong> A venda
+              é toda nossa — você só conecta o lead. Comissão paga mensalmente enquanto a
+              apólice estiver ativa: 30% no primeiro ano, 15% no ano 2, 10% no ano 3+.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+quero+ser+parceiro+do+programa+Affida+Partners."
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+quero+entrar+no+programa+de+indica%C3%A7%C3%A3o."
                 variant="gold"
                 size="lg"
                 target="_blank"
               >
-                Quero ser parceiro <ArrowRight size={14} />
+                Quero indicar empresas <ArrowRight size={14} />
               </Button>
               <Button href="#programa" variant="outline" size="lg">
                 Como funciona
@@ -87,12 +131,35 @@ export default function ParceirosPublicPage() {
         </div>
       </section>
 
-      {/* Assinatura institucional — versão positiva do logo, p.14 do manual */}
       <BrandSignature />
+
+      {/* Quem vende */}
+      <section className="bg-sand/40">
+        <div className="container-wide py-16">
+          <div className="mx-auto flex max-w-4xl items-start gap-5 rounded-3xl border border-champagne-200/70 bg-white p-8">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-navy-900 text-champagne-300">
+              <Users size={20} strokeWidth={1.5} />
+            </span>
+            <div>
+              <p className="eyebrow text-champagne-700">Importante</p>
+              <h3 className="mt-2 font-display text-xl font-light text-navy-900">
+                Quem vende é sempre <em className="italic text-forest">a equipe Affida</em>.
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-navy-700/85">
+                Indicador conecta — closer Affida vende. Você não cota, não emite proposta,
+                não responde regulatoriamente pela apólice. Apenas envia o lead pelo seu link
+                de indicação ou WhatsApp. Toda a operação comercial e regulatória corre sob
+                CNPJ Affida com nossos closers seniores. <strong>Este não é um programa de
+                revenda nem de corretagem white-label.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-sand/50" id="programa">
         <div className="container-wide py-24">
-          <p className="eyebrow">Programa Affida Partners</p>
+          <p className="eyebrow">Programa de Indicação Affida</p>
           <h2 className="heading-display mt-4 text-display-lg text-navy-900">
             Quatro motivos pra{" "}
             <em className="italic text-forest">indicar Affida</em>.
@@ -119,16 +186,20 @@ export default function ParceirosPublicPage() {
         <div className="container-wide py-24">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="eyebrow">Perfis que atendemos</p>
+              <p className="eyebrow">Perfis aceitos</p>
               <h2 className="heading-display mt-3 text-display-lg text-navy-900">
-                Quem <em className="italic text-forest">pode</em> ser parceiro?
+                Quem pode <em className="italic text-forest">indicar</em>?
               </h2>
               <p className="mt-5 text-base text-navy-700/80">
-                Todo profissional que se relaciona com empresários e pode se beneficiar de oferecer
-                seguros empresariais como extensão natural do seu serviço.
+                Profissionais que se relacionam com empresários PME e podem oferecer a
+                indicação como extensão natural do próprio serviço.{" "}
+                <strong>
+                  Outros corretores de seguros NÃO são elegíveis — corretagem é exclusividade
+                  da equipe Affida.
+                </strong>
               </p>
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+gostaria+de+solicitar+convite+para+o+programa+de+parcerias."
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+time+Affida%2C+gostaria+de+convite+para+o+programa+de+indica%C3%A7%C3%A3o."
                 variant="primary"
                 size="lg"
                 className="mt-8"
@@ -139,16 +210,18 @@ export default function ParceirosPublicPage() {
             </div>
 
             <div className="space-y-3">
-              {tiposParceiros.map((t) => (
+              {tiposIndicadores.map((t) => (
                 <div
                   key={t.nome}
-                  className="flex items-center justify-between rounded-2xl border border-champagne-200/70 bg-white p-5"
+                  className="flex items-center justify-between gap-4 rounded-2xl border border-champagne-200/70 bg-white p-5"
                 >
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-display text-lg font-light text-navy-900">{t.nome}</p>
                     <p className="mt-1 text-xs text-navy-700/70">{t.descricao}</p>
                   </div>
-                  <span className="font-display text-2xl font-light text-champagne-700">{t.share}</span>
+                  <span className="shrink-0 font-display text-2xl font-light text-champagne-700">
+                    {t.share}
+                  </span>
                 </div>
               ))}
             </div>
@@ -160,24 +233,24 @@ export default function ParceirosPublicPage() {
         <div className="container-wide py-24">
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-champagne-500">Jornada do parceiro</p>
+              <p className="eyebrow text-champagne-500">Jornada do indicador</p>
               <h2 className="heading-display mt-4 text-display-lg text-ivory">
                 Do convite ao{" "}
                 <em className="italic text-champagne-300">primeiro pagamento</em>.
               </h2>
               <p className="mt-6 text-base text-ivory/70">
-                Tudo digital, sem contratos complicados. Transparência total sobre indicações,
-                cotações e pagamentos em um painel exclusivo.
+                Tudo digital, sem contratos complicados. Painel exclusivo para acompanhar
+                indicações e pagamentos. Você indica — Affida vende e te paga.
               </p>
             </div>
             <div className="lg:col-span-8">
               <ol className="space-y-8 border-l border-champagne-500/20 pl-8">
                 {[
-                  "Cadastro online em 5 minutos + assinatura eletrônica do contrato",
-                  "Acesso ao painel de parceiro com link de indicação e materiais co-branded",
-                  "Indique empresas por WhatsApp, e-mail, ou envio direto da cotação online",
-                  "Acompanhe status em tempo real: recebida, cotada, proposta, fechada",
-                  "Comissão paga todo dia 15: 30% no ano 1, 15% no ano 2, 10% a partir do ano 3 — enquanto a apólice estiver ativa",
+                  "Cadastro online em 5 minutos + assinatura eletrônica do termo de indicação",
+                  "Acesso ao painel com seu link de indicação único e materiais co-branded",
+                  "Indique empresas por WhatsApp, e-mail ou via link — closer Affida assume a partir daí",
+                  "Acompanhe status em tempo real: indicação recebida → cotada → proposta → fechada",
+                  "Comissão de indicação paga todo dia 15: 30% no ano 1, 15% no ano 2, 10% a partir do ano 3",
                 ].map((step, i) => (
                   <li key={i} className="relative">
                     <span className="absolute -left-[2.55rem] flex h-6 w-6 items-center justify-center rounded-full bg-champagne-500/20 text-[10px] font-medium text-champagne-300">
@@ -197,15 +270,15 @@ export default function ParceirosPublicPage() {
           <div className="mx-auto max-w-2xl">
             <p className="eyebrow">Pronto para começar?</p>
             <h2 className="heading-display mt-4 text-display-lg text-navy-900">
-              Vamos conversar sobre <em className="italic text-forest">sua carteira</em>.
+              Vamos conversar sobre <em className="italic text-forest">sua audiência</em>.
             </h2>
             <p className="mt-5 text-base text-navy-700/80">
-              Fale com o time de parcerias Affida em uma conversa de 20 minutos. Em 48h você recebe o
-              convite para o programa.
+              Conversa de 20 minutos com o time de indicação Affida. Em 48h você recebe o
+              convite e o link único para começar a indicar.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+gostaria+de+agendar+uma+conversa+de+20+minutos+sobre+o+programa+de+parcerias."
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%2C+gostaria+de+agendar+conversa+sobre+o+programa+de+indica%C3%A7%C3%A3o."
                 variant="primary"
                 size="lg"
                 target="_blank"
@@ -213,12 +286,12 @@ export default function ParceirosPublicPage() {
                 Agendar conversa <ArrowRight size={14} />
               </Button>
               <Button
-                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%21+Quero+saber+mais+sobre+o+programa+de+parcerias."
+                href="https://wa.me/5511900000000?text=Ol%C3%A1+Affida%21+Quero+saber+mais+sobre+o+programa+de+indica%C3%A7%C3%A3o."
                 variant="dark-outline"
                 size="lg"
                 target="_blank"
               >
-                WhatsApp parcerias
+                WhatsApp indicação
               </Button>
             </div>
           </div>

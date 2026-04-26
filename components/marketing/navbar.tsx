@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const nav = [
   { label: "Produtos", href: "/#produtos" },
   { label: "Consultoria", href: "/#consultoria" },
-  { label: "Parceiros", href: "/parceiros" },
+  { label: "Indique e ganhe", href: "/parceiros" },
   { label: "Para empresas", href: "/portal" },
   { label: "Painel", href: "/crm" },
 ];

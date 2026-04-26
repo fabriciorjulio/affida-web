@@ -1383,5 +1383,5 @@ export const team = [
   { id: "ana", name: "Ana Ribeiro", role: "Closer Sênior", avatar: "AR", initials: "AR" },
   { id: "lucas", name: "Lucas Azevedo", role: "Closer Sênior", avatar: "LA", initials: "LA" },
   { id: "juliana", name: "Juliana Paes", role: "SDR Especialista", avatar: "JP", initials: "JP" },
-  { id: "bernardo", name: "Bernardo Villas", role: "Head of Sales", avatar: "BV", initials: "BV" },
+  { id: "carlos", name: "Carlos Nardone", role: "CEO", avatar: "CN", initials: "CN" },
 ];

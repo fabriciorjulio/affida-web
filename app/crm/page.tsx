@@ -49,7 +49,7 @@ export default function CrmDashboardPage() {
 
   return (
     <>
-      <CrmHeader title="Bom dia, Bernardo" subtitle="Hoje · Quinta, 23 abril 2026" />
+      <CrmHeader title="Bom dia, Carlos" subtitle="Hoje · Quinta, 23 abril 2026" />
 
       <div className="flex-1 space-y-6 bg-sand/20 px-4 py-6 sm:space-y-8 sm:px-6 sm:py-8 lg:px-8">
         {/* KPIs */}

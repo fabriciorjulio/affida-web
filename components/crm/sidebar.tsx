@@ -70,11 +70,11 @@ function NavList({ pathname, onNavigate }: { pathname: string; onNavigate?: () =
         </Link>
         <div className="mt-4 flex items-center gap-3 rounded-xl bg-navy-800/60 p-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-champagne-500/20 font-display text-sm text-champagne-300">
-            BV
+            CN
           </div>
           <div className="flex-1 overflow-hidden">
-            <p className="truncate text-xs font-medium text-ivory">Bernardo Villas</p>
-            <p className="truncate text-[10px] text-ivory/60">Head of Sales · Affida</p>
+            <p className="truncate text-xs font-medium text-ivory">Carlos Nardone</p>
+            <p className="truncate text-[10px] text-ivory/60">CEO · Affida</p>
           </div>
         </div>
       </div>

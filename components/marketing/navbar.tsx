@@ -45,8 +45,10 @@ const empresasItems: Array<{
   icon: typeof Sparkles;
 }> = [
   {
-    label: "Funcionalidades",
-    description: "3 SLAs verificáveis · re-oferta proativa · benchmark CNAE",
+    // Aba "Consultoria" do nav top-level fica oculta — exposta aqui dentro
+    // do dropdown Empresas (orientação direta do dono).
+    label: "Consultoria",
+    description: "Como cuidamos da sua carteira depois da assinatura",
     href: "/#consultoria",
     icon: Sparkles,
   },

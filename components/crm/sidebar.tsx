@@ -100,11 +100,21 @@ export function CrmSidebar() {
 
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-navy-700/40 bg-navy-950 text-ivory lg:flex">
-      {/* Logo oficial Corbert (p.6) — sem substituição de fonte por Montserrat (DON'T #3).
-          Sidebar tem fundo navy-950 muito escuro → tone "light" (versão negativa branca). */}
+      {/* Logo é CLICÁVEL — leva de volta para a home institucional (`/`).
+          Bug reportado: sem o Link, usuário não tinha como sair do CRM
+          clicando no logo. Sidebar tem fundo navy-950 muito escuro →
+          tone "light" (versão negativa branca). */}
       <div className="flex h-16 items-center gap-4 border-b border-navy-700/40 px-6">
-        <AffidaLogo variant="full" tone="light" />
-        <p className="text-[10px] uppercase tracking-widest text-champagne-400">CRM</p>
+        <Link
+          href="/"
+          aria-label="Affida Partners — voltar para a home"
+          className="flex items-center gap-3 transition-opacity hover:opacity-80"
+        >
+          <AffidaLogo variant="full" tone="light" />
+          <span className="text-[10px] uppercase tracking-widest text-champagne-400">
+            CRM
+          </span>
+        </Link>
       </div>
       <NavList pathname={pathname} />
     </aside>
@@ -176,13 +186,19 @@ export function CrmHeader({ title, subtitle }: { title: string; subtitle?: strin
           />
           <aside className="relative flex h-full w-72 max-w-[85%] flex-col bg-navy-950 text-ivory shadow-2xl">
             <div className="flex h-16 items-center justify-between border-b border-navy-700/40 px-6">
-              {/* Drawer mobile — mesma versão negativa do sidebar (Corbert oficial). */}
-              <div className="flex items-center gap-4">
+              {/* Drawer mobile — logo CLICÁVEL leva à home (igual sidebar
+                  desktop). Mesma versão negativa do logo Corbert. */}
+              <Link
+                href="/"
+                aria-label="Affida Partners — voltar para a home"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 transition-opacity hover:opacity-80"
+              >
                 <AffidaLogo variant="full" tone="light" />
-                <p className="text-[10px] uppercase tracking-widest text-champagne-400">
+                <span className="text-[10px] uppercase tracking-widest text-champagne-400">
                   CRM
-                </p>
-              </div>
+                </span>
+              </Link>
               <button
                 type="button"
                 onClick={() => setOpen(false)}

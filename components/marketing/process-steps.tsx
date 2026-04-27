@@ -50,8 +50,8 @@ export function ProcessSteps() {
               <em className="italic text-champagne-300">não transacional.</em>
             </h2>
             <p className="mt-6 text-base leading-relaxed text-ivory/70">
-              Seguro não é commodity. É decisão patrimonial. Nosso processo traz clareza para
-              quem toma essa decisão.
+              Seguros e benefícios não são commodity. É decisão estratégica. Nosso processo
+              traz clareza para quem toma essa decisão.
             </p>
             <div className="mt-8 hairline bg-champagne-500" />
           </div>

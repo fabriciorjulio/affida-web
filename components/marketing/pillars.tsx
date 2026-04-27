@@ -1,43 +1,34 @@
 import { Clock, Repeat2, BarChart3 } from "lucide-react";
 
 /**
- * 3 atributos VERIFICÁVEIS COM SLA — D4.1 do PDF Conselho.
+ * 3 promessas que a Affida assume com cada cliente.
  *
- * Substitui a narrativa genérica "atendimento sofisticado / benchmark /
- * cuidado contínuo" por compromissos mensuráveis. A diferenciação real só
- * existe se for medida — então cada pilar agora carrega:
- *   - métrica explícita (number)
- *   - unidade clara (h, %, n)
- *   - prazo/ window (mensal, em D+90 etc)
- *
- * Quando o backend estiver de pé, esses 3 indicadores viram o "north star
- * dashboard" exposto também ao cliente final no portal — viram contrato
- * implícito de SLA.
+ * Reescrito em linguagem clara após feedback do dono ("não entendi
+ * direito" sobre a versão anterior em jargão técnico — ≤72h, 100%, ≥50).
+ * Aqui falamos COMO o cliente sente o serviço, não a métrica interna.
+ * As métricas viram apoio textual no rodapé de cada card.
  */
 const pillars = [
   {
     icon: Clock,
-    metric: "≤ 72h",
-    title: "Lead → vigência",
+    title: "Cotação rápida, contrato em poucos dias",
     description:
-      "Da cotação online até a vigência efetiva do plano em até 72 horas úteis — incluindo análise de risco da operadora, assinatura digital e carga inicial. Mediremos e publicaremos esse SLA mensalmente.",
-    target: "Wave 2 · D+180 · meta: mediana < 72h",
+      "Da primeira conversa até a apólice ativa em até 72 horas úteis. Sem planilhas perdidas em e-mail nem ficar esperando retorno por semanas.",
+    proof: "Meta SLA · em até 72h da cotação à vigência",
   },
   {
     icon: Repeat2,
-    metric: "100%",
-    title: "Re-oferta proativa",
+    title: "Sua carteira cuidada o ano inteiro",
     description:
-      "Cobertura de 100% da carteira ativa pelo motor de re-oferta: alerta automático em renovação 90/60/30 dias, reajuste anômalo da operadora, mudança de porte da empresa e janela de cross-sell elegível.",
-    target: "Wave 2 · D+150 · trigger ativo em toda apólice",
+      "Quando o reajuste chega, quando uma operadora lança plano novo, quando muda algo no seu setor — a Affida avisa antes do concorrente, com proposta pronta.",
+    proof: "100% da carteira monitorada continuamente",
   },
   {
     icon: BarChart3,
-    metric: "≥ 50",
-    title: "Benchmark CNAE+porte",
+    title: "Comparativo com empresas como a sua",
     description:
-      "Comparativo setorial anônimo com cohort mínimo de 50 empresas do mesmo CNAE+faixa de funcionários. Cliente vê o que pares fazem em ticket, operadora dominante e reajuste real — ANS RN 412 + carteira própria.",
-    target: "Wave 2 · D+180 · base ANS + carteira",
+      "Mostramos como empresas do seu setor e tamanho estruturam saúde, vida e benefícios. Você decide com base em dados de pares — não no achismo do corretor.",
+    proof: "Cohort de pelo menos 50 empresas por CNAE",
   },
 ];
 
@@ -46,15 +37,15 @@ export function Pillars() {
     <section className="bg-navy-900" id="consultoria">
       <div className="container-wide py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-champagne-500">3 SLAs que assumimos</p>
+          <p className="eyebrow text-champagne-500">Como cuidamos do seu plano</p>
           <h2 className="heading-display mt-4 text-display-lg text-ivory">
-            Diferenciação{" "}
-            <em className="italic text-champagne-300">com número, prazo e prova.</em>
+            Três compromissos{" "}
+            <em className="italic text-champagne-300">com você</em>.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-            Em vez de adjetivo (&ldquo;consultoria boutique&rdquo;), três compromissos mensuráveis
-            que o cliente PME pode cobrar — e que serão publicados mensalmente quando
-            atingirmos a Wave 2 (180 dias).
+            Em vez de promessas vagas (&ldquo;atendimento de excelência&rdquo;),
+            três coisas concretas que você vai sentir desde o primeiro
+            contato com a Affida.
           </p>
         </div>
 
@@ -68,13 +59,14 @@ export function Pillars() {
                 <p.icon size={22} strokeWidth={1.5} />
               </div>
               <div className="h-px w-12 bg-champagne-500/40" />
-              <p className="font-display text-4xl font-light text-champagne-300">
-                {p.metric}
+              <h3 className="font-display text-2xl font-light text-ivory">
+                {p.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-ivory/70">
+                {p.description}
               </p>
-              <h3 className="font-display text-2xl font-light text-ivory">{p.title}</h3>
-              <p className="text-sm leading-relaxed text-ivory/70">{p.description}</p>
-              <p className="text-[10px] uppercase tracking-widest text-champagne-500/80">
-                {p.target}
+              <p className="mt-auto text-[10px] uppercase tracking-widest text-champagne-500/80">
+                {p.proof}
               </p>
               <span className="absolute right-6 top-6 font-display text-5xl font-light text-champagne-500/30">
                 0{i + 1}

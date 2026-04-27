@@ -4,21 +4,21 @@ import { Badge } from "@/components/ui/badge";
 const features = [
   {
     icon: Activity,
-    title: "Motor de re-oferta",
+    title: "Motor de re-oferta e negociação",
     description:
-      "Aniversário de apólice, reajuste anunciado, mudança de comissionamento, novo produto da operadora. Nosso motor detecta em tempo real e aciona seu consultor.",
+      "Aniversário de apólice, reajuste anunciado, novo produto da operadora. Nosso motor detecta em tempo real e aciona seu consultor para renegociação proativa.",
     tag: "Inteligência proprietária",
   },
   {
     icon: LineChart,
     title: "Benchmark vivo por setor",
     description:
-      "Veja como empresas do seu CNAE e porte estruturam benefícios, qual o ticket médio por vida e quais operadoras dominam o seu setor.",
+      "Veja como empresas do seu CNAE e porte estruturam benefícios — quais produtos, ticket médio e quais operadoras dominam o seu setor.",
     tag: "Dados de +2.000 PMEs",
   },
   {
     icon: FileCheck,
-    title: "Conciliação de faturas",
+    title: "Processos operacionais e conciliação de faturas",
     description:
       "Cruzamos a fatura da operadora com seu cadastro atual — inclusões, exclusões, dependentes, retroativos. Você deixa de pagar o que não deve.",
     tag: "Economia média de 4%",
@@ -43,9 +43,9 @@ export function Advantage() {
               O que fica <em className="italic text-champagne-300">depois</em> da assinatura.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-              A maioria das corretoras vende e esquece. Aqui, o relacionamento começa quando a
-              apólice entra em vigência. Nossa tecnologia proprietária mantém a sua carteira
-              cuidada todos os dias do ano.
+              A maioria das corretoras vende e esquece. Aqui, o relacionamento começa muito
+              antes da apólice entrar em vigência — atendimento humano e próximo, com
+              tecnologia proprietária mantendo sua carteira cuidada todos os dias do ano.
             </p>
 
             <div className="mt-10 rounded-2xl border border-champagne-500/20 bg-navy-800/60 p-6 backdrop-blur-sm">
@@ -57,7 +57,7 @@ export function Advantage() {
                 <span className="text-champagne-300">este mês</span>
               </p>
               <p className="mt-2 text-sm text-ivory/65">
-                Entre reajustes anunciados, novos produtos e janelas de renovação.
+                Entre processos operacionais, reajustes anunciados, novos produtos e janelas de renovação.
               </p>
             </div>
           </div>

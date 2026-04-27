@@ -21,6 +21,7 @@ import { Input, Select, FieldGroup } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/components/ui/toaster";
+import { addLead } from "@/lib/lead-store";
 
 /**
  * Jornada MGM (Member Get Member) — orientação direta do dono:
@@ -133,6 +134,26 @@ export default function CadastroIndicadorPage() {
     e.preventDefault();
     if (!canSubmit) return;
     const c = generateCode(form.email);
+
+    // Persiste o cadastro do indicador como LEAD interno do CRM
+    // (origin="indicador"). Quando o backend FastAPI estiver de pé,
+    // substituir por POST /api/leads. CRM lê de localStorage hoje.
+    try {
+      addLead({
+        origin: "indicador",
+        nome: form.empresa || form.nome,
+        cnpj: form.cnpj || undefined,
+        contact: {
+          nome: form.nome,
+          email: form.email,
+          telefone: form.telefone,
+        },
+        observacao: `Indicador · ${form.perfil}${form.faixaContatos ? ` · ${form.faixaContatos}` : ""} · código ${c}${form.cidade ? ` · ${form.cidade}/${form.uf}` : ""}`,
+      });
+    } catch {
+      /* placeholder; não bloqueia UX */
+    }
+
     setCode(c);
     setStep(2);
   }
@@ -160,7 +181,7 @@ export default function CadastroIndicadorPage() {
             <ArrowLeft size={14} /> Voltar para o programa de indicação
           </Link>
           <p className="eyebrow mt-6 text-champagne-500">
-            Programa de Indicação Affida · Cadastro
+            Affida Partners Network · Cadastro
           </p>
           <h1 className="heading-display mt-3 text-display-lg text-ivory text-balance">
             {step === 1 && (

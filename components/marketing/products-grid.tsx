@@ -10,6 +10,7 @@ import {
   PawPrint,
   ArrowRight,
   ArrowUpRight,
+  Sparkles,
 } from "lucide-react";
 
 /**
@@ -39,14 +40,56 @@ export function ProductsGrid() {
               <em className="italic text-champagne-300">começar</em>?
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-ivory/70">
-            Saúde é o ponto de entrada da maioria. Os demais ramos vêm como
-            cross-sell sobre a base — sempre com um consultor sênior.
-          </p>
         </div>
 
-        {/* ═════════ Bloco 1 — SAÚDE & ODONTO (âncora, ocupa toda a linha) ═════════ */}
+        {/* ═════════ Bloco ZERO — AFFIDA ASSESSMENT (entrada consultiva) ═════════
+            Antes de cotar, oferecemos um diagnóstico gratuito da política
+            atual de benefícios do cliente — entender posicionamento e gaps
+            é o melhor caminho para uma cotação que faça sentido.
+            (Pedido direto do dono: sugestão "Affida Assessment" como primeiro
+            card, com CTA "Serviço sem custo".) */}
         <div className="mt-12">
+          <Link
+            href={`https://wa.me/5511900000000?text=${encodeURIComponent(
+              "Olá Affida, gostaria de fazer o Affida Assessment — diagnóstico gratuito da minha política de benefícios."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative flex flex-col gap-8 overflow-hidden rounded-3xl border border-forest/40 bg-gradient-to-br from-navy-800 via-navy-900 to-forest-900/20 p-8 transition-all hover:-translate-y-0.5 hover:border-forest/60 sm:p-10 lg:flex-row lg:items-center lg:gap-14"
+          >
+            <div className="flex shrink-0 items-center gap-4">
+              <span className="flex h-20 w-20 items-center justify-center rounded-2xl bg-forest/20 text-forest-200">
+                <Sparkles size={32} strokeWidth={1.4} />
+              </span>
+            </div>
+
+            <div className="flex-1">
+              <span className="inline-flex items-center rounded-full bg-forest/30 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-forest-200">
+                Comece por aqui
+              </span>
+              <h3 className="mt-4 font-display text-3xl font-light text-ivory sm:text-4xl">
+                Affida Assessment
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
+                Entender seus atuais benefícios e como você está posicionado
+                é o melhor caminho. Avaliamos com você:
+              </p>
+              <ul className="mt-3 space-y-1.5 text-sm text-ivory/80">
+                <li>• Há espaço para redução de custo e melhora de coberturas?</li>
+                <li>• Estou atendendo a convenção coletiva?</li>
+                <li>• Como desenhar uma política que aumente a percepção dos funcionários sem elevar custo?</li>
+                <li>• Estou competitivo frente aos meus concorrentes?</li>
+              </ul>
+            </div>
+
+            <div className="flex shrink-0 items-center gap-2 rounded-full border border-forest-200/40 bg-forest/30 px-6 py-3 text-sm font-medium text-forest-100 transition-all group-hover:bg-forest/50">
+              Serviço sem custo <ArrowRight size={14} />
+            </div>
+          </Link>
+        </div>
+
+        {/* ═════════ Bloco 1 — SAÚDE & ODONTO (produto principal) ═════════ */}
+        <div className="mt-6">
           <Link
             href="/cotar/saude-coletiva"
             className="group relative flex flex-col gap-8 overflow-hidden rounded-3xl border border-champagne-400/40 bg-gradient-to-br from-navy-800 to-navy-900 p-8 transition-all hover:-translate-y-0.5 hover:border-champagne-300/60 sm:p-10 lg:flex-row lg:items-center lg:gap-14"

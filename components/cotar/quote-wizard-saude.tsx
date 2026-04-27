@@ -45,6 +45,7 @@ import {
   type CnpjData,
   type LookupError,
 } from "@/lib/cnpj-lookup";
+import { addLead } from "@/lib/lead-store";
 
 /**
  * Wizard de cotação de PLANO DE SAÚDE EMPRESARIAL.
@@ -439,8 +440,14 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
       : 0;
 
   // ---------- Validação por etapa ----------
+  // Bug reportado: usuário preenchia CNPJ + funcionários e o botão Continuar
+  // ficava bloqueado porque exigia também razão social. Relaxado: só CNPJ
+  // (14 dígitos digitados → "00.000.000/0000-00" = 18 chars com máscara) é
+  // obrigatório no passo 1. Razão social é auto-preenchida pelo lookup
+  // BrasilAPI (e o closer Affida ajusta depois se o lookup falhar).
+  const cnpjDigits = form.cnpj.replace(/\D/g, "").length;
   const canAdvance =
-    (step === 1 && form.cnpj.length >= 14 && form.razaoSocial.length > 2) ||
+    (step === 1 && cnpjDigits === 14) ||
     (step === 2 &&
       form.beneficiarios.length >= 1 &&
       form.beneficiarios.every((b) => b.dataNascimento && b.sexo && b.parentesco) &&
@@ -1311,7 +1318,38 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => setStep(Math.min(totalSteps, step + 1))}
+            onClick={() => {
+              const next = Math.min(totalSteps, step + 1);
+              // Quando avança do passo 3 → 4 (concluiu contato), persiste o
+              // lead no localStorage. Backend FastAPI substituirá isso por
+              // POST /api/leads. CRM mostra os leads em /crm/leads e
+              // /crm/pipeline misturados aos mocks.
+              if (step === 3) {
+                try {
+                  addLead({
+                    origin: "cotacao_saude",
+                    nome: form.razaoSocial || form.cnpjData?.razaoSocial || "Empresa sem razão social",
+                    cnpj: form.cnpj,
+                    cnae: form.cnpjData ? formatCnae(form.cnpjData.cnaeFiscal) : undefined,
+                    setor: form.cnpjData ? grupoLabel[mapCnaeToGrupo(form.cnpjData.cnaeFiscal)] : undefined,
+                    vidas: totalVidas,
+                    produto: product.name,
+                    contact: {
+                      nome: form.nome,
+                      email: form.email,
+                      telefone: form.telefone,
+                      cargo: form.cargo,
+                    },
+                    refCode: refCode ?? undefined,
+                    observacao: `Cotação saúde · ${totalVidas} vida(s) · idade média ${idadeMedia} anos${form.operadoraAtual ? ` · vinha de ${form.operadoraAtual}` : ""}`,
+                  });
+                  toast(`Lead criado e roteado para a equipe Affida.`, "success");
+                } catch (e) {
+                  // Silencia: persistência é placeholder, não bloqueia UX
+                }
+              }
+              setStep(next);
+            }}
             {...(canAdvance ? {} : { disabled: true })}
           >
             {step === 3 ? "Gerar comparativo" : "Continuar"}

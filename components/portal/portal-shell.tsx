@@ -40,7 +40,15 @@ export function PortalShell({
           também ganha bg-ink para continuar a fita superior. */}
       <header className="sticky top-0 z-30 border-b border-white/10 bg-ink/95 backdrop-blur-md">
         <div className="container-wide flex h-16 items-center justify-between gap-3">
-          <Link href="/portal" className="flex min-w-0 items-center gap-4" aria-label="Affida Partners — portal do cliente">
+          {/* Logo CLICÁVEL leva para a HOME institucional (não pra /portal).
+              Bug reportado: ao clicar no logo dentro do portal, usuário
+              esperava voltar para a tela principal mas ficava no /portal.
+              "Portal do cliente" continua como label discreta ao lado. */}
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-4"
+            aria-label="Affida Partners — voltar para a home"
+          >
             <AffidaLogo variant="full" tone="light" />
             <span className="hidden text-[10px] uppercase tracking-[0.2em] text-champagne-400 md:inline">
               Portal do cliente

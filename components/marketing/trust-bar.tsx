@@ -1,8 +1,13 @@
 /**
- * Trust bar — substitui a antiga "Em associação com MDS / Ardonagh / Brokerslink"
- * (que vinculava a Affida a um chapéu institucional). A Affida é uma corretora
- * autônoma com SUSEP e código aberto nas principais operadoras — então o
- * argumento de credibilidade aqui são as PRÓPRIAS operadoras parceiras.
+ * Trust bar — operadoras parceiras Affida.
+ *
+ * Lista revisada conforme orientação direta do dono:
+ *   • Hapvida REMOVIDA da lista
+ *   • Care Plus e Omint ADICIONADAS (planos premium do segmento alto)
+ *   • Eyebrow alterada: "Código de corretagem aberto em" → "Principais
+ *     operadoras parceiras Affida"
+ *   • Copy direita atualizada para enfatizar inteligência consultiva na
+ *     negociação (não "sem intermediários" que soa transacional)
  */
 const operadoras = [
   "Amil",
@@ -10,7 +15,8 @@ const operadoras = [
   "SulAmérica",
   "Porto Saúde",
   "Unimed",
-  "Hapvida",
+  "Care Plus",
+  "Omint",
 ];
 
 export function TrustBar() {
@@ -18,7 +24,7 @@ export function TrustBar() {
     <section className="border-y border-champagne-500/10 bg-navy-900" id="operadoras">
       <div className="container-wide flex flex-col items-center justify-between gap-6 py-10 md:flex-row md:gap-8">
         <p className="eyebrow text-champagne-500 md:max-w-[14rem]">
-          Código de corretagem aberto em
+          Principais operadoras parceiras Affida
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:gap-x-10 md:gap-x-12">
           {operadoras.map((nome) => (
@@ -31,8 +37,8 @@ export function TrustBar() {
           ))}
         </div>
         <p className="max-w-xs text-center text-xs text-ivory/65 md:text-right">
-          Sem intermediários. Negociamos direto com a operadora — comissão e condições
-          transparentes para o cliente PME.
+          Com inteligência consultiva, negociamos com as operadoras as melhores
+          condições para atender as necessidades de cada cliente.
         </p>
       </div>
     </section>

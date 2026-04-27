@@ -102,23 +102,31 @@ export default function IndicadoresPublicPage() {
         <div className="absolute inset-0 bg-affida-pattern bg-repeat opacity-[0.08]" />
         <div className="container-wide relative z-10 py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow text-champagne-500">Programa de Indicação Affida</p>
+            <p className="eyebrow text-champagne-500">Affida Partners Network</p>
             <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
               Indique empresas e ganhe{" "}
               <em className="italic text-champagne-300">comissão recorrente.</em>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
-              Você atende empresários (contadores, RH, associações, criadores) e quer monetizar
-              esse relacionamento sem virar corretor? <strong>Indique a Affida.</strong> A venda
-              é toda nossa — você só conecta o lead. Comissão paga mensalmente enquanto a
-              apólice estiver ativa: 30% no primeiro ano, 15% no ano 2, 10% no ano 3+.
+              O <strong>Affida Partners Network</strong> é o programa oficial de
+              relacionamento e expansão comercial da Affida Partners, criado para
+              conectar profissionais estratégicos, consultores, executivos,
+              empresários e influenciadores de mercado que desejam gerar
+              oportunidades de negócios em parceria com a Affida.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-ivory/70">
+              <strong className="text-champagne-300">Objetivo:</strong> ampliar
+              presença comercial, acelerar crescimento e construir relações
+              sustentáveis de longo prazo. Indicador conecta o lead — a venda é
+              toda da equipe Affida. Comissão recorrente: 30% no primeiro ano,
+              15% no ano 2, 10% no ano 3+.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               {/* Jornada MGM real — leva ao formulário de cadastro próprio,
                   não mais para o WhatsApp. Indicador completa o cadastro
                   online e recebe seu link único de indicação na hora. */}
               <Button href="/parceiros/cadastro" variant="gold" size="lg">
-                Quero indicar empresas <ArrowRight size={14} />
+                Quero entrar no Network <ArrowRight size={14} />
               </Button>
               <Button href="#programa" variant="outline" size="lg">
                 Como funciona
@@ -160,7 +168,7 @@ export default function IndicadoresPublicPage() {
 
       <section className="bg-sand/50" id="programa">
         <div className="container-wide py-24">
-          <p className="eyebrow">Programa de Indicação Affida</p>
+          <p className="eyebrow">Affida Partners Network</p>
           <h2 className="heading-display mt-4 text-display-lg text-navy-900">
             Quatro motivos pra{" "}
             <em className="italic text-forest">indicar Affida</em>.

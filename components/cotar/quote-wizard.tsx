@@ -179,8 +179,13 @@ export function QuoteWizard({ product }: { product: Product }) {
     }));
   }
 
+  // Bug reportado: passo 1 ficava bloqueado se a razão social estivesse
+  // vazia (quando o lookup CNPJ falhava). Relaxado: só CNPJ válido (14
+  // dígitos) e número de vidas válido — razão social é auto-preenchida
+  // pelo lookup BrasilAPI ou ajustada depois pelo closer.
+  const cnpjDigits = form.cnpj.replace(/\D/g, "").length;
   const canAdvance =
-    (step === 1 && form.cnpj.length >= 14 && form.razaoSocial.length > 2 && form.vidas >= product.minVidas) ||
+    (step === 1 && cnpjDigits === 14 && form.vidas >= product.minVidas) ||
     (step === 2 && !!form.capital) ||
     (step === 3 && form.nome && form.email && form.telefone) ||
     step === 4;

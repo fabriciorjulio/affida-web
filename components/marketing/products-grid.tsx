@@ -109,7 +109,7 @@ export function ProductsGrid() {
                 Produto principal
               </span>
               <h3 className="mt-4 font-display text-3xl font-light text-ivory sm:text-4xl">
-                Plano de saúde + odonto PME
+                Plano de saúde + odonto empresarial
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
                 Cotação online em minutos nas principais operadoras do Brasil —
@@ -120,7 +120,7 @@ export function ProductsGrid() {
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ivory/65">
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />
-                  4 operadoras-âncora
+                  Operadoras parceiras
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />

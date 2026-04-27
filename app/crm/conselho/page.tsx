@@ -41,7 +41,7 @@ const kpis: Array<{
   status: WaveStatus;
 }> = [
   {
-    label: "Carteira ativa (apólices saúde PME)",
+    label: "Carteira ativa (apólices saúde empresarial)",
     wave1: "10",
     wave2: "50",
     wave3: "200",
@@ -185,7 +185,7 @@ const regulatorio: Array<{
   {
     frente: "Saúde — pool de risco",
     norma: "ANS RN 309/2012",
-    acao: "Documento explicando regra ao cliente PME ≤ 29 vidas",
+    acao: "Documento explicando regra ao cliente empresarial ≤ 29 vidas",
     prazo: "D+30",
     status: "pendente",
     owner: "Compliance",
@@ -306,7 +306,7 @@ const pilares = [
   {
     icon: Briefcase,
     nome: "Corretora (SUSEP)",
-    funcao: "Origem de carteira regulada de saúde/vida PME",
+    funcao: "Origem de carteira regulada de saúde/vida empresarial",
     receita: "Comissão de operadora (8-15% do prêmio)",
     fosso: "Direito de relacionamento + dado primário do beneficiário",
   },
@@ -329,7 +329,7 @@ const pilares = [
     nome: "Financeira (SCD/IP)",
     funcao: "Antecipação de comissão a parceiros, parcelamento de prêmio, folha",
     receita: "Spread + tarifa",
-    fosso: "Embedded finance no fluxo de saúde PME",
+    fosso: "Embedded finance no fluxo de saúde empresarial",
   },
 ];
 
@@ -395,7 +395,7 @@ export default function ConselhoPage() {
           <p className="mt-3 max-w-3xl text-sm text-navy-700/80">
             Tese revisada do Conselho: o jogo não é &ldquo;ser broker boutique digital&rdquo;,
             é ser o <strong>sistema operacional financeiro-regulatório do plano de saúde
-            PME</strong>. Os 4 pilares se alimentam mutuamente sobre a mesma carteira.
+            empresarial</strong>. Os 4 pilares se alimentam mutuamente sobre a mesma carteira.
           </p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">

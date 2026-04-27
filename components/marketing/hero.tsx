@@ -43,23 +43,27 @@ export function Hero() {
               Plano de saúde empresarial · Corretora SUSEP
             </p>
 
-            {/* Aplicação primária do logo (Manual p.14 col 2, p.26): fundo Dress Blues + AFFIDA gigante em UP cream para máxima legibilidade. Renderizado a partir da máscara oficial extraída do PDF p.6 — Corbert Demi Bold Extended preservado. */}
+            {/* Logo no hero card: WORDMARK ONLY (sem o símbolo lemniscata).
+                Pedido direto do dono na screenshot anotada: "aqui na parte
+                superior excluiria o símbolo e deixaria só a logo sem símbolo".
+                Continua em UP cream sobre Dress Blues (Manual p.14 col 2). */}
             <div className="mt-8 flex">
               <AffidaLogo
-                variant="stacked"
+                variant="wordmark"
                 tone="gold"
-                className="h-24 sm:h-32"
+                className="h-16 sm:h-20"
               />
             </div>
 
             <h1 className="mt-10 font-display text-3xl font-light leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl lg:text-5xl">
-              Plano de saúde PME que{" "}
-              <em className="italic font-light text-champagne-300">cuida de quem cuida</em>.
+              Plano de saúde para{" "}
+              <em className="italic font-light text-champagne-300">empresas</em> que cuida de
+              quem cuida.
             </h1>
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
-              Cotação em minutos nas principais operadoras de saúde do Brasil — Amil, Bradesco
-              Saúde, SulAmérica e Unimed — com código de corretagem direto.
+              Análise de mercado em minutos nas principais operadoras de saúde do Brasil —
+              Amil, Care Plus, Bradesco, Omint, Porto Seguro, Sul América e Unimed.
               Consultoria boutique, comparativo transparente e benchmark setorial por CNAE.
             </p>
 
@@ -100,10 +104,10 @@ export function Hero() {
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-32">
             {[
               // Argumentos verdadeiros de uma corretora autônoma boutique.
-              // Atende PME, médias, grandes empresas e PF — não há
-              // restrição de porte/forma. PME é o nosso foco principal
+              // Atende empresas de todos os portes e pessoa física — sem
+              // restrição de porte/forma. Empresarial é o nosso foco principal
               // (volume), mas atendemos qualquer cliente que precisar.
-              { value: "20+", label: "Operadoras acessíveis" },
+              { value: "10+", label: "Operadoras acessíveis" },
               { value: "3 min", label: "Cotação online" },
               { value: "Sob medida", label: "Empresas e pessoa física" },
               { value: "SUSEP", label: "Corretora regulada" },

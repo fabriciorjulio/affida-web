@@ -261,7 +261,7 @@ export function QuoteWizard({ product }: { product: Product }) {
               />
             </FieldGroup>
 
-            {/* O driver comercial em PME é número de funcionários (=vidas
+            {/* O driver comercial empresarial é número de funcionários (=vidas
                 potenciais), não faturamento. A classe legal SEBRAE entra
                 como apoio textual no fim de cada opção. */}
             <FieldGroup label="Tamanho da empresa (funcionários)">
@@ -375,7 +375,7 @@ export function QuoteWizard({ product }: { product: Product }) {
             </h1>
             <p className="mt-4 text-base text-navy-700/80">
               Capital segurado é o valor pago aos beneficiários em caso de sinistro. A escolha mais comum
-              para PME é 12× o salário médio.
+              para empresas é 12× o salário médio.
             </p>
           </div>
 

@@ -89,7 +89,7 @@ const modulos = [
   {
     icon: UserCircle2,
     area: "Retenção",
-    title: "Portal do cliente PME",
+    title: "Portal do cliente empresarial",
     rotas: ["/portal", "/portal/apolices", "/portal/proposta"],
     description:
       "Experiência premium logada: visão consolidada de vidas e prêmio, apólices ativas, proposta 2026 interativa, WhatsApp direto com closer.",
@@ -145,17 +145,17 @@ const diferenciais = [
   {
     icon: UserCircle2,
     title: "Portal do cliente é o ativo",
-    desc: "Corretor PME tradicional entrega PDF no e-mail. Nós entregamos um portal logado, com benchmark setorial e proposta interativa. Vira razão pra não trocar de corretora.",
+    desc: "Corretor tradicional entrega PDF no e-mail. Nós entregamos um portal logado, com benchmark setorial e proposta interativa. Vira razão pra não trocar de corretora.",
   },
   {
     icon: Repeat2,
     title: "Motor de reoferta proativo",
-    desc: "Ninguém no segmento PME tem. A carteira fica monitorada 24/7 por 7 tipos de trigger. Closer acorda com a fila de oportunidades já pronta, com receita estimada.",
+    desc: "Ninguém no segmento empresarial tem. A carteira fica monitorada 24/7 por 7 tipos de trigger. Closer acorda com a fila de oportunidades já pronta, com receita estimada.",
   },
   {
     icon: Sparkles,
     title: "Identidade de marca consultiva",
-    desc: "Design premium (navy + champagne + forest, tipografia display) tira a Affida da categoria commodity. Para decisor C-level PME, isso muda a percepção de valor.",
+    desc: "Design premium (navy + champagne + forest, tipografia display) tira a Affida da categoria commodity. Para decisor C-level empresarial, isso muda a percepção de valor.",
   },
   {
     icon: BarChart3,
@@ -170,7 +170,7 @@ const diferenciais = [
   {
     icon: Handshake,
     title: "Affida Partners Network pronto",
-    desc: "Contadores, consultores de RH, influenciadores PME — todos com painel próprio e comissão recorrente por INDICAÇÃO (a venda é sempre da equipe Affida). Multiplicador de aquisição de baixo custo, sem terceirizar a venda.",
+    desc: "Contadores, consultores de RH, influenciadores B2B — todos com painel próprio e comissão recorrente por INDICAÇÃO (a venda é sempre da equipe Affida). Multiplicador de aquisição de baixo custo, sem terceirizar a venda.",
   },
 ];
 
@@ -181,7 +181,7 @@ const benchmark = [
     corretorTradicional: false,
     bidu: "parcial",
     minutoSeguros: "parcial",
-    nota: "Foco PME, Vida + Saúde, com rationale consultivo",
+    nota: "Foco empresarial, Vida + Saúde, com rationale consultivo",
   },
   {
     recurso: "Portal logado pro cliente",
@@ -189,7 +189,7 @@ const benchmark = [
     corretorTradicional: false,
     bidu: false,
     minutoSeguros: false,
-    nota: "Diferencial real no segmento PME",
+    nota: "Diferencial real no segmento empresarial",
   },
   {
     recurso: "Motor de reoferta com triggers",
@@ -197,7 +197,7 @@ const benchmark = [
     corretorTradicional: false,
     bidu: false,
     minutoSeguros: false,
-    nota: "Ninguém no mercado PME tem",
+    nota: "Ninguém no mercado empresarial tem",
   },
   {
     recurso: "Benchmark setorial CNAE",
@@ -232,7 +232,7 @@ const benchmark = [
     nota: "Comissão recorrente + painel próprio",
   },
   {
-    recurso: "Foco em PME (não B2C auto)",
+    recurso: "Foco em empresas (não B2C auto)",
     affida: true,
     corretorTradicional: true,
     bidu: false,
@@ -259,8 +259,8 @@ const melhores = [
     desc: "Motor de reoferta converte carteira existente em receita recorrente adicional. LTV cresce sem CAC adicional.",
   },
   {
-    point: "Entrada premium no mercado PME",
-    desc: "PME brasileira é mal atendida: ou corretor descolado, ou plataforma B2C mal adaptada. Affida preenche o vácuo.",
+    point: "Entrada premium no mercado empresarial",
+    desc: "A empresa brasileira é mal atendida: ou corretor descolado, ou plataforma B2C mal adaptada. Affida preenche o vácuo.",
   },
   {
     point: "Stack tecnológico proprietário",
@@ -287,7 +287,7 @@ const gaps = [
   },
   {
     severity: "medio",
-    gap: "Custo de aquisição PME é estruturalmente alto",
+    gap: "Custo de aquisição empresarial é estruturalmente alto",
     desc: "Vida empresarial tem ciclo 30-90 dias, decisor resistente e ticket médio moderado. Tráfego pago puro leva CAC a R$ 4-6k por cliente — o que comprime payback e limita escala agressiva.",
     mitigacao: "Peso alto em programa de parceiros (contadores = CAC baixíssimo), conteúdo de autoridade SEO e indicações clientes com incentivo recorrente.",
   },
@@ -300,14 +300,14 @@ const gaps = [
   {
     severity: "medio",
     gap: "Marca desconhecida num mercado relacional",
-    desc: "PME compra seguro de quem conhece. Em cidade menor, o corretor do primo ganha da plataforma bonita. Barreira cultural, não só de branding — e se estende à defesa contra concorrência na renovação.",
+    desc: "Empresário compra seguro de quem conhece. Em cidade menor, o corretor do primo ganha da plataforma bonita. Barreira cultural, não só de branding — e se estende à defesa contra concorrência na renovação.",
     mitigacao: "Ancoragem em SUSEP + código aberto nas top operadoras nos primeiros 18 meses, case studies premium, relacionamento direto com associações setoriais, sindicatos patronais e contadores.",
   },
   {
     severity: "baixo",
     gap: "Benchmark setorial precisa de dados reais",
-    desc: "Hoje os números do CNAE 6435-2 são inferidos. Pra virar o ativo proprietário que defende carteira na renovação, precisa base consolidada ANS + RN 412 + bureau PME + dados anonimizados da própria carteira ao longo do tempo.",
-    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS RN 412/RN 565 + dados públicos SUSEP + enriquecimento Serasa PME + retroalimentação da própria carteira a partir do mês 9.",
+    desc: "Hoje os números do CNAE 6435-2 são inferidos. Pra virar o ativo proprietário que defende carteira na renovação, precisa base consolidada ANS + RN 412 + bureau de mercado + dados anonimizados da própria carteira ao longo do tempo.",
+    mitigacao: "Pipeline de dados nos primeiros 6 meses: ANS RN 412/RN 565 + dados públicos SUSEP + enriquecimento Serasa Experian + retroalimentação da própria carteira a partir do mês 9.",
   },
 ];
 
@@ -529,7 +529,7 @@ export default function PitchPage() {
           <p className="eyebrow text-champagne-500">03 · Diferenciais vs mercado</p>
           <h2 className="heading-display mt-4 text-display-lg text-ivory">
             Seis coisas que{" "}
-            <em className="italic text-champagne-300">ninguém no segmento PME entrega junto</em>.
+            <em className="italic text-champagne-300">ninguém no segmento empresarial entrega junto</em>.
           </h2>
 
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -557,8 +557,8 @@ export default function PitchPage() {
             <em className="italic text-forest">quem disputa o cliente</em>.
           </h2>
           <p className="mt-5 max-w-3xl text-base text-navy-700/80">
-            Olhamos três arquétipos: corretor PME tradicional (nosso concorrente real em 80% dos
-            casos), Bidu Corretora (plataforma digital PME/PF) e MinutoSeguros (plataforma digital
+            Olhamos três arquétipos: corretor tradicional (nosso concorrente real em 80% dos
+            casos), Bidu Corretora (plataforma digital B2C/PF) e MinutoSeguros (plataforma digital
             B2C). Não incluímos AON/Marsh/MDS porque atacam enterprise.
           </p>
 
@@ -706,7 +706,7 @@ export default function PitchPage() {
 
           <div className="mt-8 rounded-2xl border border-champagne-200/70 bg-white/70 p-4 text-xs text-navy-700/70 sm:p-5">
             <strong className="text-navy-900">Fonte:</strong> análise pública dos sites em abril/2026.
-            Bidu e MinutoSeguros são fortes em auto/residencial B2C; no PME vida/saúde, a experiência
+            Bidu e MinutoSeguros são fortes em auto/residencial B2C; em vida/saúde empresarial, a experiência
             atual é limitada. &quot;Parcial&quot; indica presença tímida ou apenas para alguns produtos.
           </div>
         </div>
@@ -898,7 +898,7 @@ export default function PitchPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base text-ivory/75">
             O que precisamos agora: decisão sobre rota de integração API com Bradesco Saúde + Amil
-            como operadoras-piloto, e três parceiros-piloto (1 contador, 1 RH, 1 influenciador PME)
+            como operadoras-piloto, e três parceiros-piloto (1 contador, 1 RH, 1 influenciador B2B)
             pra testar o funil ponta a ponta.
           </p>
 

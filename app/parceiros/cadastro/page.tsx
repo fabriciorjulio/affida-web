@@ -46,7 +46,7 @@ const PERFIS = [
   { value: "contador", label: "Contador / Escritório contábil" },
   { value: "consultor_rh", label: "Consultor de RH / Benefícios" },
   { value: "associacao", label: "Associação ou sindicato" },
-  { value: "influenciador", label: "Influenciador / Criador PME" },
+  { value: "influenciador", label: "Influenciador / Criador B2B" },
   { value: "afiliado", label: "Afiliado digital" },
   { value: "outro", label: "Outro perfil empresarial" },
 ];
@@ -446,7 +446,7 @@ export default function CadastroIndicadorPage() {
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 <a
                   href={`https://wa.me/?text=${encodeURIComponent(
-                    `Indico a Affida pra cotar plano de saúde PME — corretora SUSEP, código aberto nas grandes operadoras. Cota online em 3 min: ${linkIndicacao}`
+                    `Indico a Affida pra cotar plano de saúde empresarial — corretora SUSEP, código aberto nas grandes operadoras. Cota online em 3 min: ${linkIndicacao}`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -456,7 +456,7 @@ export default function CadastroIndicadorPage() {
                 </a>
                 <a
                   href={`mailto:?subject=${encodeURIComponent(
-                    "Indicação Affida — plano de saúde PME"
+                    "Indicação Affida — plano de saúde empresarial"
                   )}&body=${encodeURIComponent(
                     `Estou indicando a Affida pra cotar plano de saúde da empresa.\n\nCorretora SUSEP autônoma, código aberto nas grandes operadoras (Amil, Bradesco Saúde, SulAmérica, Unimed).\n\nCota em 3 minutos pelo link: ${linkIndicacao}`
                   )}`}

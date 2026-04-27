@@ -5,7 +5,7 @@ const markUrl = `${basePath}/affida-mark.png`;
 const wordmarkUrl = `${basePath}/affida-wordmark.png`;
 const stackedUrl = `${basePath}/affida-logo-stacked.png`;
 
-type LogoVariant = "full" | "mark" | "stacked";
+type LogoVariant = "full" | "mark" | "stacked" | "wordmark";
 type LogoTone = "light" | "dark" | "gold" | "mono-dark" | "mono-light";
 
 /**
@@ -90,6 +90,20 @@ export function AffidaLogo({
         aria-label="Affida Partners — símbolo"
         className={cn("inline-block h-8 w-auto shrink-0", className)}
         style={{ aspectRatio: ASPECT.mark, ...maskStyle(markUrl, color) }}
+      />
+    );
+  }
+
+  // Variante "wordmark": APENAS a tipografia AFFIDA + PARTNERS (sem símbolo).
+  // Pedido direto do dono no hero card: "excluiria o símbolo e deixaria só a
+  // logo sem símbolo". Mantém o respiro/aspecto oficial do Manual p.6.
+  if (variant === "wordmark") {
+    return (
+      <span
+        role="img"
+        aria-label="Affida Partners"
+        className={cn("inline-block h-12 w-auto shrink-0", className)}
+        style={{ aspectRatio: ASPECT.wordmark, ...maskStyle(wordmarkUrl, color) }}
       />
     );
   }

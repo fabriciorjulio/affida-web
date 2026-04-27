@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 const iconMap = { Shield, Crown, HeartPulse, Smile, Scale, Car, Building2, PawPrint };
 
 export const metadata = {
-  title: "Cotação PME · Affida Partners",
+  title: "Cotação · Affida Partners",
   description: "Compare em minutos as melhores condições de seguros para o seu negócio.",
 };
 

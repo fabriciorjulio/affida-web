@@ -71,8 +71,8 @@ export function Footer() {
             <p className="max-w-sm text-sm leading-relaxed text-ivory/70">
               Corretora autônoma de seguros e benefícios, registrada SUSEP, com código de
               corretagem aberto nas principais operadoras do Brasil. Foco principal em
-              plano de saúde empresarial — atendemos PME, médias, grandes empresas e
-              pessoa física quando necessário, com serviço personalizado e de alto nível.
+              plano de saúde empresarial — atendemos empresas de todos os portes e pessoa
+              física quando necessário, com serviço personalizado e de alto nível.
             </p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] uppercase tracking-[0.22em] text-champagne-400/80">
               <span>SUSEP</span>

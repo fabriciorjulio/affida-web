@@ -34,7 +34,7 @@ import { cn } from "@/lib/utils";
  *                         · Área corretora  → /crm
  *                         · Área cliente    → /portal
  *
- *   CTA gold "Cotar saúde PME" → /cotar/saude-coletiva (mantido).
+ *   CTA gold "Cotar plano de saúde" → /cotar/saude-coletiva (mantido).
  */
 
 // --- Itens do dropdown "Empresas" -----------------------------------------
@@ -246,7 +246,7 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
           <NavDropdownButton label="Entrar" isDark={isDark} items={entrarItems} />
 
           <Button href="/cotar/saude-coletiva" variant="gold" size="sm">
-            Cotar saúde PME
+            Cotar plano de saúde
           </Button>
         </div>
 
@@ -310,7 +310,7 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
 
             <div className="mt-4 flex flex-col gap-2">
               <Button href="/cotar/saude-coletiva" variant="gold" size="sm">
-                Cotar saúde PME
+                Cotar plano de saúde
               </Button>
             </div>
           </nav>

@@ -69,7 +69,7 @@ const tiposIndicadores = [
   {
     nome: "Contadores",
     share: "30% → 10%",
-    descricao: "Escritórios contábeis com carteira PME. Indicação acontece naturalmente na conversa de folha.",
+    descricao: "Escritórios contábeis com carteira empresarial. Indicação acontece naturalmente na conversa de folha.",
   },
   {
     nome: "Consultores de RH",
@@ -82,7 +82,7 @@ const tiposIndicadores = [
     descricao: "Entidades de classe e sindicatos patronais que querem oferecer benefício associativo.",
   },
   {
-    nome: "Influenciadores PME",
+    nome: "Influenciadores B2B",
     share: "30% → 10%",
     descricao: "Criadores com audiência empresarial de RH/finanças que recomendam serviços.",
   },
@@ -200,7 +200,7 @@ export default function IndicadoresPublicPage() {
                 Quem pode <em className="italic text-forest">indicar</em>?
               </h2>
               <p className="mt-5 text-base text-navy-700/80">
-                Profissionais que se relacionam com empresários PME e podem oferecer a
+                Profissionais que se relacionam com empresários e podem oferecer a
                 indicação como extensão natural do próprio serviço.{" "}
                 <strong>
                   Outros corretores de seguros NÃO são elegíveis — corretagem é exclusividade

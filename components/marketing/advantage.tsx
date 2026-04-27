@@ -14,7 +14,7 @@ const features = [
     title: "Benchmark vivo por setor",
     description:
       "Veja como empresas do seu CNAE e porte estruturam benefícios — quais produtos, ticket médio e quais operadoras dominam o seu setor.",
-    tag: "Dados de +2.000 PMEs",
+    tag: "Dados de +2.000 empresas",
   },
   {
     icon: FileCheck,

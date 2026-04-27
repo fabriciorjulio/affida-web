@@ -101,7 +101,7 @@ type CnpjStatus = "idle" | "loading" | "ok" | "error";
 
 // ----- ANS: 10 faixas etárias regulamentadas (RN 63 / RN 309 / Lei 9.656) -----
 //
-// Multiplicador médio observado em PME (taxa por faixa relativa à faixa 0-18).
+// Multiplicador médio observado em planos empresariais (taxa por faixa relativa à faixa 0-18).
 // Tabela mock — não é tabela oficial de operadora, apenas referencial.
 const FAIXAS_ANS = [
   { label: "0-18 anos", min: 0, max: 18, mult: 1.0 },

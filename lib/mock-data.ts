@@ -126,11 +126,11 @@ export const products: Product[] = [
     code: "SAUDE_COL",
     name: "Saúde Coletiva Empresarial",
     segment: "saude",
-    tagline: "Plano de saúde PME nas principais operadoras",
+    tagline: "Plano de saúde nas principais operadoras",
     description:
-      "Cotação direta com Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed e Hapvida. Comparativo transparente por faixa etária ANS, com rede nacional, opções de coparticipação e migração da operadora atual.",
+      "Cotação direta com Amil, Bradesco Saúde, SulAmérica, Porto Saúde e Unimed. Comparativo transparente por faixa etária ANS, com rede nacional, opções de coparticipação e migração da operadora atual.",
     salesMode: "self_service",
-    minVidas: 2,
+    minVidas: 1,
     avgTicket: 9800,
     featured: true,
     mvp: true,
@@ -145,7 +145,7 @@ export const products: Product[] = [
     description:
       "Plano odontológico com rede ampla, sem carência para urgências e ortodontia inclusa nos níveis superiores. Contratado em conjunto com saúde reduz mensalidade média.",
     salesMode: "self_service",
-    minVidas: 2,
+    minVidas: 1,
     avgTicket: 420,
     featured: true,
     mvp: true,
@@ -160,7 +160,7 @@ export const products: Product[] = [
     description:
       "Cobertura de vida em grupo para colaboradores e PJs, com capital segurado a partir de 12x o salário e assistência funeral inclusa. Cross-sell padrão sobre a carteira de saúde Affida.",
     salesMode: "self_service",
-    minVidas: 2,
+    minVidas: 1,
     avgTicket: 4200,
     featured: true,
     mvp: true,

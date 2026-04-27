@@ -124,7 +124,7 @@ export function ProductsGrid() {
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />
-                  A partir de 2 vidas
+                  A partir de 1 vida
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />

@@ -41,7 +41,7 @@ export const PORTES: ReadonlyArray<{
     value: "3-9",
     label: "3 a 9 funcionários",
     classe: "Microempresa (ME)",
-    hint: "Adesão a partir de 2 vidas",
+    hint: "Adesão a partir de 1 vida",
   },
   {
     value: "10-49",

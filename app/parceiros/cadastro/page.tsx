@@ -458,7 +458,7 @@ export default function CadastroIndicadorPage() {
                   href={`mailto:?subject=${encodeURIComponent(
                     "Indicação Affida — plano de saúde PME"
                   )}&body=${encodeURIComponent(
-                    `Estou indicando a Affida pra cotar plano de saúde da empresa.\n\nCorretora SUSEP autônoma, código aberto nas grandes operadoras (Amil, Bradesco Saúde, SulAmérica, Porto, Unimed, Hapvida).\n\nCota em 3 minutos pelo link: ${linkIndicacao}`
+                    `Estou indicando a Affida pra cotar plano de saúde da empresa.\n\nCorretora SUSEP autônoma, código aberto nas grandes operadoras (Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus, Omint).\n\nCota em 3 minutos pelo link: ${linkIndicacao}`
                   )}`}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-navy-100 bg-white px-5 py-3 text-sm font-medium text-navy-900 hover:bg-navy-50"
                 >

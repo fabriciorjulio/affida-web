@@ -165,7 +165,7 @@ const diferenciais = [
   {
     icon: ShieldCheck,
     title: "Corretora SUSEP com código aberto",
-    desc: "Registro SUSEP próprio + código de corretagem aberto nas principais operadoras do Brasil (Amil, Bradesco Saúde, SulAmérica, Porto, Unimed, Hapvida). Sem intermediário entre Affida e operadora — comissão e condições negociadas direto.",
+    desc: "Registro SUSEP próprio + código de corretagem aberto nas principais operadoras do Brasil (Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus, Omint). Sem intermediário entre Affida e operadora — comissão e condições negociadas direto.",
   },
   {
     icon: Handshake,

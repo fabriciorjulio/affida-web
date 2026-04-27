@@ -50,7 +50,7 @@ export default function PrivacidadePage() {
             <h2 className="font-display text-xl text-navy-900">4. Compartilhamento</h2>
             <p className="mt-2">
               Compartilhamos estritamente o necessário com operadoras parceiras (Amil, Bradesco
-              Saúde, SulAmérica, Porto Saúde, Unimed, Hapvida, Icatu, Prudential, MetLife e outras)
+              Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus, Omint, Icatu, Prudential, MetLife e outras)
               para efetivação de cotação e apólice. Operamos sob código de corretagem próprio —
               não há intermediários adicionais entre Affida e operadora. Não vendemos dados.
             </p>

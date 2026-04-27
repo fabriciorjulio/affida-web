@@ -59,7 +59,7 @@ export function Hero() {
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
               Cotação em minutos nas principais operadoras de saúde do Brasil — Amil, Bradesco
-              Saúde, SulAmérica, Porto Saúde, Unimed e Hapvida — com código de corretagem direto.
+              Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus e Omint — com código de corretagem direto.
               Consultoria boutique, comparativo transparente e benchmark setorial por CNAE.
             </p>
 

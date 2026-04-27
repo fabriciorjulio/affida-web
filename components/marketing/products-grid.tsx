@@ -113,14 +113,14 @@ export function ProductsGrid() {
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
                 Cotação online em minutos nas principais operadoras do Brasil —
-                Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus e Omint.
+                Amil, Bradesco Saúde, SulAmérica e Unimed.
                 Comparativo por faixa etária ANS, com migração analisada vs. seu
                 plano atual. Odonto entra junto com mensalidade reduzida.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ivory/65">
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />
-                  6 operadoras nacionais
+                  4 operadoras-âncora
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <span className="h-1 w-1 rounded-full bg-champagne-400" />

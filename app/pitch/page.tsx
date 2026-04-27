@@ -165,7 +165,7 @@ const diferenciais = [
   {
     icon: ShieldCheck,
     title: "Corretora SUSEP com código aberto",
-    desc: "Registro SUSEP próprio + código de corretagem aberto nas principais operadoras do Brasil (Amil, Bradesco Saúde, SulAmérica, Porto Saúde, Unimed, Care Plus, Omint). Sem intermediário entre Affida e operadora — comissão e condições negociadas direto.",
+    desc: "Registro SUSEP próprio + código de corretagem aberto nas principais operadoras do Brasil (Amil, Bradesco Saúde, SulAmérica, Unimed). Sem intermediário entre Affida e operadora — comissão e condições negociadas direto.",
   },
   {
     icon: Handshake,
@@ -277,7 +277,7 @@ const gaps = [
     severity: "alto",
     gap: "Cotação com preço oficial da operadora",
     desc: "Hoje o cliente recebe uma estimativa Affida baseada em tabelas de referência. O próximo salto é preço oficial em tempo real, via integração direta com cada operadora — o que muda a conversa de 'estimativa' para 'proposta pronta pra assinar'.",
-    mitigacao: "Integração API direta com Bradesco Saúde + Amil nos primeiros 90 dias (já com código aberto). SulAmérica + Porto Saúde + Unimed em 6 meses. Rollout gradual por operadora.",
+    mitigacao: "Integração API direta com Bradesco Saúde + Amil nos primeiros 90 dias (já com código aberto). SulAmérica + Unimed em 6 meses. Rollout gradual por operadora.",
   },
   {
     severity: "alto",
@@ -327,7 +327,7 @@ const roadmap = [
     color: "champagne",
     items: [
       "Integração API Bradesco Saúde + Amil (preço oficial em tempo real)",
-      "Onboarding SulAmérica + Porto Saúde",
+      "Onboarding SulAmérica + Unimed",
       "Primeiras 10 apólices de saúde na carteira",
       "Campanha paga Google + LinkedIn",
     ],

@@ -1,23 +1,16 @@
 /**
  * Trust bar — operadoras parceiras Affida.
  *
- * Lista revisada conforme orientação direta do dono:
- *   • Hapvida REMOVIDA da lista
- *   • Care Plus e Omint ADICIONADAS (planos premium do segmento alto)
- *   • Eyebrow alterada: "Código de corretagem aberto em" → "Principais
- *     operadoras parceiras Affida"
- *   • Copy direita atualizada para enfatizar inteligência consultiva na
- *     negociação (não "sem intermediários" que soa transacional)
+ * Lista canônica das 4 operadoras-âncora (orientação direta do dono em
+ * 27/04/2026: "mantenha apenas amil, sulamerica, unimed, bradesco").
+ * Demais operadoras (Porto, Care Plus, Omint, Hapvida etc.) saem da
+ * comunicação de marca — quando atendermos via essas operadoras, fica
+ * como exceção sob consulta, não como vitrine.
+ *
+ *   • Eyebrow: "Principais operadoras parceiras Affida"
+ *   • Copy direita: ênfase em inteligência consultiva na negociação
  */
-const operadoras = [
-  "Amil",
-  "Bradesco Saúde",
-  "SulAmérica",
-  "Porto Saúde",
-  "Unimed",
-  "Care Plus",
-  "Omint",
-];
+const operadoras = ["Amil", "Bradesco Saúde", "SulAmérica", "Unimed"];
 
 export function TrustBar() {
   return (

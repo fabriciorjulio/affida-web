@@ -45,8 +45,8 @@ export default function CotarIndexPage() {
           </h1>
           <p className="mt-5 max-w-2xl text-base text-ivory/75">
             Nossa plataforma compara em minutos as principais condições das operadoras líderes do
-            mercado brasileiro. Saúde é o produto principal — Amil, Bradesco Saúde, SulAmérica,
-            Porto Saúde, Unimed, Care Plus e Omint. Demais ramos viram cross-sell sobre a base de saúde.
+            mercado brasileiro. Saúde é o produto principal — Amil, Bradesco Saúde, SulAmérica e
+            Unimed. Demais ramos viram cross-sell sobre a base de saúde.
           </p>
         </div>
       </section>

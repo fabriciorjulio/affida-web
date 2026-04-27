@@ -446,14 +446,36 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
   // obrigatório no passo 1. Razão social é auto-preenchida pelo lookup
   // BrasilAPI (e o closer Affida ajusta depois se o lookup falhar).
   const cnpjDigits = form.cnpj.replace(/\D/g, "").length;
+
+  // Bug reportado (passo 2): usuário preenchia idade e sexo mas o botão
+  // Continuar não habilitava. A regra antiga exigia que PELO MENOS UM
+  // beneficiário estivesse marcado como "titular" — se o user mudasse
+  // o parentesco do único beneficiário para "filho" ou "dependente",
+  // o botão ficava preso (já que ninguém era titular).
+  // Relaxado: só exige data de nascimento + sexo. O parentesco é
+  // auto-preenchido (default "titular" no primeiro, "dependente" nos
+  // adicionados); se nenhum estiver como titular ao avançar, promovemos
+  // o primeiro automaticamente — ver função advance abaixo.
+  const beneficiariosOk =
+    form.beneficiarios.length >= 1 &&
+    form.beneficiarios.every((b) => b.dataNascimento && b.sexo);
+
   const canAdvance =
     (step === 1 && cnpjDigits === 14) ||
-    (step === 2 &&
-      form.beneficiarios.length >= 1 &&
-      form.beneficiarios.every((b) => b.dataNascimento && b.sexo && b.parentesco) &&
-      form.beneficiarios.some((b) => b.parentesco === "titular")) ||
+    (step === 2 && beneficiariosOk) ||
     (step === 3 && !!form.nome && !!form.email && !!form.telefone) ||
     step === 4;
+
+  /** Mensagem amigável explicando o que ainda falta no passo 2 — exibida
+   *  ao lado do botão Continuar para evitar confusão como o que ocorreu. */
+  function whatIsMissingStep2(): string | null {
+    if (form.beneficiarios.length === 0) return "Adicione pelo menos uma vida.";
+    const semData = form.beneficiarios.find((b) => !b.dataNascimento);
+    if (semData) return "Falta data de nascimento de pelo menos uma vida.";
+    const semSexo = form.beneficiarios.find((b) => !b.sexo);
+    if (semSexo) return "Falta selecionar o sexo de pelo menos uma vida.";
+    return null;
+  }
 
   // ---------- Render ----------
   return (
@@ -1305,7 +1327,7 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
         </div>
       )}
 
-      <div className="mt-12 flex items-center justify-between border-t border-champagne-200/60 pt-8">
+      <div className="mt-12 flex items-center justify-between gap-4 border-t border-champagne-200/60 pt-8">
         <button
           type="button"
           onClick={() => setStep(Math.max(1, step - 1))}
@@ -1314,12 +1336,36 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
         >
           <ArrowLeft size={14} /> Voltar
         </button>
+        {/* Mensagem do que ainda falta para liberar Continuar — exibida só
+            no passo 2 quando o botão está desabilitado. Evita o travamento
+            silencioso reportado pelo dono. */}
+        {step === 2 && !canAdvance && whatIsMissingStep2() && (
+          <p className="hidden flex-1 text-right text-xs text-champagne-800 sm:block">
+            {whatIsMissingStep2()}
+          </p>
+        )}
         {step < totalSteps ? (
           <Button
             variant="primary"
             size="lg"
             onClick={() => {
               const next = Math.min(totalSteps, step + 1);
+              // Auto-promove o primeiro beneficiário a titular se nenhum
+              // estiver marcado como tal — evita travar o fluxo se o user
+              // mudou todos os parentescos para dependente/filho.
+              if (step === 2) {
+                const temTitular = form.beneficiarios.some(
+                  (b) => b.parentesco === "titular"
+                );
+                if (!temTitular && form.beneficiarios[0]) {
+                  setForm((p) => ({
+                    ...p,
+                    beneficiarios: p.beneficiarios.map((b, i) =>
+                      i === 0 ? { ...b, parentesco: "titular" } : b
+                    ),
+                  }));
+                }
+              }
               // Quando avança do passo 3 → 4 (concluiu contato), persiste o
               // lead no localStorage. Backend FastAPI substituirá isso por
               // POST /api/leads. CRM mostra os leads em /crm/leads e

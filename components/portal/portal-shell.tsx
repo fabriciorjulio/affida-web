@@ -49,7 +49,7 @@ export function PortalShell({
             className="flex min-w-0 items-center gap-4"
             aria-label="Affida Partners — voltar para a home"
           >
-            <AffidaLogo variant="full" tone="light" />
+            <AffidaLogo variant="wordmark" tone="light" className="h-7" />
             <span className="hidden text-[10px] uppercase tracking-[0.2em] text-champagne-400 md:inline">
               Portal do cliente
             </span>

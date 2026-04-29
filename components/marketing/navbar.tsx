@@ -209,7 +209,7 @@ export function Navbar({ tone = "light" }: { tone?: "light" | "dark" }) {
           className="flex items-center"
           aria-label="Affida Partners — página inicial"
         >
-          <AffidaLogo tone={isDark ? "light" : "dark"} className="h-auto" />
+          <AffidaLogo variant="wordmark" tone={isDark ? "light" : "dark"} className="h-7" />
         </Link>
 
         {/* Nav desktop */}

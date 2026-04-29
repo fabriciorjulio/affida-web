@@ -34,7 +34,7 @@ export function QuoteShell({
             className="flex items-center"
             aria-label="Affida Partners — página inicial"
           >
-            <AffidaLogo variant="full" tone="light" />
+            <AffidaLogo variant="wordmark" tone="light" className="h-7" />
           </Link>
           <Link
             href="/cotar"

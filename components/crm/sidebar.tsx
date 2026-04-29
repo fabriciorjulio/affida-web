@@ -110,7 +110,7 @@ export function CrmSidebar() {
           aria-label="Affida Partners — voltar para a home"
           className="flex items-center gap-3 transition-opacity hover:opacity-80"
         >
-          <AffidaLogo variant="full" tone="light" />
+          <AffidaLogo variant="wordmark" tone="light" className="h-7" />
           <span className="text-[10px] uppercase tracking-widest text-champagne-400">
             CRM
           </span>
@@ -194,7 +194,7 @@ export function CrmHeader({ title, subtitle }: { title: string; subtitle?: strin
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 transition-opacity hover:opacity-80"
               >
-                <AffidaLogo variant="full" tone="light" />
+                <AffidaLogo variant="wordmark" tone="light" className="h-7" />
                 <span className="text-[10px] uppercase tracking-widest text-champagne-400">
                   CRM
                 </span>

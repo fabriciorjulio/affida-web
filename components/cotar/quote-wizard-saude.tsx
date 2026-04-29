@@ -37,6 +37,7 @@ import {
   CSV_TEMPLATE,
   type ImportedRow,
 } from "@/lib/beneficiario-import";
+import { extractFromFaturaPdf } from "@/lib/fatura-pdf";
 import {
   lookupCnpj,
   formatCnae,
@@ -354,6 +355,15 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
   const [importOpen, setImportOpen] = useState(false);
   const [importText, setImportText] = useState("");
   const importFileRef = useRef<HTMLInputElement>(null);
+  const faturaFileRef = useRef<HTMLInputElement>(null);
+  // Status do upload de fatura PDF — orienta o usuário sobre o que houve
+  // (extraindo… N detectados… ou erro com motivo).
+  const [faturaStatus, setFaturaStatus] = useState<
+    | { phase: "idle" }
+    | { phase: "loading"; fileName: string }
+    | { phase: "ok"; detected: number; pageCount: number; fileName: string }
+    | { phase: "error"; reason: string; fileName: string }
+  >({ phase: "idle" });
 
   const importPreview = useMemo(
     () => (importText.trim() ? parseBeneficiarios(importText) : null),
@@ -363,6 +373,55 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
   async function handleImportFile(file: File) {
     const text = await file.text();
     setImportText(text);
+  }
+
+  /**
+   * Lê fatura PDF do concorrente (Bradesco, Amil, SulAmérica etc), extrai
+   * texto e tenta detectar linhas de beneficiários. Em caso de sucesso,
+   * popula o textarea como TSV — assim o parser existente já valida cada
+   * linha e o usuário aprova/edita antes de importar.
+   *
+   * Em caso de PDF escaneado/imagem (sem texto) ou sem padrões de data
+   * detectados, mostra mensagem clara e abre o textarea pra colagem manual.
+   */
+  async function handleFaturaPdf(file: File) {
+    setFaturaStatus({ phase: "loading", fileName: file.name });
+    const result = await extractFromFaturaPdf(file);
+    if (result.ok) {
+      setImportText(result.csvText);
+      setFaturaStatus({
+        phase: "ok",
+        detected: result.detected,
+        pageCount: result.pageCount,
+        fileName: file.name,
+      });
+      toast(
+        `Fatura processada — ${result.detected} beneficiário(s) detectado(s). Confira a prévia abaixo antes de importar.`,
+        "success"
+      );
+    } else {
+      const reasonLabel =
+        result.reason === "scanned"
+          ? "PDF parece um scan/imagem (sem texto extraível). Tente exportar a fatura como PDF gerado pelo portal da operadora ou cole o conteúdo manualmente abaixo."
+          : result.reason === "no_text"
+            ? "Não foi possível ler texto do PDF. Verifique se o arquivo não está corrompido."
+            : result.reason === "no_beneficiaries_detected"
+              ? "Texto extraído mas não identifiquei linhas de beneficiários (datas de nascimento). Veja o conteúdo bruto abaixo e cole manualmente os beneficiários no formato CSV."
+              : "Falha ao carregar o PDF. Tente novamente ou use a opção de CSV.";
+      setFaturaStatus({
+        phase: "error",
+        reason: reasonLabel,
+        fileName: file.name,
+      });
+      // Em "no_beneficiaries_detected" passamos o texto bruto pro textarea
+      // pra o usuário ter por onde começar.
+      if (result.reason === "no_beneficiaries_detected" && result.rawText) {
+        setImportText(result.rawText);
+      }
+      toast(reasonLabel, "info");
+    }
+    // Reseta o input pra permitir re-upload do mesmo arquivo
+    if (faturaFileRef.current) faturaFileRef.current.value = "";
   }
 
   function applyImport(rows: ImportedRow[]) {
@@ -857,10 +916,10 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
                       Importar beneficiários em massa
                     </p>
                     <p className="mt-1 max-w-xl text-xs text-navy-700/70">
-                      Para empresas com muitas vidas, importe direto da sua planilha em vez
-                      de digitar uma por uma. Aceita CSV (vírgula ou ponto-e-vírgula), arquivo
-                      de texto, ou paste direto do Excel/Google Sheets (basta selecionar as
-                      células com Ctrl+C e colar abaixo).
+                      Três formas: subir a <strong>fatura da operadora atual em PDF</strong>{" "}
+                      (extração automática), subir uma planilha CSV/TXT, ou colar direto do
+                      Excel/Google Sheets. Para uma cotação fiel, exportar a fatura do portal
+                      da operadora costuma ser o caminho mais rápido.
                     </p>
                   </div>
                   <button
@@ -873,7 +932,65 @@ export function QuoteWizardSaude({ product }: { product: Product }) {
                   </button>
                 </div>
 
-                <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto_auto]">
+                {/* ----- Bloco PDF (destaque) ----- */}
+                <div className="mt-5 rounded-2xl border border-forest/30 bg-forest-50/40 p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-forest text-ivory">
+                      <FileSpreadsheet size={16} strokeWidth={1.6} />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-navy-900">
+                        Fatura do concorrente (PDF)
+                      </p>
+                      <p className="mt-1 text-[11px] text-navy-700/70">
+                        Lemos automaticamente nome, data de nascimento, sexo e parentesco.
+                        Funciona com PDFs eletrônicos das principais operadoras (Bradesco
+                        Saúde, Amil, SulAmérica, Unimed, Porto Saúde, Care Plus, Omint).
+                        Faturas escaneadas como imagem precisam ser exportadas direto do
+                        portal da operadora.
+                      </p>
+                      <div className="mt-3 flex flex-wrap items-center gap-3">
+                        <input
+                          ref={faturaFileRef}
+                          type="file"
+                          accept=".pdf,application/pdf"
+                          onChange={(e) => {
+                            const f = e.target.files?.[0];
+                            if (f) handleFaturaPdf(f);
+                          }}
+                          className="block text-xs text-navy-700 file:mr-3 file:rounded-full file:border-0 file:bg-forest file:px-4 file:py-2 file:text-xs file:font-medium file:text-ivory hover:file:bg-forest-700"
+                        />
+                        {faturaStatus.phase === "loading" && (
+                          <span className="inline-flex items-center gap-2 text-[11px] text-navy-700/70">
+                            <Loader2 size={12} className="animate-spin" />
+                            Extraindo {faturaStatus.fileName}…
+                          </span>
+                        )}
+                        {faturaStatus.phase === "ok" && (
+                          <span className="inline-flex items-center gap-2 rounded-full bg-forest-50 px-3 py-1 text-[11px] font-medium text-forest-700">
+                            <Check size={12} />
+                            {faturaStatus.detected} beneficiário(s) ·{" "}
+                            {faturaStatus.pageCount} página(s) · {faturaStatus.fileName}
+                          </span>
+                        )}
+                        {faturaStatus.phase === "error" && (
+                          <span className="inline-flex max-w-md items-start gap-2 rounded-2xl bg-champagne-50 px-3 py-2 text-[11px] text-champagne-800">
+                            <AlertTriangle size={12} className="mt-0.5 shrink-0" />
+                            <span>{faturaStatus.reason}</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-center gap-3 text-[10px] uppercase tracking-widest text-navy-700/50">
+                  <span className="h-px flex-1 bg-navy-100" />
+                  <span>ou planilha · CSV / TSV</span>
+                  <span className="h-px flex-1 bg-navy-100" />
+                </div>
+
+                <div className="mt-4 grid gap-3 md:grid-cols-[1fr_auto_auto]">
                   <input
                     ref={importFileRef}
                     type="file"

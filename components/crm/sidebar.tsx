@@ -18,6 +18,7 @@ import {
   X,
   Target,
   LogOut,
+  Calculator,
 } from "lucide-react";
 import { AffidaLogo } from "@/components/ui/logo";
 import { toast } from "@/components/ui/toaster";
@@ -28,6 +29,7 @@ const nav = [
   { label: "Pipeline", href: "/crm/pipeline", icon: Briefcase },
   { label: "Leads", href: "/crm/leads", icon: Users },
   { label: "Carteira", href: "/crm/carteira", icon: FileText },
+  { label: "Comissões", href: "/crm/comissoes", icon: Calculator },
   { label: "Motor de re-oferta", href: "/crm/reoferta", icon: Zap },
   { label: "Campanhas", href: "/crm/campanhas", icon: Megaphone },
   { label: "Indicadores", href: "/crm/parceiros", icon: Handshake },

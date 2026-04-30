@@ -65,19 +65,12 @@ const beneficios = [
 
 // Perfis aceitos no programa de indicação Affida.
 //
-// Atualização 2026-04-29 (PPTX do dono): mudança de política — passamos a
-// aceitar **corretores de outros ramos** (que NÃO trabalham com benefícios
-// corporativos). Antes a regra era "outros corretores NÃO são elegíveis";
-// agora a leitura é mais aberta: corretor de ramos elementares (frota,
-// patrimonial, RC) pode indicar benefícios corporativos sem conflito,
-// porque não compete no mesmo nicho.
+// REGRA ORIGINAL MANTIDA (revisão sócio 2026-04-29): outros corretores de
+// seguros NÃO são elegíveis — corretagem é exclusividade da equipe Affida.
+// Quem está aqui CONECTA empresas à Affida, não atua como corretor.
 //
-// O que CONTINUA fora: corretor que já vende plano de saúde PME — esse seria
-// concorrente direto, não indicador. A corretagem da apólice indicada é
-// sempre da equipe Affida (SUSEP).
-//
-// Pedido do dono: NÃO mostrar percentuais (30%/15%/10%) por linha — só
-// descrição do perfil. Detalhes da premiação ficam pós-cadastro.
+// Pedido do dono via PPTX: NÃO mostrar percentuais (30%/15%/10%) por linha
+// — só descrição do perfil. Detalhes da premiação ficam pós-cadastro.
 const tiposIndicadores = [
   {
     nome: "Contadores",
@@ -90,10 +83,6 @@ const tiposIndicadores = [
   {
     nome: "Associações e sindicatos",
     descricao: "Entidades de classe e sindicatos patronais que querem oferecer benefício associativo aos seus filiados.",
-  },
-  {
-    nome: "Corretores de outros ramos",
-    descricao: "Corretores que NÃO trabalham com benefícios corporativos (frota, patrimonial, RC, vida individual) — indicam clientes onde Affida pode complementar o portfólio.",
   },
   {
     nome: "Influenciadores B2B",
@@ -116,7 +105,7 @@ export default function IndicadoresPublicPage() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow text-champagne-500">Affida Partners Network</p>
             <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
-              Indique empresas e receba{" "}
+              Indique empresas e ganhe{" "}
               <em className="italic text-champagne-300">premiação recorrente.</em>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
@@ -215,14 +204,13 @@ export default function IndicadoresPublicPage() {
               </h2>
               <p className="mt-5 text-base text-navy-700/80">
                 Profissionais que se relacionam com empresários e podem oferecer a
-                indicação como extensão natural do próprio serviço.{" "}
+                indicação como extensão natural do próprio serviço —{" "}
                 <strong>
-                  Especialistas que recomendam soluções tão logo identifiquem dores
-                  dos clientes.
-                </strong>{" "}
-                Aceitamos também corretores de outros ramos (que NÃO trabalham com
-                benefícios corporativos) — a corretagem da apólice indicada é
-                sempre da equipe Affida.
+                  especialistas que recomendam soluções tão logo identifiquem dores
+                  dos clientes
+                </strong>
+                . Outros corretores de seguros NÃO são elegíveis — corretagem é
+                exclusividade da equipe Affida.
               </p>
               <Button
                 href="/parceiros/cadastro"

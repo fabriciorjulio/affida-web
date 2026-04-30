@@ -3,35 +3,40 @@ import { Clock, ShieldCheck, Cpu } from "lucide-react";
 /**
  * 3 compromissos que a Affida assume com cada cliente.
  *
- * Reescritos via PPTX 2026-04-29:
- *   1. Cotação rápida E apoio técnico (não só rapidez — também consultoria)
- *   2. Gestão de risco e previsibilidade de reajuste (acompanhamento de mercado)
- *   3. Tecnologia para gestão operacional das apólices (plataforma própria)
+ * Títulos atualizados via PPTX 2026-04-29 (revisão do sócio):
+ *   1. "Cotação rápida e apoio técnico" (era "Cotação rápida, contrato em poucos dias")
+ *   2. "Gestão de risco e previsibilidade" (era "Sua carteira cuidada o ano inteiro")
+ *   3. "Tecnologia para gestão das apólices" (era "Comparativo com empresas como a sua")
  *
- * Saíram: "carteira cuidada o ano inteiro" (virou parte do compromisso 2),
- * "comparativo com empresas como a sua" (já está no Affida Assessment).
+ * Descrições e proofs MANTIDOS nas versões originais (que validam com
+ * métricas concretas: 72h SLA, 100% carteira, cohort 50 CNAE) — pedido
+ * direto do sócio em segunda revisão. As métricas seguram a credibilidade
+ * dos compromissos.
+ *
+ * Ícones: Repeat2 (carteira) → ShieldCheck (gestão de risco).
+ *         BarChart3 (comparativo) → Cpu (tecnologia).
  */
 const pillars = [
   {
     icon: Clock,
     title: "Cotação rápida e apoio técnico",
     description:
-      "Da primeira conversa, entendimento das necessidades até a implantação. Tudo de forma integrada, sem planilhas perdidas em e-mail nem ficar esperando retorno por semanas.",
-    proof: "Da primeira conversa à implantação · sem planilhas perdidas",
+      "Da primeira conversa até a apólice ativa em até 72 horas úteis. Sem planilhas perdidas em e-mail nem ficar esperando retorno por semanas.",
+    proof: "Meta SLA · em até 72h da cotação à vigência",
   },
   {
     icon: ShieldCheck,
     title: "Gestão de risco e previsibilidade",
     description:
-      "Acompanhamento das principais mudanças de mercado e maior previsibilidade no reajuste anual. Avisamos antes do concorrente quando algo muda no seu setor ou na sua operadora — com proposta pronta.",
-    proof: "Acompanhamento contínuo do mercado · 100% da carteira",
+      "Quando o reajuste chega, quando uma operadora lança plano novo, quando muda algo no seu setor — a Affida avisa antes do concorrente, com proposta pronta.",
+    proof: "100% da carteira monitorada continuamente",
   },
   {
     icon: Cpu,
     title: "Tecnologia para gestão das apólices",
     description:
-      "Plataforma proprietária para gestão operacional e acompanhamento das apólices. Tudo o que você precisa sobre faturas, sinistros, renovações e benchmark setorial em um único portal.",
-    proof: "Portal Affida · CRM + carteira monitorada",
+      "Mostramos como empresas do seu setor e tamanho estruturam saúde, vida e benefícios. Você decide com base em dados de pares — não no achismo do corretor.",
+    proof: "Cohort de pelo menos 50 empresas por CNAE",
   },
 ];
 

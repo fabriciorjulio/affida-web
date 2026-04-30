@@ -56,16 +56,16 @@ export function Hero() {
             </div>
 
             <h1 className="mt-10 font-display text-3xl font-light leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl lg:text-5xl">
-              Soluções em benefícios para{" "}
-              <em className="italic font-light text-champagne-300">empresas e pessoas</em>,
-              em poucas horas.
+              Plano de saúde para{" "}
+              <em className="italic font-light text-champagne-300">empresas</em> que cuida de
+              quem cuida.
             </h1>
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
               Mais do que plano de saúde — uma gestão inteligente do cuidado corporativo.
-              Análise de mercado nas principais operadoras (Amil, Care Plus, Bradesco,
-              Omint, Porto Seguro, Sul América, Unimed). Relacionamento humano, com
-              soluções digitais.
+              Análise de mercado em poucas horas nas principais operadoras (Amil, Care Plus,
+              Bradesco, Omint, Porto Seguro, Sul América, Unimed). Relacionamento humano,
+              com soluções digitais.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
@@ -87,16 +87,19 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Pilares discretos — atualizados via PPTX 2026-04-29:
-                "Humano" e "Relacionamento" passam a ser pilares declarados. */}
+            {/* Pilares discretos — Confiança/Parceria/Excelência/Inovação são
+                os pilares oficiais Affida (Manual de Marca). Atributos
+                "Humano" e "Relacionamento" do PPTX 2026-04-29 entraram na
+                descrição acima como "Relacionamento humano, com soluções
+                digitais", não nos pilares. */}
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-champagne-500/15 pt-6 text-[10px] font-medium uppercase tracking-[0.28em] text-champagne-400/90">
-              <span>Humano</span>
+              <span>Confiança</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
-              <span>Relacionamento</span>
+              <span>Parceria</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
               <span>Excelência</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
-              <span>Confiança</span>
+              <span>Inovação</span>
             </div>
           </div>
         </div>

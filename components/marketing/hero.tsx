@@ -56,16 +56,14 @@ export function Hero() {
             </div>
 
             <h1 className="mt-10 font-display text-3xl font-light leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl lg:text-5xl">
-              Plano de saúde para{" "}
-              <em className="italic font-light text-champagne-300">empresas</em> que cuida de
-              quem cuida.
+              Mais do que plano de saúde: uma gestão inteligente do{" "}
+              <em className="italic font-light text-champagne-300">cuidado corporativo</em>.
             </h1>
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
-              Mais do que plano de saúde — uma gestão inteligente do cuidado corporativo.
-              Análise de mercado em poucas horas nas principais operadoras (Amil, Care Plus,
-              Bradesco, Omint, Porto Seguro, Sul América, Unimed). Relacionamento humano,
-              com soluções digitais.
+              Análise de mercado em minutos nas principais operadoras de saúde do Brasil —
+              Amil, Care Plus, Bradesco, Omint, Porto Seguro, Sul América e Unimed.
+              Consultoria boutique, comparativo transparente e benchmark setorial por CNAE.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">

@@ -41,7 +41,7 @@ const beneficios = [
     // expostas." Os percentuais migram para a etapa de cadastro/termo.
     title: "Monetização",
     description:
-      "Premiação por indicação e negócio fechado. Modelos com possibilidade de recorrência enquanto a apólice estiver ativa. Pagamento mensal, transparente, com cap por contrato.",
+      "Premiação por indicação e negócio fechado. Pagamento mensal enquanto a apólice estiver ativa, transparente, com cap por contrato.",
   },
   {
     icon: TrendingUp,
@@ -106,7 +106,7 @@ export default function IndicadoresPublicPage() {
             <p className="eyebrow text-champagne-500">Affida Partners Network</p>
             <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
               Indique empresas e ganhe{" "}
-              <em className="italic text-champagne-300">premiação recorrente.</em>
+              <em className="italic text-champagne-300">premiação.</em>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
               O <strong>Affida Partners Network</strong> é o programa oficial de

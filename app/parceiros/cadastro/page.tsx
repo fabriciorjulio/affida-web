@@ -394,9 +394,9 @@ export default function CadastroIndicadorPage() {
                   todo dia 25 do mês posterior ao fechamento e pagamento feito
                   pelo cliente
                 </strong>
-                . Modelo recorrente enquanto a apólice indicada estiver ativa,
-                com cap por contrato. Os percentuais e a curva de declínio estão
-                detalhados no Termo de Indicação que você aceitou no cadastro.
+                , mensalmente enquanto a apólice indicada estiver ativa, com cap
+                por contrato. Os percentuais e a curva estão detalhados no
+                Termo de Indicação que você aceitou no cadastro.
               </p>
             </div>
 

@@ -33,3 +33,6 @@ yarn-error.log*
 # ide
 .idea/
 .vscode/
+
+# drafts locais (roadmap, issues em revisão — não commitar)
+.roadmap-draft/

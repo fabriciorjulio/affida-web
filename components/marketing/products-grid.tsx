@@ -75,10 +75,10 @@ export function ProductsGrid() {
                 é o melhor caminho. Avaliamos com você:
               </p>
               <ul className="mt-3 space-y-1.5 text-sm text-ivory/80">
-                <li>• Há espaço para redução de custo e melhora de coberturas?</li>
-                <li>• Estou atendendo a convenção coletiva?</li>
-                <li>• Como desenhar uma política que aumente a percepção dos funcionários sem elevar custo?</li>
-                <li>• Estou competitivo frente aos meus concorrentes?</li>
+                <li>• Oportunidade para redução de custo ou melhoria de coberturas?</li>
+                <li>• Conformidade com a CCT — sem riscos ou passivos?</li>
+                <li>• Redesenho de políticas, possibilitando melhor percepção dos colaboradores, sem elevar custos?</li>
+                <li>• Competitividade do pacote de benefícios oferecido frente aos concorrentes?</li>
               </ul>
             </div>
 
@@ -112,10 +112,11 @@ export function ProductsGrid() {
                 Plano de saúde + odonto empresarial
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
-                Cotação online em minutos nas principais operadoras do Brasil —
-                Amil, Bradesco Saúde, SulAmérica e Unimed.
+                Cotação em poucos minutos nas principais operadoras do Brasil —
+                Amil, Bradesco Saúde, Care Plus, Omint, SulAmérica e Unimed.
                 Comparativo por faixa etária ANS, com migração analisada vs. seu
-                plano atual. Odonto entra junto com mensalidade reduzida.
+                plano atual. <strong>Possibilidade de inclusão de produto
+                odontológico com mensalidade reduzida.</strong>
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ivory/65">
                 <span className="inline-flex items-center gap-2">
@@ -154,15 +155,16 @@ export function ProductsGrid() {
 
             <div>
               <p className="text-[10px] font-medium uppercase tracking-widest text-champagne-500">
-                Cross-sell sobre saúde
+                Proteção complementar
               </p>
               <h3 className="mt-2 font-display text-2xl font-light text-ivory">
                 Vida em grupo
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ivory/65">
-                Proteção do time com capital segurado a partir de 12× salário,
-                assistência funeral e coberturas extras. Cross-sell natural
-                sobre a carteira de saúde, com cotação online.
+                Produto de baixo custo e grande importância para a família dos
+                colaboradores. Capital segurado a partir de 12× salário,
+                assistência funeral e coberturas extras. Cotação online em
+                poucos minutos com condições especiais Affida.
               </p>
             </div>
 
@@ -207,7 +209,7 @@ export function ProductsGrid() {
                 Sob consulta
               </p>
               <h3 className="mt-2 font-display text-2xl font-light text-ivory">
-                Vida sócios + ramos elementares
+                Vida para executivos + ramos elementares
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ivory/65">
                 Vida para sócios-chave, RC profissional, frota, patrimonial

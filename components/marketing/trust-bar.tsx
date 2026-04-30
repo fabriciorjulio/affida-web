@@ -1,16 +1,15 @@
 /**
  * Trust bar — operadoras parceiras Affida.
  *
- * Lista canônica das 4 operadoras-âncora (orientação direta do dono em
- * 27/04/2026: "mantenha apenas amil, sulamerica, unimed, bradesco").
- * Demais operadoras (Porto, Care Plus, Omint, Hapvida etc.) saem da
- * comunicação de marca — quando atendermos via essas operadoras, fica
- * como exceção sob consulta, não como vitrine.
+ * Atualização 2026-04-29 (PPTX do dono): adicionar **Care Plus** e **Omint**
+ * à vitrine. Trust bar passa a exibir 6 operadoras-âncora ao invés de 4 —
+ * Care Plus e Omint atendem nichos premium relevantes (executivos, alta
+ * renda, mercado RJ/SP) e o discurso da marca se beneficia de mostrá-las.
  *
  *   • Eyebrow: "Principais operadoras parceiras Affida"
  *   • Copy direita: ênfase em inteligência consultiva na negociação
  */
-const operadoras = ["Amil", "Bradesco Saúde", "SulAmérica", "Unimed"];
+const operadoras = ["Amil", "Bradesco Saúde", "Care Plus", "Omint", "SulAmérica", "Unimed"];
 
 export function TrustBar() {
   return (

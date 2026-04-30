@@ -331,9 +331,9 @@ export default function CadastroIndicadorPage() {
                   Termo de Indicação Affida
                 </Link>
                 . Entendo que <strong>indicador não vende</strong> — apenas conecta o
-                lead, e a venda é conduzida pela equipe Affida. A comissão de
-                indicação segue a curva 30% (ano 1) → 15% (ano 2) → 10% (ano 3+),
-                paga mensalmente enquanto a apólice indicada estiver ativa.
+                lead, e a venda é conduzida pela equipe Affida. A premiação por
+                indicação segue o modelo descrito no termo, paga mensalmente
+                enquanto a apólice indicada estiver ativa.
               </span>
             </label>
 
@@ -369,37 +369,35 @@ export default function CadastroIndicadorPage() {
                 </p>
                 <p className="mt-2 text-sm text-navy-700/80">
                   Toda empresa que entrar pelo seu link de indicação aparece no
-                  seu painel. Quando vira apólice, sua comissão começa a contar
-                  no próximo dia 15.
+                  seu painel. Quando vira apólice e o cliente paga a primeira
+                  fatura, sua premiação entra no calendário do dia 25 do mês
+                  seguinte.
                 </p>
               </div>
             </div>
 
+            {/* Bloco "como funciona a premiação" — atualizado via PPTX
+                2026-04-29 do dono. Removido o card visual com percentuais
+                explícitos (30/15/10) — o detalhamento já está no termo de
+                indicação aceito na etapa 1. Aqui mantemos apenas o
+                calendário de pagamento, que é o ponto operacional novo. */}
             <div className="rounded-3xl border border-champagne-200/60 bg-white p-8">
               <div className="flex items-center gap-2">
                 <Coins size={16} className="text-champagne-700" />
-                <p className="eyebrow text-champagne-700">Curva de comissão</p>
+                <p className="eyebrow text-champagne-700">
+                  Calendário de premiação
+                </p>
               </div>
-              <div className="mt-4 grid gap-4 md:grid-cols-3">
-                {[
-                  { ano: "Ano 1", pct: "30%", note: "Pico inicial" },
-                  { ano: "Ano 2", pct: "15%", note: "Continua mensal" },
-                  { ano: "Ano 3+", pct: "10%", note: "Enquanto a apólice ativa" },
-                ].map((c) => (
-                  <div
-                    key={c.ano}
-                    className="rounded-2xl border border-champagne-200/60 bg-champagne-50/30 p-5"
-                  >
-                    <p className="text-[10px] uppercase tracking-widest text-champagne-700">
-                      {c.ano}
-                    </p>
-                    <p className="mt-2 font-display text-3xl font-light text-navy-900">
-                      {c.pct}
-                    </p>
-                    <p className="mt-1 text-xs text-navy-700/65">{c.note}</p>
-                  </div>
-                ))}
-              </div>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-navy-700/80">
+                A premiação por indicação é paga{" "}
+                <strong className="text-navy-900">
+                  todo dia 25 do mês posterior ao fechamento e pagamento feito
+                  pelo cliente
+                </strong>
+                . Modelo recorrente enquanto a apólice indicada estiver ativa,
+                com cap por contrato. Os percentuais e a curva de declínio estão
+                detalhados no Termo de Indicação que você aceitou no cadastro.
+              </p>
             </div>
 
             <div className="flex justify-between">
@@ -504,10 +502,10 @@ export default function CadastroIndicadorPage() {
                 <Coins size={18} className="mt-0.5 shrink-0 text-navy-900" />
                 <div>
                   <p className="text-sm font-medium text-navy-900">
-                    Comissão mensal
+                    Premiação mensal
                   </p>
                   <p className="mt-1 text-xs text-navy-700/70">
-                    Pagamento dia 15, enquanto apólice ativa.
+                    Pagamento dia 25 do mês posterior ao fechamento.
                   </p>
                 </div>
               </div>

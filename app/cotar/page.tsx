@@ -44,9 +44,11 @@ export default function CotarIndexPage() {
             <em className="italic text-champagne-300">cotar</em>?
           </h1>
           <p className="mt-5 max-w-2xl text-base text-ivory/75">
-            Nossa plataforma compara em minutos as principais condições das operadoras líderes do
-            mercado brasileiro. Saúde é o produto principal — Amil, Bradesco Saúde, SulAmérica e
-            Unimed. Demais ramos viram cross-sell sobre a base de saúde.
+            Nossa plataforma compara em minutos as principais condições das{" "}
+            <strong>operadoras e seguradoras líderes do mercado</strong> brasileiro.
+            Saúde é o produto principal — Amil, Bradesco Saúde, Care Plus, Omint,
+            SulAmérica e Unimed. Vida e ramos elementares (frota, patrimonial, RC)
+            entram via seguradoras parceiras.
           </p>
         </div>
       </section>

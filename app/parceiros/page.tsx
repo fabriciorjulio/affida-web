@@ -34,11 +34,14 @@ import { Footer } from "@/components/marketing/footer";
 const beneficios = [
   {
     icon: Coins,
-    // PDF Conselho D7.1: comissão flat 25% recorrente compromete margem.
-    // Curva 30%→15%→10% chega mais cedo ao indicador E protege margem.
-    title: "30% no ano 1, declinante",
+    // Card 1 reformulado via PPTX 2026-04-29:
+    // Pedido do dono: NÃO expor percentuais (30%/15%/10%) na vitrine pública.
+    // "Acho que podemos informar como funciona somente após interesse de
+    // participar do programa. Assim não deixamos informações de 'comissões'
+    // expostas." Os percentuais migram para a etapa de cadastro/termo.
+    title: "Monetização",
     description:
-      "Comissão de indicação de 30% no primeiro ano, 15% no ano 2 e 10% a partir do ano 3 — enquanto a apólice indicada estiver ativa. Pagamento mensal, transparente, com cap por contrato.",
+      "Premiação por indicação e negócio fechado. Modelos com possibilidade de recorrência enquanto a apólice estiver ativa. Pagamento mensal, transparente, com cap por contrato.",
   },
   {
     icon: TrendingUp,
@@ -60,36 +63,45 @@ const beneficios = [
   },
 ];
 
-// Curva declinante por perfil de indicador. Quem está aqui CONECTA empresas
-// à Affida — não atua como corretor. Por isso explicitamente NÃO incluímos
-// "outros corretores de seguros" na lista — corretor não pode revender Affida,
-// só usar nossa cotação para o próprio cliente (caso queira ser corretor
-// preposto, é vínculo trabalhista, fora deste programa).
+// Perfis aceitos no programa de indicação Affida.
+//
+// Atualização 2026-04-29 (PPTX do dono): mudança de política — passamos a
+// aceitar **corretores de outros ramos** (que NÃO trabalham com benefícios
+// corporativos). Antes a regra era "outros corretores NÃO são elegíveis";
+// agora a leitura é mais aberta: corretor de ramos elementares (frota,
+// patrimonial, RC) pode indicar benefícios corporativos sem conflito,
+// porque não compete no mesmo nicho.
+//
+// O que CONTINUA fora: corretor que já vende plano de saúde PME — esse seria
+// concorrente direto, não indicador. A corretagem da apólice indicada é
+// sempre da equipe Affida (SUSEP).
+//
+// Pedido do dono: NÃO mostrar percentuais (30%/15%/10%) por linha — só
+// descrição do perfil. Detalhes da premiação ficam pós-cadastro.
 const tiposIndicadores = [
   {
     nome: "Contadores",
-    share: "30% → 10%",
-    descricao: "Escritórios contábeis com carteira empresarial. Indicação acontece naturalmente na conversa de folha.",
+    descricao: "Escritórios contábeis com carteira empresarial. Especialistas que recomendam soluções tão logo identifiquem dores na folha do cliente.",
   },
   {
     nome: "Consultores de RH",
-    share: "30% → 10%",
-    descricao: "Especialistas em benefícios que recomendam Affida durante o desenho do pacote.",
+    descricao: "Especialistas em benefícios que recomendam Affida durante o desenho do pacote dos colaboradores.",
   },
   {
     nome: "Associações e sindicatos",
-    share: "30% → 10%",
-    descricao: "Entidades de classe e sindicatos patronais que querem oferecer benefício associativo.",
+    descricao: "Entidades de classe e sindicatos patronais que querem oferecer benefício associativo aos seus filiados.",
+  },
+  {
+    nome: "Corretores de outros ramos",
+    descricao: "Corretores que NÃO trabalham com benefícios corporativos (frota, patrimonial, RC, vida individual) — indicam clientes onde Affida pode complementar o portfólio.",
   },
   {
     nome: "Influenciadores B2B",
-    share: "30% → 10%",
-    descricao: "Criadores com audiência empresarial de RH/finanças que recomendam serviços.",
+    descricao: "Criadores com audiência empresarial de RH/finanças que recomendam serviços para sua base.",
   },
   {
     nome: "Afiliados digitais",
-    share: "30% → 10%",
-    descricao: "Sites, blogs e indicadores online via link de indicação.",
+    descricao: "Sites, blogs e indicadores online via link de indicação — afiliação digital tradicional.",
   },
 ];
 
@@ -104,8 +116,8 @@ export default function IndicadoresPublicPage() {
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow text-champagne-500">Affida Partners Network</p>
             <h1 className="heading-display mt-5 text-display-xl text-ivory text-balance">
-              Indique empresas e ganhe{" "}
-              <em className="italic text-champagne-300">comissão recorrente.</em>
+              Indique empresas e receba{" "}
+              <em className="italic text-champagne-300">premiação recorrente.</em>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ivory/75">
               O <strong>Affida Partners Network</strong> é o programa oficial de
@@ -118,15 +130,17 @@ export default function IndicadoresPublicPage() {
               <strong className="text-champagne-300">Objetivo:</strong> ampliar
               presença comercial, acelerar crescimento e construir relações
               sustentáveis de longo prazo. Indicador conecta o lead — a venda é
-              toda da equipe Affida. Comissão recorrente: 30% no primeiro ano,
-              15% no ano 2, 10% no ano 3+.
+              toda da equipe Affida. Premiação transparente, paga mensalmente
+              enquanto a apólice indicada estiver ativa.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               {/* Jornada MGM real — leva ao formulário de cadastro próprio,
-                  não mais para o WhatsApp. Indicador completa o cadastro
-                  online e recebe seu link único de indicação na hora. */}
+                  não mais para o WhatsApp. Detalhes do modelo de premiação
+                  são informados após o cadastro (pedido do dono via PPTX
+                  2026-04-29: "informar como funciona somente após interesse
+                  de participar do programa"). */}
               <Button href="/parceiros/cadastro" variant="gold" size="lg">
-                Quero entrar no Network <ArrowRight size={14} />
+                Quero conhecer o programa de network <ArrowRight size={14} />
               </Button>
               <Button href="#programa" variant="outline" size="lg">
                 Como funciona
@@ -203,9 +217,12 @@ export default function IndicadoresPublicPage() {
                 Profissionais que se relacionam com empresários e podem oferecer a
                 indicação como extensão natural do próprio serviço.{" "}
                 <strong>
-                  Outros corretores de seguros NÃO são elegíveis — corretagem é exclusividade
-                  da equipe Affida.
-                </strong>
+                  Especialistas que recomendam soluções tão logo identifiquem dores
+                  dos clientes.
+                </strong>{" "}
+                Aceitamos também corretores de outros ramos (que NÃO trabalham com
+                benefícios corporativos) — a corretagem da apólice indicada é
+                sempre da equipe Affida.
               </p>
               <Button
                 href="/parceiros/cadastro"
@@ -221,15 +238,10 @@ export default function IndicadoresPublicPage() {
               {tiposIndicadores.map((t) => (
                 <div
                   key={t.nome}
-                  className="flex items-center justify-between gap-4 rounded-2xl border border-champagne-200/70 bg-white p-5"
+                  className="rounded-2xl border border-champagne-200/70 bg-white p-5"
                 >
-                  <div className="min-w-0">
-                    <p className="font-display text-lg font-light text-navy-900">{t.nome}</p>
-                    <p className="mt-1 text-xs text-navy-700/70">{t.descricao}</p>
-                  </div>
-                  <span className="shrink-0 font-display text-2xl font-light text-champagne-700">
-                    {t.share}
-                  </span>
+                  <p className="font-display text-lg font-light text-navy-900">{t.nome}</p>
+                  <p className="mt-1 text-xs text-navy-700/70">{t.descricao}</p>
                 </div>
               ))}
             </div>
@@ -241,7 +253,7 @@ export default function IndicadoresPublicPage() {
         <div className="container-wide py-24">
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-champagne-500">Jornada do indicador</p>
+              <p className="eyebrow text-champagne-500">Jornada do partner</p>
               <h2 className="heading-display mt-4 text-display-lg text-ivory">
                 Do convite ao{" "}
                 <em className="italic text-champagne-300">primeiro pagamento</em>.
@@ -258,7 +270,7 @@ export default function IndicadoresPublicPage() {
                   "Acesso ao painel com seu link de indicação único e materiais co-branded",
                   "Indique empresas por WhatsApp, e-mail ou via link — closer Affida assume a partir daí",
                   "Acompanhe status em tempo real: indicação recebida → cotada → proposta → fechada",
-                  "Comissão de indicação paga todo dia 15: 30% no ano 1, 15% no ano 2, 10% a partir do ano 3",
+                  "Premiação de indicação paga todo dia 25 do mês posterior ao fechamento e pagamento feito pelo cliente",
                 ].map((step, i) => (
                   <li key={i} className="relative">
                     <span className="absolute -left-[2.55rem] flex h-6 w-6 items-center justify-center rounded-full bg-champagne-500/20 text-[10px] font-medium text-champagne-300">

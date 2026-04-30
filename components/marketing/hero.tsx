@@ -40,7 +40,7 @@ export function Hero() {
         <div className="lg:col-span-7 xl:col-span-6">
           <div className="animate-fade-up rounded-3xl border border-champagne-500/25 bg-navy-900/85 p-8 backdrop-blur-md sm:p-10 lg:p-12">
             <p className="eyebrow text-champagne-400">
-              Plano de saúde empresarial · Corretora SUSEP
+              Soluções em benefícios · Empresas de todos os tamanhos
             </p>
 
             {/* Logo no hero card: WORDMARK ONLY (sem o símbolo lemniscata).
@@ -56,15 +56,16 @@ export function Hero() {
             </div>
 
             <h1 className="mt-10 font-display text-3xl font-light leading-[1.1] tracking-tight text-ivory text-balance sm:text-4xl lg:text-5xl">
-              Plano de saúde para{" "}
-              <em className="italic font-light text-champagne-300">empresas</em> que cuida de
-              quem cuida.
+              Soluções em benefícios para{" "}
+              <em className="italic font-light text-champagne-300">empresas e pessoas</em>,
+              em poucas horas.
             </h1>
 
             <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-ivory/75 sm:text-base">
-              Análise de mercado em minutos nas principais operadoras de saúde do Brasil —
-              Amil, Care Plus, Bradesco, Omint, Porto Seguro, Sul América e Unimed.
-              Consultoria boutique, comparativo transparente e benchmark setorial por CNAE.
+              Mais do que plano de saúde — uma gestão inteligente do cuidado corporativo.
+              Análise de mercado nas principais operadoras (Amil, Care Plus, Bradesco,
+              Omint, Porto Seguro, Sul América, Unimed). Relacionamento humano, com
+              soluções digitais.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
@@ -86,15 +87,16 @@ export function Hero() {
               </a>
             </div>
 
-            {/* Pilares discretos */}
+            {/* Pilares discretos — atualizados via PPTX 2026-04-29:
+                "Humano" e "Relacionamento" passam a ser pilares declarados. */}
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-champagne-500/15 pt-6 text-[10px] font-medium uppercase tracking-[0.28em] text-champagne-400/90">
-              <span>Confiança</span>
+              <span>Humano</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
-              <span>Parceria</span>
+              <span>Relacionamento</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
               <span>Excelência</span>
               <span className="h-1 w-1 rounded-full bg-champagne-500/60" aria-hidden />
-              <span>Inovação</span>
+              <span>Confiança</span>
             </div>
           </div>
         </div>
@@ -109,7 +111,7 @@ export function Hero() {
               // (volume), mas atendemos qualquer cliente que precisar.
               { value: "10+", label: "Operadoras acessíveis" },
               { value: "3 min", label: "Cotação online" },
-              { value: "Sob medida", label: "Empresas e pessoa física" },
+              { value: "Sob medida", label: "Empresas e pessoas" },
               { value: "SUSEP", label: "Corretora regulada" },
             ].map((stat) => (
               <div

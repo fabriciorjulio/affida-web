@@ -1,4 +1,4 @@
-import { Clock, ShieldCheck, Cpu } from "lucide-react";
+import { Clock, ShieldCheck, BarChart3 } from "lucide-react";
 
 /**
  * 3 compromissos que a Affida assume com cada cliente.
@@ -6,15 +6,15 @@ import { Clock, ShieldCheck, Cpu } from "lucide-react";
  * Títulos atualizados via PPTX 2026-04-29 (revisão do sócio):
  *   1. "Cotação rápida e apoio técnico" (era "Cotação rápida, contrato em poucos dias")
  *   2. "Gestão de risco e previsibilidade" (era "Sua carteira cuidada o ano inteiro")
- *   3. "Tecnologia para gestão das apólices" (era "Comparativo com empresas como a sua")
+ *   3. "Comparativo com empresas como a sua" — MANTIDO (sócio reverteu o
+ *      "Tecnologia para gestão das apólices" do PPTX porque não casava com
+ *      a descrição+proof originais que ele pediu para manter).
  *
  * Descrições e proofs MANTIDOS nas versões originais (que validam com
- * métricas concretas: 72h SLA, 100% carteira, cohort 50 CNAE) — pedido
- * direto do sócio em segunda revisão. As métricas seguram a credibilidade
- * dos compromissos.
+ * métricas concretas: 72h SLA, 100% carteira, cohort 50 CNAE).
  *
  * Ícones: Repeat2 (carteira) → ShieldCheck (gestão de risco).
- *         BarChart3 (comparativo) → Cpu (tecnologia).
+ *         BarChart3 mantido no card 3 (comparativo).
  */
 const pillars = [
   {
@@ -32,8 +32,8 @@ const pillars = [
     proof: "100% da carteira monitorada continuamente",
   },
   {
-    icon: Cpu,
-    title: "Tecnologia para gestão das apólices",
+    icon: BarChart3,
+    title: "Comparativo com empresas como a sua",
     description:
       "Mostramos como empresas do seu setor e tamanho estruturam saúde, vida e benefícios. Você decide com base em dados de pares — não no achismo do corretor.",
     proof: "Cohort de pelo menos 50 empresas por CNAE",

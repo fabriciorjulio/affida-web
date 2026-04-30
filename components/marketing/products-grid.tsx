@@ -112,11 +112,10 @@ export function ProductsGrid() {
                 Plano de saúde + odonto empresarial
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ivory/75 sm:text-base">
-                Cotação em poucos minutos nas principais operadoras do Brasil —
+                Cotação online em minutos nas principais operadoras do Brasil —
                 Amil, Bradesco Saúde, Care Plus, Omint, SulAmérica e Unimed.
                 Comparativo por faixa etária ANS, com migração analisada vs. seu
-                plano atual. <strong>Possibilidade de inclusão de produto
-                odontológico com mensalidade reduzida.</strong>
+                plano atual. Odonto entra junto com mensalidade reduzida.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ivory/65">
                 <span className="inline-flex items-center gap-2">
@@ -161,10 +160,9 @@ export function ProductsGrid() {
                 Vida em grupo
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ivory/65">
-                Produto de baixo custo e grande importância para a família dos
-                colaboradores. Capital segurado a partir de 12× salário,
-                assistência funeral e coberturas extras. Cotação online em
-                poucos minutos com condições especiais Affida.
+                Proteção do time com capital segurado a partir de 12× salário,
+                assistência funeral e coberturas extras. Cross-sell natural
+                sobre a carteira de saúde, com cotação online.
               </p>
             </div>
 
